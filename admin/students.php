@@ -1,5 +1,7 @@
 <?php
+ session_start();
  include '../navbars/home_navbar.php';
+ require_once "../inc/connection.php";
 
  ?>
 <head>
@@ -117,6 +119,21 @@
 					    </ul>
 
 				    </div>
+
+		<!-- Selecting the students from the database -->
+
+		<?php
+			$query = "SELECT * FROM register WHERE Profile = 'student'";
+			$results = $mysqli->query($query);
+			$count = $results->num_rows;
+			$studentArray = array();
+			while ( $row = $results->fetch_array(MYSQLI_BOTH))
+			{
+				$studentArray[] = $row['Stud_id'];
+				$json = json_encode($studentArray);
+				print_r($json);
+			}
+		?>
 			</div>
 			<!-- Modal for the editting dialog page -->
 			<div id="modal">
@@ -137,6 +154,7 @@
 
 					// );
 					var Name = "<?php echo "$lord"; ?>";
+					
 					$("#img,#name,#email").click(function(){
 						$.sweetModal({
 								title: '<div class="col s12 m12 l12>\
@@ -144,7 +162,7 @@
 								\				<img src="../images/boys.jpg" style="width:80px; height=80px;border:4px solid rgba(0,0,0,0.25);" class="circle responsive-img">\
 											</div>\
 								\			<div class="col s8 m8 l8">\
-								\				<span class="name" style="position:absolute;top:50px;left:135px;"><?php echo "$lord";?></span>\
+								\				<span class="name" style="position:absolute;top:50px;left:135px;"></span>\
 								\				<span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">delete</i></a><a href="" style="position:absolute;top:20px;right:100px;"><i class="material-icons right grey-text text-darken-2">archive</i></a></span>\
 											<div>\
 										</div>',

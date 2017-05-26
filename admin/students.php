@@ -91,40 +91,56 @@
 								$query = "SELECT * FROM register WHERE Profile = 'student'";
 								$results = $mysqli->query($query);
 								$count = $results->num_rows;
-								while ( $row = $results->fetch_array(MYSQLI_BOTH))
+								if ($count > 0)
 								{
-									$stud_firstname = $row['f_Name'];
-									$stud_lastname = $row['l_Name'];
-									$stud_othername = $row['other_Name'];
-									$stud_id 		= $row['Stud_id'];
-									$stud_email 	= $row['email'];
-									$stud_image 	= $row['picture'];
-									echo'
-										<div class="card-panel z-depth-0 col s12 stud_list">
-											<div class="col s2 m2 l2" id="img">
-												<span class="image"><img src="../'.$stud_image.'" alt="avatar" class="responsive-img circle"></span>
-											</div>
-											<div class="col s3 m3 l3" id="name">
-												<span class="name left-align">'.$stud_firstname." ".$stud_lastname."".$othername.'</span>
-											</div>
-											<div class="col s2 m2 l2" id="phone">
-												<span class="phone">'.$stud_id.'</span>
-											</div>
-											<div class="col s3 m3 l3" id="email">
-												<span class="email left-align"><a href="#">'.$stud_email.'</a></span>
-											</div>
-											
-											<div class="col s2 m2 l2">
-												<span class="side_menu">
-													Date Here
-												</span>
+									while ( $row = $results->fetch_array(MYSQLI_BOTH))
+										{
+											$stud_firstname = $row['f_Name'];
+											$stud_lastname = $row['l_Name'];
+											$stud_othername = $row['other_Name'];
+											$stud_id 		= $row['Stud_id'];
+											$stud_email 	= $row['email'];
+											$stud_image 	= $row['picture'];
+											echo'
+												<div class="card-panel z-depth-0 col s12 stud_list">
+													<div class="col s2 m2 l2" id="img">
+														<span class="image"><img src="../'.$stud_image.'" alt="avatar" class="responsive-img circle"></span>
+													</div>
+													<div class="col s3 m3 l3" id="name">
+														<span class="name left-align">'.$stud_firstname." ".$stud_lastname."".$othername.'</span>
+													</div>
+													<div class="col s2 m2 l2" id="phone">
+														<span class="phone">'.$stud_id.'</span>
+													</div>
+													<div class="col s3 m3 l3" id="email">
+														<span class="email left-align"><a href="#">'.$stud_email.'</a></span>
+													</div>
+													
+													<div class="col s2 m2 l2">
+														<span class="side_menu">
+															Date Here
+														</span>
+													</div>
+												</div>
+											';
+										}
+								}
+								else
+								{
+									echo 
+										'<div class="card-panel z-depth-0 col s12 m12 l12" style="background-color:#eeeeee;">
+											<div class="empty_list">
+												<div class="image_list">
+													<img src="../images/admin/empty_list.svg" class="responsive-img" alt="Empty List"/>
+													<span class="empty_title">No Lecturer Added</span>
+												</div>
+
 											</div>
 										</div>
-									';
+										';
 								}
-								$results->close();
-								$mysqli->close();
 								
+								$results->close();
 							?>
 							
 						</div>
@@ -140,7 +156,20 @@
 					    </ul>
 
 				    </div>
-
+					<?php
+						$myFile = "data.json";
+						$qs = "SELECT district_name FROM district";
+						$res = $mysqli->query($qs);
+						$distArray = array();
+						while ($row = $res->fetch_array(MYSQLI_BOTH))
+						{
+							$formData = array(
+								'DistrictName'=>$row['district_name'];
+							);
+							array_push($distArray, $formData);
+							
+						}
+					?>
 		
 			</div>
 			<!-- Modal for the editting dialog page -->
@@ -165,7 +194,7 @@
 					
 					$("#img,#name,#email").click(function(){
 						// $.each('arrayVaraible',function(){
-							
+
 						// });
 						$.sweetModal({
 								title: '<div class="col s12 m12 l12>\

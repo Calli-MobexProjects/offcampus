@@ -140,11 +140,12 @@ $id = "lord";
 			right: 0;
 		}
 		span.empty_title{
-			font-size: 16px;
-			font-weight: 500;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 14px;
+			font-weight: 600;
 			line-height: 1;
 			text-align: center;
-			margin-left: 18px;
+			margin-left: 26px;
 		}
 	</style>
 </head>
@@ -217,7 +218,7 @@ $id = "lord";
 								'<div class="card-panel z-depth-0 col s12 m12 l12" style="background-color:#eeeeee;">
 									<div class="empty_list">
 										<div class="image_list">
-											<img src="../images/admin/list(1).svg" class="responsive-img" alt="Empty List"/>
+											<img src="../images/admin/empty_list.svg" class="responsive-img" alt="Empty List"/>
 											<span class="empty_title">No Lecturer Added</span>
 										</div>
 

@@ -164,6 +164,9 @@
 					var Name = "<?php echo "$lord"; ?>";
 					
 					$("#img,#name,#email").click(function(){
+						// $.each('arrayVaraible',function(){
+							
+						// });
 						$.sweetModal({
 								title: '<div class="col s12 m12 l12>\
 								\			<div class="col s2 m2 l2">\

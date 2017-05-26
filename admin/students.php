@@ -86,26 +86,47 @@
 					<div class="row">
 						<div class="col s12 m12 l12">
 							<h5 class="grey-text text-accent-3 left-align stud_list_title"><i class="material-icons left view">view_list</i>Students' List</h5>
-							<div class="card-panel z-depth-0 col s12 stud_list">
-								<div class="col s2 m2 l2" id="img">
-									<span class="image"><img src="../images/boys.jpg" alt="avatar" class="responsive-img circle"></span>
-								</div>
-								<div class="col s3 m3 l3" id="name">
-									<span class="name left-align">Student Name</span>
-								</div>
-								<div class="col s2 m2 l2" id="phone">
-									<span class="phone">214TK01002323</span>
-								</div>
-								<div class="col s3 m3 l3" id="email">
-									<span class="email left-align"><a href="#">Email Address</a></span>
-								</div>
+							<!-- Selecting the students from the database -->
+							<?php
+								$query = "SELECT * FROM register WHERE Profile = 'student'";
+								$results = $mysqli->query($query);
+								$count = $results->num_rows;
+								while ( $row = $results->fetch_array(MYSQLI_BOTH))
+								{
+									$stud_firstname = $row['f_Name'];
+									$stud_lastname = $row['l_Name'];
+									$stud_othername = $row['other_Name'];
+									$stud_id 		= $row['Stud_id'];
+									$stud_email 	= $row['email'];
+									$stud_image 	= $row['picture'];
+									echo'
+										<div class="card-panel z-depth-0 col s12 stud_list">
+											<div class="col s2 m2 l2" id="img">
+												<span class="image"><img src="../'.$stud_image.'" alt="avatar" class="responsive-img circle"></span>
+											</div>
+											<div class="col s3 m3 l3" id="name">
+												<span class="name left-align">'.$stud_firstname." ".$stud_lastname."".$othername.'</span>
+											</div>
+											<div class="col s2 m2 l2" id="phone">
+												<span class="phone">'.$stud_id.'</span>
+											</div>
+											<div class="col s3 m3 l3" id="email">
+												<span class="email left-align"><a href="#">'.$stud_email.'</a></span>
+											</div>
+											
+											<div class="col s2 m2 l2">
+												<span class="side_menu">
+													Date Here
+												</span>
+											</div>
+										</div>
+									';
+								}
+								$results->close();
+								$mysqli->close();
 								
-								<div class="col s2 m2 l2">
-									<span class="side_menu">
-										Date Here
-									</span>
-								</div>
-							</div>
+							?>
+							
 						</div>
 					</div>
 				</div>
@@ -120,20 +141,7 @@
 
 				    </div>
 
-		<!-- Selecting the students from the database -->
-
-		<?php
-			$query = "SELECT * FROM register WHERE Profile = 'student'";
-			$results = $mysqli->query($query);
-			$count = $results->num_rows;
-			$studentArray = array();
-			while ( $row = $results->fetch_array(MYSQLI_BOTH))
-			{
-				$studentArray[] = $row['Stud_id'];
-				$json = json_encode($studentArray);
-				print_r($json);
-			}
-		?>
+		
 			</div>
 			<!-- Modal for the editting dialog page -->
 			<div id="modal">

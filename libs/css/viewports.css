@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+@media screen and (min-width:300px)
+{
+	span>img.toolbar_img]
+	{
+		position: absolute;
+		z-index: 1;
+		top: 8px;
+	}
+	small.name
+	{
+		margin-left: 5px;
+	}
+	a#button-collapse > i
+	{
+		margin-left: -80px;
+	}
+}
+@media screen and (min-width:  450px)
+{
+	span>img.toolbar_img]
+	{
+		position: absolute;
+		z-index: 1;
+		top: 8px;
+	}
+	small.name
+	{
+		margin-left: 5px;
+	}
+	a#button-collapse > i
+	{
+		margin-left: -160px;
+		-webkit-margin-left:-160px;
+	}
+}
+@media screen and (min-width: 800px)
+{
+	span>img.toolbar_img
+	{
+		position: absolute;
+		z-index: 1;
+		top: 10px;
+	}
+	small.name
+	{
+		margin-left: 5px;
+	}
+	a#button-collapse > i
+	{
+		margin-left: 10px;
+	}
+}

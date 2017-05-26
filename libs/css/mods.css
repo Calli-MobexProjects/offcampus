@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+ul#dropdown1{
+  position: absolute;
+  top: 50px;
+  width: 300px;
+  height: auto;
+  line-height: 24px;
+}

@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/*@import "viewports.css" screen,projection;*/
+
+html,body{
+	scroll-behavior: smooth;
+}
+*{
+	margin: 0 auto;
+}
+/*header stylings*/
+span>img.toolbar_img{
+	position: absolute;
+	z-index: 1;
+	top: 11px;
+
+}
+span>img.toolbar_img:hover{
+	opacity: 0.8;
+	backface-visibility: visible;
+}
+small.name{
+	margin-left: 45px;
+}
+span.ag_img{
+	width: 100px;
+	height: 100px;
+	background-color: #919191;
+}
+span.ag_img>img{
+	margin-left: -15px;
+}
+span.ed_img>img{
+	width: 150px;
+	height: 150px;
+}

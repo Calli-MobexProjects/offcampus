@@ -345,30 +345,56 @@ $id = "lord";
 					$("#addLecturer").on('click',function(){
 						$.sweetModal({
 							title: 'Add Lecturer',
-							content: '<form action="lecturers.php" method="post">\
+							content: '<form action="lecturers.php" method="post" id="lectForm">\
 							                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 								                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-								                <input type="text" name="fullname" class="validate">\
+								                <input type="text" name="fullname" class="validate" id="fullname" required>\
 								                <label for="icon_prefix">First Name</label>\
 							                </div>\
 							                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 								                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-								                <input type="text" name="lastname" class="validate">\
+								                <input type="text" name="lastname" class="validate" required>\
 								                <label for="icon_prefix">Last Name</label>\
 							                </div>\
 							                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 								                <i class="material-icons prefix" id="icon_prefix">person_pin_circle</i>\
-								                <input type="text" name="district" class="validate">\
+								                <input type="text" name="district" class="validate" required>\
 								                <label for="icon_prefix">District Of Choice</label>\
-							                </div>\
-							                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-								           \	<button type="submit" class="btn light-blue accent-3 waves-effect waves-light" name="addLecturer"><i class="material-icons left">add</i>Add Lecturer</button>\
 							                </div>\
 							           </form>',
 							width : '700px',
+							buttons:{
+								submitButton:{
+									label: 'Submit Data',
+									classes: 'blueB flat',
+									action: function(){
+										var username = $('#fullname').val();
+										console.dir(username);
+										return $.sweetModal('You clicked Action 2');
+									}
+								},
+
+								cancel:{
+									label:'Cancel',
+									classes: 'secondaryB bordered flat',
+									action: function()
+									{
+										return $.sweetModal("You are something");
+									}
+								},
+							}
 
 						});
+
+						//Using Ajax to send data to the database using json
+						var form = $('#lectForm');
+						form.submit(function(event){
+							var username = $('#fullname').val();
+							console.dir(username);
+						});
+
 					});
+
 					$(window).load(function(){
 						$("span.checkmate").css("visibility","hidden");
 						// $("div.stud_list").css("background-color","#e9e9e9");

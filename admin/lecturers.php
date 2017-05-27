@@ -127,7 +127,26 @@ $id = "lord";
 			margin-left: -30px;
 			visibility: hidden;
 		}
-
+		div.empty_list{
+			position: relative;
+			margin: 50px auto;
+			width: 200px;
+			height: 200px;
+		}
+		div.image_list{
+			position: absolute;
+			top: 60px;
+			left: 0;
+			right: 0;
+		}
+		span.empty_title{
+			font-family: 'Open Sans', sans-serif;
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 1;
+			text-align: center;
+			margin-left: 26px;
+		}
 	</style>
 </head>
 <body>
@@ -142,40 +161,72 @@ $id = "lord";
 					<div class="row">
 						<div class="col s12 m12 l12">
 							<h5 class="grey-text text-accent-3 left-align stud_list_title"><i class="material-icons left view">view_list</i>Lecturers' List</h5>
-							<div class="card-panel z-depth-0 col s12 stud_list" id="list1">
-								<div class="col s2 m2 l2">
-									<span class="image"><img id="img" src="../images/boys.jpg" alt="avatar" class="responsive-img circle"></span>
-									 <span class="checkmate">
-									 	<input type="checkbox" id="test1"/>
-			      			 		 	<label for="test1"></label> 
-									 </span>
-								</div>
-								
-								<div class="col s3 m3 l3" id="name">
-									<span class="name left-align">Lecturer Name</span>
-								</div>
-								<div class="col s2 m2 l2" id="phone">
-									<span class="phone">020456987</span>
-								</div>
-								<div class="col s3 m3 l3" id="email">
-									<span class="email left-align"><a href="#">Email Address</a></span>
-								</div>
-								
-								<div class="col s2 m2 l2">
-									<span class="side_menu">
-										<a href>
-											<i class="material-icons right mt10 tooltipped" data-tooltip="Delete" data-delay="5" data-position="bottom">delete</i>
-										</a>
-										<a href>
-											<i class="material-icons right mt10 tooltipped" data-tooltip="Move To Archives" data-position="bottom" data-delay="5">archive</i>
-										</a>
-										<a id="editMode">
-											<i class="material-icons right mt10 tooltipped" data-tooltip="Edit" data-position="bottom" data-delay="5">mode_edit</i>
-										</a>
-									</span>
+							<?php
+							$qs = "SELECT * FROM lecturer";
+							$res = $mysqli->query($qs);
+							$count = $res->num_rows;
+							
+							//using conditional statement to compare the values and the variables
+							if ($count > 0) 
+							{
+								while ($row = $res->fetch_array(MYSQLI_BOTH))
+									{
+										$lect_image = $row['picture'];
+										$lect_fullName = $row['lect_Name'];
 
+										echo '
+											<div class="card-panel z-depth-0 col s12 stud_list" id="list1">
+												<div class="col s2 m2 l2">
+													<span class="image"><img id="img" src="../images/boys.jpg" alt="avatar" class="responsive-img circle"></span>
+													 <span class="checkmate">
+													 	<input type="checkbox" id="test1"/>
+							      			 		 	<label for="test1"></label> 
+													 </span>
+												</div>
+												
+												<div class="col s3 m3 l3" id="name">
+													<span class="name left-align">'.$lect_fullName.'</span>
+												</div>
+												<div class="col s2 m2 l2" id="phone">
+													<span class="phone">020456987</span>
+												</div>
+												<div class="col s3 m3 l3" id="email">
+													<span class="email left-align"><a href="#">Email Address</a></span>
+												</div>
+												
+												<div class="col s2 m2 l2">
+													<span class="side_menu">
+														<a href>
+															<i class="material-icons right mt10 tooltipped" data-tooltip="Delete" data-delay="5" data-position="bottom">delete</i>
+														</a>
+														<a href>
+															<i class="material-icons right mt10 tooltipped" data-tooltip="Move To Archives" data-position="bottom" data-delay="5">archive</i>
+														</a>
+														<a id="editMode">
+															<i class="material-icons right mt10 tooltipped" data-tooltip="Edit" data-position="bottom" data-delay="5">mode_edit</i>
+														</a>
+													</span>
+
+												</div>
+											</div>
+										';
+									}
+							}
+							else
+							{
+								echo 
+								'<div class="card-panel z-depth-0 col s12 m12 l12" style="background-color:#eeeeee;">
+									<div class="empty_list">
+										<div class="image_list">
+											<img src="../images/admin/empty_list.svg" class="responsive-img" alt="Empty List"/>
+											<span class="empty_title">No Lecturer Added</span>
+										</div>
+
+									</div>
 								</div>
-							</div>
+								';
+							}
+							?>
 						</div>
 					</div>
 					<div class="fixed-action-btn" style="right: 70px;bottom: 40px;">

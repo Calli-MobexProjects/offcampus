@@ -1,5 +1,7 @@
 <?php
+ session_start();
  include '../navbars/home_navbar.php';
+ require_once "../inc/connection.php";
 
  ?>
 <head>
@@ -84,26 +86,63 @@
 					<div class="row">
 						<div class="col s12 m12 l12">
 							<h5 class="grey-text text-accent-3 left-align stud_list_title"><i class="material-icons left view">view_list</i>Students' List</h5>
-							<div class="card-panel z-depth-0 col s12 stud_list">
-								<div class="col s2 m2 l2" id="img">
-									<span class="image"><img src="../images/boys.jpg" alt="avatar" class="responsive-img circle"></span>
-								</div>
-								<div class="col s3 m3 l3" id="name">
-									<span class="name left-align">Student Name</span>
-								</div>
-								<div class="col s2 m2 l2" id="phone">
-									<span class="phone">214TK01002323</span>
-								</div>
-								<div class="col s3 m3 l3" id="email">
-									<span class="email left-align"><a href="#">Email Address</a></span>
-								</div>
+							<!-- Selecting the students from the database -->
+							<?php
+								$query = "SELECT * FROM register WHERE Profile = 'student'";
+								$results = $mysqli->query($query);
+								$count = $results->num_rows;
+								if ($count > 0)
+								{
+									while ( $row = $results->fetch_array(MYSQLI_BOTH))
+										{
+											$stud_firstname = $row['f_Name'];
+											$stud_lastname = $row['l_Name'];
+											$stud_othername = $row['other_Name'];
+											$stud_id 		= $row['Stud_id'];
+											$stud_email 	= $row['email'];
+											$stud_image 	= $row['picture'];
+											echo'
+												<div class="card-panel z-depth-0 col s12 stud_list">
+													<div class="col s2 m2 l2" id="img">
+														<span class="image"><img src="../'.$stud_image.'" alt="avatar" class="responsive-img circle"></span>
+													</div>
+													<div class="col s3 m3 l3" id="name">
+														<span class="name left-align">'.$stud_firstname." ".$stud_lastname."".$othername.'</span>
+													</div>
+													<div class="col s2 m2 l2" id="phone">
+														<span class="phone">'.$stud_id.'</span>
+													</div>
+													<div class="col s3 m3 l3" id="email">
+														<span class="email left-align"><a href="#">'.$stud_email.'</a></span>
+													</div>
+													
+													<div class="col s2 m2 l2">
+														<span class="side_menu">
+															Date Here
+														</span>
+													</div>
+												</div>
+											';
+										}
+								}
+								else
+								{
+									echo 
+										'<div class="card-panel z-depth-0 col s12 m12 l12" style="background-color:#eeeeee;">
+											<div class="empty_list">
+												<div class="image_list">
+													<img src="../images/admin/empty_list.svg" class="responsive-img" alt="Empty List"/>
+													<span class="empty_title">No Lecturer Added</span>
+												</div>
+
+											</div>
+										</div>
+										';
+								}
 								
-								<div class="col s2 m2 l2">
-									<span class="side_menu">
-										Date Here
-									</span>
-								</div>
-							</div>
+								$results->close();
+							?>
+							
 						</div>
 					</div>
 				</div>
@@ -117,6 +156,21 @@
 					    </ul>
 
 				    </div>
+					<?php
+						$myFile = "data.json";
+						$qs = "SELECT district_name FROM district";
+						$res = $mysqli->query($qs);
+						$distArray = array();
+						while ($row = $res->fetch_array(MYSQLI_BOTH))
+						{
+							$formData = array(
+								'DistrictName'=>$row['district_name'];
+							);
+							array_push($distArray, $formData);
+							
+						}
+					?>
+		
 			</div>
 			<!-- Modal for the editting dialog page -->
 			<div id="modal">
@@ -137,14 +191,18 @@
 
 					// );
 					var Name = "<?php echo "$lord"; ?>";
+					
 					$("#img,#name,#email").click(function(){
+						// $.each('arrayVaraible',function(){
+
+						// });
 						$.sweetModal({
 								title: '<div class="col s12 m12 l12>\
 								\			<div class="col s2 m2 l2">\
 								\				<img src="../images/boys.jpg" style="width:80px; height=80px;border:4px solid rgba(0,0,0,0.25);" class="circle responsive-img">\
 											</div>\
 								\			<div class="col s8 m8 l8">\
-								\				<span class="name" style="position:absolute;top:50px;left:135px;"><?php echo "$lord";?></span>\
+								\				<span class="name" style="position:absolute;top:50px;left:135px;"></span>\
 								\				<span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">delete</i></a><a href="" style="position:absolute;top:20px;right:100px;"><i class="material-icons right grey-text text-darken-2">archive</i></a></span>\
 											<div>\
 										</div>',

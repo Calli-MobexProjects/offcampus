@@ -19,17 +19,19 @@ if (isset($_POST['proceed']))
 	$email     = trim($_POST['email']);
 	$password  = trim($_POST['password']);
 	//Encrypting the user password using crypt
-	$encyptpass = md5($password);
+	$encryptpass = md5($password);
 
 	$phone 	   = trim($_POST['phone']);
-
+	$student  = "student";
 	//Using default image from the dir in the parent collections
 	$pic = "images/boys.jpg";
 	$department = "N/A";
+
     
     $Time=date("Y/m/d h:i:sa"); 
     
 	$qs = "INSERT INTO register (Stud_id,	f_Name,	l_Name,other_Name,program,department,picture,	password,phone,email,Profile,date_Created) VALUES('$student_id','$firstname','$lastname','$othername','$course','$department','$pic','$encyptpass','$phone','$email','student','$Time')";
+
 
 	//Executing the queries
 	$res = $mysqli->query($qs);

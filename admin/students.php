@@ -163,11 +163,7 @@
 						$distArray = array();
 						while ($row = $res->fetch_array(MYSQLI_BOTH))
 						{
-							$formData = array(
-								'DistrictName'=>$row['district_name'];
-							);
-							array_push($distArray, $formData);
-							
+														
 						}
 					?>
 		

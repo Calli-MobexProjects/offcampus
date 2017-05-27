@@ -1,6 +1,6 @@
 <?php
 	DEFINE('DB_HOST','localhost');
-	DEFINE('DB_PASSWORD','password');
+	DEFINE('DB_PASSWORD','');
 	DEFINE('DB_USERNAME','root');
 	DEFINE('DB_NAME','offcampus');
 	//initializing the connection to the database 

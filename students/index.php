@@ -1,6 +1,5 @@
-
 <?php
-
+include('session.php');
 include("../navbars/home_navbar.php");
 
 ?>
@@ -139,7 +138,7 @@ include("../navbars/home_navbar.php");
                 </h4>
               </div>
                <div class="col s12 m4 l4 offset-m4 offset-l4">
-                  <button type="submit" class="btn green download" style="padding-right: -20px;"><i class="material-icons left">file_download</i>Download Pdf</button>
+                  <a href="assesmentform.php"  class="btn green download" style="padding-right: -20px;"><i class="material-icons left">file_download</i>Download Pdf</a>
                 </div>
             </div>
           </div>
@@ -159,7 +158,7 @@ include("../navbars/home_navbar.php");
             //Using the noty notification abilities
                 new Noty({
                      
-                      text: 'Some notification text',
+                      text: 'Assesment form downloaded',
                      
                   }).show();
             });

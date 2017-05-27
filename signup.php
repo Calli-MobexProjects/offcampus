@@ -1,5 +1,5 @@
 <head>
-	<title>Farm Base&reg; | Register</title>
+	<title>OCTPs&reg; | Register</title>
 </head>
 <?php
 session_start();
@@ -26,8 +26,10 @@ if (isset($_POST['proceed']))
 	//Using default image from the dir in the parent collections
 	$pic = "images/boys.jpg";
 	$department = "N/A";
-
-	$qs = "INSERT INTO register (Stud_id,f_Name,l_Name,other_Name,program,department,picture,password,phone,email,date_Created) VALUES('$student_id','$firstname','$lastname','$othername','$course','$department','$pic','$encryptpass','$phone','$email',NOW())";
+    
+    $Time=date("Y/m/d h:i:sa"); 
+    
+	$qs = "INSERT INTO register (Stud_id,	f_Name,	l_Name,other_Name,program,department,picture,	password,phone,email,Profile,date_Created) VALUES('$student_id','$firstname','$lastname','$othername','$course','$department','$pic','$encyptpass','$phone','$email','student','$Time')";
 
 	//Executing the queries
 	$res = $mysqli->query($qs);
@@ -83,7 +85,7 @@ if (isset($_POST['proceed']))
 							</div>
 							<div class="input-field col s12 m6 l6">
 								  <i class="material-icons prefix">person_pin</i>
-						          <input id="icon_prefix" type="text" name="othername" class="validate" data-length="60" required="required">
+						          <input id="icon_prefix" type="text" name="othername" class="validate" data-length="60">
 						          <label for="icon_prefix">Other Name(Option)</label>
 							</div>
 							<div class="input-field col s12 m6 l6">

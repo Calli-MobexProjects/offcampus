@@ -5,7 +5,7 @@ ini_set('session.use_strict_mode',1);
 include("navbars/navbar.php");
 ?>
 <head>
-	<title>Farm Base&reg; | Login</title>
+	<title>OCTPs&reg; | Login</title>
 </head>
 <body>
 	<main class="signup_body">
@@ -22,7 +22,7 @@ include("navbars/navbar.php");
 							<div class="input-field col s12 m12 l12" style="padding-top: 15px;">
 								  <i class="material-icons prefix">credit_card</i>
 						          <input id="icon_prefix" type="text" name="student_id" class="validate" data-length="14" required="required">
-						          <label for="icon_prefix">Student ID</label>
+						          <label for="icon_prefix">ID</label>
 							</div>
 							<div class="input-field col s12 m12 l12">
 								  <i class="material-icons prefix">lock</i>
@@ -55,6 +55,106 @@ include("navbars/navbar.php");
 }   
 
 
+if($_SERVER["REQUEST_METHOD"]== "POST"){
+ if(isset($_POST['login'])){
+     
+    include("../inc/connection.php");
+     
+     $id=test_input($_POST['student_id']); 
+     $password=test_input($_POST['password']); 
+     
+     $encryptpassword=md5($password);
+              
+     $querying="SELECT * FROM register WHERE Stud_id='$id' and password= '$encryptpassword' ";
+     while($row=mysqli_query($mysql,$querying))
+     {
+        
+            session_regenerate_id();
+             $_SESSION['userid'] = $id;
+            session_write_close();
+            header('Location:students/index.php');
+                                exit();
+     }
+     
+     
+     
+      /* $query=mysql_query("SELECT * FROM register WHERE Stud_id= '$id'");
+$fetch=mysql_fetch_assoc($run);
+ 
+      $userid=$fetch['Stud_id'];
+     $passwordnew=$fetch['password'];
+     $Profile=$fetch['Profile']; 
+         
+   
+     
+   
+if($id==''){
+echo ' 	<script>
+	   				var alert = $("<span>ID is required </span>");
+	        		Materialize.toast(alert, 3500, "rounded");
+	   			</script>
+	   		';
 
+}    
+    elseif($password==''){
+    echo ' 	<script>
+	   				var alert = $("<span>Password is required </span>");
+	        		Materialize.toast(alert, 3500, "rounded");
+	   			</script>
+	   		';
+}
+    
+    
+elseif(mysql_num_rows($query)){
+
+   if($encryptpassword==$passwordnew){
+       
+       if($Profile=='student'){
+            session_regenerate_id();
+             $_SESSION['userid'] = $userid;
+            session_write_close();
+            header('Location:students/index.php');
+                                exit();
+           
+       }
+       else{
+        
+           session_regenerate_id();
+             $_SESSION['userid'] = $userid;
+            session_write_close();
+            header('Location:admin/index.php');
+                                exit();
+       }
+       
+       
+   }
+     else{
+         echo ' 	<script>
+	   				var alert = $("<span>Invalid Password </span>");
+	        		Materialize.toast(alert, 3500, "rounded");
+	   			</script>
+	   		';
+     }
+    
+    }
+else
+{     
+    echo ' 	<script>
+	   				var alert = $("<span>Invalid ID</span>");
+	        		Materialize.toast(alert, 3500, "rounded");
+	   			</script>
+	   		';
+    }
+    */
+         
+        
+ 
+   
+     
+     
+     
+ }      
+
+}
 
 ?>

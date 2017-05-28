@@ -147,7 +147,7 @@
 					</div>
 				</div>
 					<div class="fixed-action-btn" style="right: 70px;bottom: 40px;">
-					    <a  href class="btn-floating btn-large light-blue accent-3">
+					    <a  href class="btn-floating btn-large pulse light-blue accent-3">
 					      <i class="large material-icons tooltipped" data-tooltip="View" data-position="left" data-delay="5">remove_red_eye</i>
 					    </a>
 					    <ul>
@@ -157,12 +157,17 @@
 
 				    </div>
 					<?php
-						$myFile = "data.json";
 						$qs = "SELECT district_name FROM district";
 						$res = $mysqli->query($qs);
-						$distArray = array();
+					
 						while ($row = $res->fetch_array(MYSQLI_BOTH))
 						{
+							$distArray = array($row['district_name']=>$row['district_name']);	
+							$json = json_encode($distArray,JSON_PRETTY_PRINT);	
+
+							//write json to file
+							var_dump($json);
+							
 														
 						}
 					?>

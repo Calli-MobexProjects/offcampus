@@ -5,26 +5,54 @@ require_once "../inc/connection.php";
 
 $id = "lord";
 
-if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['district']))
+if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email'])  && isset($_POST['phone'])  && isset($_POST['region'])  && isset($_POST['district']))
  {
  	$lect_firstname = $_POST['firstname'];
  	$lect_lastname  = $_POST['lastname'];
- 	$lect_fullName	= $lect_firstname. " " . $lect_lastname;
+ 	// $lect_fullName	= $lect_firstname. " " . $lect_lastname;
+ 	$lect_email 	= "example@.com";
+    $lect_phone		= $_POST['phone'];
+    $lect_region 	= $_POST['region'];
  	$lect_district  = $_POST['district'];
- 	$lect_phone		= "0494040393";
- 	$lect_email 	= "offeilord@gmail.com";
+
+ 	$lect_indicator = substr($lect_district,0,4);
+ 	
 
  	$default_image = "images/boys.jpg";
 
- 	$lect_insert = "INSERT INTO lecturer(lect_Name,lect_Email,lect_Phone,lect_Region,lect_image) VALUES('$lect_fullName','$lect_email','$lect_phone','$lect_district','$default_image')";
+ 	$lect_insert = "INSERT INTO lecturer(lect_firstname,lect_lastname,region,lect_district,lect_indicator,phone_number,email,lect_image) VALUES('$lect_firstname','$lect_lastname','$lect_region','$lect_district','$lect_indicator','$lect_phone','$lect_email','$default_image')";
+
  	$lect_res = $mysqli->query($lect_insert);
 
- 	if($lect_res) 
+ 	
+ }
+ else{
+ 	
+ }
+
+ //updating the data in the database
+ 
+if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && isset($_POST['update_phone'])  && isset($_POST['update_region'])  && isset($_POST['update_district']) && isset($_POST['data_id']))
+ {
+ 	$update_firstname = $_POST['update_firstname'];
+ 	$update_lastname  = $_POST['update_lastname'];
+ 	// $lect_fullName	= $lect_firstname. " " . $lect_lastname;
+ 	$update_email 	= "example@.com";
+    $update_phone		= $_POST['update_phone'];
+    $update_region 	= $_POST['update_region'];
+ 	$update_district  = $_POST['update_district'];
+
+ 	$update_id 		 = $_POST['data_id'];
+
+ 	//updating the data in the database
+ 	$lect_update = "UPDATE lecturer SET lect_firstname = '$update_firstname',lect_lastname = '$update_lastname',phone_number = '$update_phone',region='$update_region', lect_district='$update_district' WHERE lect_ID = '$update_id'";
+ 	$lect_update_res = $mysqli->query($lect_update);
+
+ 	if ($lect_update_res) 
  	{
- 		
+ 		echo "Updated with data shosdfd ";
  	}
-
-
+ 	
  }
  else{
  	
@@ -143,16 +171,7 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['dis
 		a#edit{
 
 		}
-		span.checkmate > input{
-			margin-left: -300px;
-			margin-bottom: 20px;
-		}
-		span.checkmate{
-			position: absolute;
-			top: 128px;
-			margin-left: -30px;
-			visibility: hidden;
-		}
+		
 		div.empty_list{
 			position: relative;
 			margin: 50px auto;
@@ -199,225 +218,293 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['dis
 									{
 										$lect_id    = $row['lect_ID'];
 										$lect_image = $row['lect_image'];
-										$lect_fullName = $row['lect_Name'];
-										$lect_district = $row['lect_Region'];
-										$lect_email    = $row['lect_Email'];
+										$lect_fullName = $row['lect_firstname']." ".$row['lect_lastname'];
+										$lect_district_name = $row['lect_district'];
+										$lect_district = $row['lect_indicator'];
+										$lect_region   = $row['region'];
+										$lect_email    = $row['email'];
+										$lect_phone    = $row['phone_number'];
+
+										//Usual firstname and the lastname query
+										$lect_firstname = $row['lect_firstname'];
+										$lect_lastname  = $row['lect_lastname'];
+
+										//using generated random numbers
+
+										$user_checkmate = substr($lect_fullName, 0,4).mt_rand();
+										$user_checkmate1 = substr($lect_fullName, -3).mt_rand();
+
+										$user_edit     = substr($lect_region, 0,4).mt_rand();
+
+										$user_image  = substr($lect_email, 0,3).mt_rand();
 
 
 								?>
 								<div class="card-panel z-depth-0 col s12 stud_list list1" id="<?php echo "$lect_id";?>">
 									<div class="col s2 m2 l2">
-										<span class="image"><img id="img" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle"></span>
-										 <span class="checkmate">
-										 	<input type="checkbox" id="<?php echo "$lect_email";?>"/>
-				      			 		 	<label for="<?php echo "$lect_email";?>"></label> 
+										<span class="image"><img id="<?php echo "$user_image";?>" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle"></span>
+										 <span class="<?php echo "$user_checkmate";?>" id="checkmate" style="position: relative;bottom: 6px;">
+										 	<input type="checkbox" id="<?php echo "$user_checkmate1";?>" />
+				      			 		 	<label for="<?php echo "$user_checkmate1";?>"></label> 
 										 </span>
 									</div>
 									
 									<div class="col s3 m3 l3" id="<?php echo "$lect_district";?>">
 										<span class="name left-align"><?php echo $lect_fullName;?></span>
 									</div>
-									<div class="col s2 m2 l2" id="phone">
-										<span class="phone"><?php echo $lect_district; ?></span>
+									<div class="col s2 m2 l2" id="<?php echo "$lect_district";?>">
+										<span class="phone"><?php echo $lect_district_name; ?></span>
 									</div>
 									<div class="col s3 m3 l3" id="email">
-										<span class="email left-align"><a href="#"><?php echo "$lect_email";?></a></span>
+										<span class="email left-align"><a href="#"><?php echo "$lect_phone";?></a></span>
 									</div>
 									
 									<div class="col s2 m2 l2">
 										<span class="side_menu">
-											<a href>
-												<i class="material-icons right mt10 tooltipped" data-tooltip="Delete" data-delay="5" data-position="bottom">delete</i>
+											<a>
+												<i id="" class="material-icons right mt10 tooltipped <?php echo "$lect_district";?>" data-tooltip="Delete" data-delay="5" data-position="bottom">delete</i>
 											</a>
 											<a href>
-												<i class="material-icons right mt10 tooltipped" data-tooltip="Move To Archives" data-position="bottom" data-delay="5">archive</i>
+												<i id="" class="material-icons right mt10 tooltipped <?php echo "$lect_district";?>" data-tooltip="Move To Archives" data-position="bottom" data-delay="5">archive</i>
 											</a>
-											<a id="editMode">
-												<i class="material-icons right mt10 tooltipped" data-tooltip="Edit" data-position="bottom" data-delay="5">mode_edit</i>
+											<a>
+												<i id="<?php echo "$user_edit";?>" class="material-icons right mt10 tooltipped <?php echo "$lect_district";?>" data-tooltip="Edit" data-position="bottom" data-delay="5">mode_edit</i>
 											</a>
 										</span>
 
 									</div>
 								</div>
 								<script type="text/javascript">
-												var res = 0;
-												var count = 0;
-												$(function(){
-													var id = "<?php echo "$id"; ?>";
-													console.dir("div#"+id);
+									var res = 0;
+									var count = 0;
+									$(document).ready(function(){
+										var id = "<?php echo "$id"; ?>";
+										console.dir("div#"+id);
 
-													//settting the colors here 
+										//settting the colors here 
 
-													$("#edit_form").css("margin-top","-150px");
-													$("div.list1").hover(
-														function(){
-														 $("i.mt10").css("display","block");
-														},
-														function(){
-														  $("i.mt10").css("display","none");
-														}
-
-													);
-
-													// $("div#"+id+"").hover(
-													// 	function(){
-													// 	 $("i.mt11").css("display","block");
-													// 	},
-													// 	function(){
-													// 	  $("i.mt11").css("display","none");
-													// 	}
-
-													// );
-
-													var Name = "<?php echo "$lord"; ?>";
-													$("#img,#<?php echo "$lect_district";?>,#email").click(function(){
-														$.sweetModal({
-																title: '<div class="col s12 m12 l12">\
-																\			<div class="col s2 m2 l2" id="<?php echo "$lect_id";?>">\
-																\				<img src="../images/boys.jpg" style="width:80px; height=80px;border:4px solid rgba(0,0,0,0.25);" class="circle responsive-img overview">\
-																			</div>\
-																\			<div class="col s8 m8 l8">\
-																\				<span class="name" style="position:absolute;top:50px;left:135px;"><?php echo "$lect_fullName";?></span>\
-																\				<span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">delete</i></a><a href="" style="position:absolute;top:20px;right:100px;"><i class="material-icons right grey-text text-darken-2">archive</i></a></span>\
-																			<div>\
-																		</div>',
-
-																content: '<form action="" method="post">\
-															                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-																                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-																                <input type="text" name="firstname" class="validate" value="<?php echo "$lord";?>" disabled>\
-															                </div>\
-															                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-																                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-																                <input type="text" name="lastname" class="validate">\
-																                <label for="icon_prefix">Last Name</label>\
-															                </div>\
-															                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-																                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-																                <input type="text" name="othername" class="validate">\
-																                <label for="icon_prefix">Other Name</label>\
-															                </div>\
-															           </form>',
-																width  : '680px'
-															});
-													});
-
-													 $("a#editMode").on('click',function(){
-													 		$.sweetModal({
-															title: 'Edit User Credentials',
-															content: '<form action="" method="post">\
-															                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-																                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-																                <input type="text" name="firstname" class="validate">\
-																                <label for="icon_prefix">First Name</label>\
-															                </div>\
-															                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-																                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-																                <input type="text" name="lastname" class="validate">\
-																                <label for="icon_prefix">Last Name</label>\
-															                </div>\
-															                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-																                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-																                <input type="text" name="othername" class="validate">\
-																                <label for="icon_prefix">Other Name</label>\
-															                </div>\
-															           </form>',
-															width:'500px',
-
-															buttons: [
-																{
-																	label: 'That\'s fine',
-																	classes: 'blueB'
-																}
-															]
-														});
-													});
-
-										
-
-													$(window).load(function(){
-														$("span.checkmate").css("visibility","hidden");
-														// $("div.stud_list").css("background-color","#e9e9e9");
-													});
-
-													 console.dir(res);
-													$('input[type="checkbox"]').click(function(){
-														if ($(this).prop("checked") == true) 
-														{
-															$("div#overlay").css({"visibility":"visible","opacity":"1","transition":"0.2s all ease-in","transform":"translateY(0%),scale(1.2)"});
-															$("#img").css({"visibility":"hidden","opacity":"0"});
-															$("span.checkmate").css({"visibility":"visible","opacity":"1"});
-															$("div.stud_list").addClass("checkedBg").css({"border-left":"3px solid #039be5"});
-															$("i.mt10").css("display","block");
-															// $("input#test5").prop("checked",true);
-															count = count + 1;
-															res = 1;
-															console.log("this is the click: ");
-															console.dir(res);
-															console.dir(count);
-
-															if (res == 1)
-															 {
-															 	//calling the outhover function
-															 	outHoverAction();
-															 }
-
-														}
-														else if ($(this).prop("checked") == false){
-															$("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
-															$("span.checkmate").css({"visibility":"hidden","opacity":"0"});
-															$("i.mt10").css("display","none");
-															$("div.list1").removeClass("checkedBg").addClass("afterEffect").css({"border-left":"2px solid lightblue","transition":"0.2s all ease-in"});
-															$("#img").css({"visibility":"visible","opacity":"1"});
-															// $("input#test5").prop("checked",false);
-															$('input[type="checkbox"]').prop("checked",false);
-															res = 0;
-															if (res == 0) 
-															{
-																hoverAction();
-															}
-															console.log("when deactivated");
-															console.dir(res);
-														}
-													});	
-
-													if (res == 0) 
-													{
-														hoverAction();
-														console.log("This is it");
-														console.dir(hoverAction());
-													}
-
-												});
-											function  hoverAction(){
-												 $("div.stud_list").hover(
-														function(){
-															$("#img").css({"visibility":"hidden","opacity":"0"});
-															$("span.checkmate").css({"visibility":"visible","opacity":"1"});
-														},
-														function(){
-															$("#img").css({"visibility":"visible","opacity":"1"});
-															$("span.checkmate").css({"visibility":"hidden","opacity":"0"});
-														}
-													);
-
-												return true;
+										$("div#<?php echo "$lect_id";?>").hover(
+											function(){
+											 $("i.<?php echo "$lect_district";?>").css("display","block");
+											},
+											function(){
+											  $("i.<?php echo "$lect_district";?>").css("display","none");
 											}
 
-											function outHoverAction(){
-												$("div.stud_list").hover(
+										);
+
+										// $("div#"+id+"").hover(
+										// 	function(){
+										// 	 $("i.mt11").css("display","block");
+										// 	},
+										// 	function(){
+										// 	  $("i.mt11").css("display","none");
+										// 	}
+
+										// );
+
+										var Name = "<?php echo "$lord"; ?>";
+										$("#<?php echo "$lect_district";?>,#email").click(function(){
+											$.sweetModal({
+													title: '<div class="col s12 m12 l12">\
+													\			<div class="col s2 m2 l2" id="<?php echo "$lect_id";?>">\
+													\				<img src="../images/boys.jpg" style="width:80px; height=80px;border:4px solid rgba(0,0,0,0.25);" class="circle responsive-img overview">\
+																</div>\
+													\			<div class="col s8 m8 l8">\
+													\				<span class="name" style="position:absolute;top:50px;left:135px;"><?php echo "$lect_fullName";?></span>\
+													\				<span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">delete</i></a><a href="" style="position:absolute;top:20px;right:100px;"><i class="material-icons right grey-text text-darken-2">archive</i></a></span>\
+																<div>\
+															</div>',
+
+													content: '<form action="" method="post">\
+												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+													                <input type="text" name="firstname" class="validate" value="<?php echo "$lect_fullName";?>" disabled>\
+												                </div>\
+												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+													                <input type="text" name="lastname" class="validate"  disabled>\
+													                <label for="icon_prefix">Last Name</label>\
+												                </div>\
+												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+													                <input type="text" name="othername" class="validate">\
+													                <label for="icon_prefix">Other Name</label>\
+												                </div>\
+												           </form>',
+													width  : '680px'
+												});
+										});
+
+										 $("i#<?php echo "$user_edit";?>").on('click',function(){
+										 		$.sweetModal({
+												title: 'Edit User Credentials',
+												content: '<form action="" method="post">\
+												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;" id="<?php echo "$lect_id";?>">\
+													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+													                <input type="text" name="firstname" class="validate" id="firstname" value="<?php echo "$lect_firstname";?>">\
+													                <label for="icon_prefix">First Name</label>\
+												                </div>\
+												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+													                <input type="text" name="lastname" class="validate" id="lastname" value="<?php echo "$lect_lastname";?>">\
+													                <label for="icon_prefix">Last Name</label>\
+												                </div>\
+												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">perm_phone_msg</i>\
+													                <input type="text" name="phone" id="phone" class="validate" value="<?php echo "$lect_phone";?>">\
+													                <label for="icon_prefix">Phone Number</label>\
+												                </div>\
+												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">place</i>\
+													                <input type="text" name="region" id="region" class="validate" value="<?php echo "$lect_region";?>">\
+													                <label for="icon_prefix">Region Of Choice</label>\
+												                </div>\
+												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">person_pin_circle</i>\
+													                <input type="text" name="district" id="district" class="validate" value=<?php echo "$lect_district_name";?>>\
+													                <label for="icon_prefix">District Of Choice</label>\
+												                </div>\
+												           </form>',
+												width:'500px',
+
+												buttons: {
+													updateButton:{
+														label: 'Update Data',
+														classes : 'blueB flat',
+														action:function(){
+															var update_firstname = $('#firstname').val();
+															var update_lastname = $('#lastname').val();
+															var update_phone = $('#phone').val();
+															var update_region = $('#region').val();
+															var update_district = $('#district').val();
+
+															var data_id 		= "<?php echo "$lect_id";?>";
+
+															//Returns successfull data submission message
+															var dataString = "update_firstname="+ update_firstname + "&update_lastname="+ update_lastname +"&update_phone="+ update_phone + "&update_region="+update_region + "&update_district="+update_district + "&data_id="+data_id;
+															if(update_firstname == '' || update_lastname == '' || update_district == '' )
+															 {
+															 	$.sweetModal({
+															 		content:"Fields Cannot Be Empty",
+															 		icon   :$.sweetModal.ICON_ERROR,
+
+															 	});
+															 }
+															 else
+															 {
+															 	$.ajax({
+															 		type:"POST",
+															 		url:"lecturers.php",
+															 		data: dataString,
+															 		success: function()
+															 		{
+															 			//Then something should happen here
+															 			$.sweetModal({
+															 				content: "Details Updated Successfully !",
+															 				icon   : $.sweetModal.ICON_SUCCESS,
+															 				timeout: 4000
+															 			});
+															 		}
+															 	});
+															 }
+															 console.dir(update_firstname + update_lastname +update_phone + update_region + update_district + data_id);
+
+														}
+													},
+													cancelButton:{
+														label: 'Cancel',
+														classes: 'secondaryB bordered flat',
+														action: function(){
+
+														}
+													}
+												}								
+											});
+										});
+
+							
+
+										$(window).load(function(){
+											$("span.<?php echo "$user_checkmate";?>").css("visibility","hidden");
+											// $("div.stud_list").css("background-color","#e9e9e9");
+										});
+
+										 console.dir(res);
+										$('input#<?php echo "$user_checkmate1";?>').click(function(){
+											if ($(this).prop("checked") == true) 
+											{
+												$("div#overlay").css({"visibility":"visible","opacity":"1","transition":"0.2s all ease-in","transform":"translateY(0%),scale(1.2)"});
+												
+												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+												$("div#<?php echo "$lect_id";?>").addClass("checkedBg").css({"border-left":"3px solid #039be5"});
+												$("i#<?php echo "$lect_district";?>").css("display","block");
+												// $("input#test5").prop("checked",true);
+												count = count + 1;
+												res = 1;
+												console.log("this is the click: ");
+												console.dir(res);
+												console.dir(count);
+
+												if (res == 1)
+												 {
+												 	//calling the outhover function
+												 	$("div#<?php echo "$lect_id";?>").hover(
+															function(){
+															
+																$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+															},function(){
+																
+																$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+															}
+														);
+
+												 }
+
+											}
+											else if ($(this).prop("checked") == false){
+												$("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
+												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"hidden","opacity":"0"});
+												$("i#<?php echo "$lect_district";?>").css("display","none");
+												$("div.list1").removeClass("checkedBg").addClass("afterEffect").css({"border-left":"2px solid lightblue","transition":"0.2s all ease-in"});
+												$("#<?php echo "$user_image";?>").css({"visibility":"visible","opacity":"1"});
+												// $("input#test5").prop("checked",false);
+												$('input#<?php echo "$user_checkmate1";?>').prop("checked",false);
+												res = 0;
+												if (res == 0) 
+												{
+													 $("div#<?php echo "$lect_id";?>").hover(
+															function(){
+															
+																$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+															},
+															function(){
+															
+																$("span.<?php echo "$user_checkmate";?>").css({"visibility":"hidden","opacity":"0"});
+															}
+														);
+												}
+												console.log("when deactivated");
+												console.dir(res);
+											}
+										});	
+
+										if (res == 0) 
+										{
+											 $("div#<?php echo "$lect_id";?>").hover(
 													function(){
-														$("#img").css({"visibility":"hidden","opacity":"0"});
-														$("span.checkmate").css({"visibility":"visible","opacity":"1"});
-													},function(){
-														$("#img").css({"visibility":"hidden","opacity":"0"});
-														$("span.checkmate").css({"visibility":"visible","opacity":"1"});
+														
+														$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+													},
+													function(){
+														
+														$("span.<?php echo "$user_checkmate";?>").css({"visibility":"hidden","opacity":"0"});
 													}
 												);
+										}
 
-												return true;
-											}
-											</script>
+									});
+								</script>
 								<?php
 									}
 							}
@@ -453,7 +540,7 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['dis
 										$("#addLecturer").on('click',function(){
 											$.sweetModal({
 												title: 'Add Lecturer',
-												content: '<form  method="post" action="" id="lectForm">\
+												content: '<form  method="post" action="" id="lectForm" style="margin-top:10px;">\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
 													                <input type="text" name="firstname" class="validate" id="firstname" required>\
@@ -464,7 +551,17 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['dis
 													                <input type="text" name="lastname" class="validate" id="lastname" required>\
 													                <label for="icon_prefix">Last Name</label>\
 												                </div>\
-												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+												                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">perm_phone_msg</i>\
+													                <input type="number" name="phone" class="validate" id="phone" required>\
+													                <label for="icon_prefix">Phone Number</label>\
+												                </div>\
+												                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+													                <input type="text" name="region" class="validate region" id="region" required>\
+													                <label for="icon_prefix">Region Of Choice</label>\
+												                </div>\
+												                <div class="input-field col s12" style="margin-top:15px;margin-bottom:12px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin_circle</i>\
 													                <input type="text" name="district" id="district" class="autocomplete" required>\
 													                <label for="district">District Of Choice</label>\
@@ -478,12 +575,13 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['dis
 														action: function(){
 															var firstname = $('#firstname').val();
 															var lastname  = $('#lastname').val();
-															// var email     = $('#email').val();
-															// var phone	  = $('#phone').val();
+															var email 	  = $('#email').val();
+															var phone	  = $('#phone').val();
+															var region 	  = $('#region').val();
 															var district  = $('#district').val();
 															//Returns successfull data submission message
-															var dataString = 'firstname='+ firstname + "&lastname="+ lastname + '&district='+district;
-															if (firstname == '' || lastname == '' || district == '')
+															var dataString = "firstname="+ firstname + "&lastname="+ lastname + "&email="+email +"&phone="+ phone + "&region="+region + "&district="+district;
+															if (firstname == '' || lastname == '' || district == '' )
 															 {
 															 	$.sweetModal({
 															 		content:"Fields Cannot Be Empty",
@@ -497,15 +595,19 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['dis
 															 		type:"POST",
 															 		url:"lecturers.php",
 															 		data: dataString,
-															 		success: function(data)
+															 		success: function()
 															 		{
 															 			//Then something should happen here
+															 			return $.sweetModal({
+															 				content: "Details Saved Successfully !",
+															 				icon   : $.sweetModal.ICON_SUCCESS,
+															 				timeout: 4000
+															 			});
 															 		}
 															 	});
-
 															 }
 
-															console.dir(firstname + lastname + district);
+															console.dir(firstname + lastname + email + phone + region + district);
 														}
 													},
 
@@ -534,7 +636,26 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['dis
 													    },
 													    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 													  });
-													       
+
+													   $('input.region').autocomplete({
+													    data: {
+													      "Ashanti": null,
+													      "Brong Ahafo ": null,
+													      "Central ": null,
+													      "Eastern ":null,
+													      "Greater Accra":null,
+													      "Northen":null,
+													      "Upper East":null,
+													      "Upper West":null,
+													      "Volta":null,
+													      "Western":null
+													    },
+													    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+													    onAutocomplete: function(val) {
+													      // Callback function when value is autcompleted.
+													    },
+													    minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
+													  });
 
 													});
 					  </script>

@@ -1,11 +1,13 @@
 <?php
-# code...
+ob_start();
 session_start();
-ini_set('session.use_strict_mode',1);
+//Unset the variables stored in the session
+unset($_SESSION['userid']);
+//ini_set('session.use_strict_mode',1);
 include("navbars/navbar.php");
 ?>
 <head>
-	<title>Farm Base&reg; | Login</title>
+	<title>OCTPs&reg; | Login</title>
 </head>
 <body>
 	<main class="signup_body">
@@ -18,11 +20,11 @@ include("navbars/navbar.php");
 				</div>
 				<div class="col s12 m8 l8 offset-m2 offset-l2">
 					<div class="card-panel col s12 form_main z-depth-2">
-						<form method="post" action="">
+						<form method="post" action="extras/extra.php" autocomplete="on">
 							<div class="input-field col s12 m12 l12" style="padding-top: 15px;">
 								  <i class="material-icons prefix">credit_card</i>
 						          <input id="icon_prefix" type="text" name="student_id" class="validate" data-length="14" required="required">
-						          <label for="icon_prefix">Student ID</label>
+						          <label for="icon_prefix">ID</label>
 							</div>
 							<div class="input-field col s12 m12 l12">
 								  <i class="material-icons prefix">lock</i>
@@ -45,3 +47,4 @@ include("navbars/navbar.php");
 	include("footer/login_footer.php");
 	?>
 </body>
+ 

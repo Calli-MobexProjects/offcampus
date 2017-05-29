@@ -4,6 +4,8 @@ include("../navbars/home_navbar.php");
 
 ?>
 <head>
+    
+
 	<title>OCTPs&reg; | Admin Dashboard</title>
     <style type="text/css">
        #preloader{
@@ -78,8 +80,11 @@ include("../navbars/home_navbar.php");
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">
                                 
+                                
                                 </div>
+                               
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -95,3 +100,5 @@ include("../navbars/home_navbar.php");
         });
     </script>
 </body>
+
+                  

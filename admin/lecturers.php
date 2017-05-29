@@ -307,7 +307,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										// );
 
 										var Name = "<?php echo "$lord"; ?>";
-										$("#<?php echo "$lect_district";?>,#email").click(function(){
+										$("#<?php echo "$lect_district";?>").click(function(){
 											$.sweetModal({
 													title: '<div class="col s12 m12 l12">\
 													\			<div class="col s2 m2 l2" id="<?php echo "$lect_id";?>">\
@@ -322,17 +322,23 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 													content: '<form action="" method="post">\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-													                <input type="text" name="firstname" class="validate" value="<?php echo "$lect_fullName";?>" disabled>\
+													                <input type="text" name="firstname" class="validate" value="<?php echo "$lect_firstname";?>" disabled style="font-size:18px;font-weight:500;line-height:1;color:#919191;">\
+													                <label for="firstname" class="active">First Name</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-													                <input type="text" name="lastname" class="validate"  disabled>\
-													                <label for="icon_prefix">Last Name</label>\
+													                <input type="text" name="lastname" class="validate" value="<?php echo "$lect_lastname";?>" disabled style="font-size:18px;font-weight:500;line-height:1;color:#919191;">\
+													                <label for="icon_prefix" class="active">Last Name</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-													                <input type="text" name="othername" class="validate">\
-													                <label for="icon_prefix">Other Name</label>\
+													                <i class="material-icons prefix" id="icon_prefix">perm_phone_msg</i>\
+													                <input type="text" name="phone"  value="<?php echo "$lect_phone";?>" class="validate" disabled style="font-size:18px;font-weight:500;line-height:1;color:#919191;">\
+													                <label for="icon_prefix" class="active">Phone Number</label>\
+												                </div>\
+												                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+													                <i class="material-icons prefix" id="icon_prefix">person_pin_circle</i>\
+													                <input type="text" name="district"  value="<?php echo "$lect_district_name";?>" class="validate" disabled style="font-size:18px;font-weight:500;line-height:1;color:#919191;">\
+													                <label for="icon_prefix" class="active">District Of Choice</label>\
 												                </div>\
 												           </form>',
 													width  : '680px'

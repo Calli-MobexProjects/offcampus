@@ -1,5 +1,9 @@
-
-<!DOCTYPE html>
+<?php ob_start();
+session_start();
+//Unset the variables stored in the session
+unset($_SESSION['userid']);
+?>
+<1!DOCTYPE html>
 <html>
 <header>
 
@@ -42,9 +46,22 @@
 </head>
     
     <canvas id="myChart"></canvas>
-    
-    
-    
+
+
+    <table>
+<tr>
+       <th>ID</th>
+       <th>Password</th>
+       <th>Profrile</th>
+    </tr>
+<tr>
+       <td><?php echo $userid; ?></td>
+       <td><?php echo $passwordnew; ?></td>
+       <td><?php echo $Profile; ?></td>
+       </tr>
+    </table> 
+  
+   
     
     
     </body>
@@ -115,5 +132,142 @@ $key2 = array_rand($strings2);
 });
           </script>
 
-                                    <?php
-                                    ?>
+                                   
+
+
+ <?php 
+
+          function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}   
+
+
+//if($_SERVER["REQUEST_METHOD"]== "POST"){
+ if(isset($_POST['login'])){
+     
+     
+    include('../inc/connection.php');
+     
+     $Time=date("Y/m/d h:i:sa"); 
+     $id=test_input($_POST['student_id']); 
+     $password=test_input($_POST['password']); 
+     
+     $encryptpassword=md5($password);
+              
+    /* $querying="SELECT * FROM register WHERE Stud_id='$id' and password= '$encryptpassword' ";
+     while($row=mysqli_query($mysql,$querying))
+     {
+        
+            session_regenerate_id();
+             $_SESSION['userid'] = $id;
+            session_write_close();
+            header('Location:students/index.php');
+                                exit();
+     }*/
+     
+     
+ 
+    
+     $query="SELECT * FROM register WHERE Stud_id= '$id'";
+     $querying=mysqli_query($mysqli,$query);
+$fetch=mysqli_fetch_assoc($querying);
+ 
+      $userid=$fetch['Stud_id'];
+     $passwordnew=$fetch['password'];
+     $Profile=$fetch['Profile']; 
+         
+   
+   
+if($id==''){
+echo ' 	<script language="javascript">
+        alert("ID is required");
+        window.Location="index.php";
+	   				
+	   			</script>
+	   		';
+            
+		header("Location:../index.php");
+
+}    
+    if($password==''){
+    echo ' 	<script language="javascript">
+        alert("Password is required");
+        window.Location="index.php";
+	   			</script>
+	   		';
+            
+		header("Location:../index.php");
+}
+    
+    
+if($userid==$id){
+   
+    
+  if($encryptpassword==$passwordnew){
+       
+      
+      $Update="UPDATE register SET login_time='$Time'  WHERE Stud_id= '$id'";
+         $run_update=mysqli_query($mysqli,$Update);
+      
+       if($Profile=='student'){
+            session_regenerate_id();
+             $_SESSION['userid'] = $userid;
+            session_write_close(); 
+            header('Location:../students/index.php');
+                                exit();
+           
+       }
+       else{
+             
+           session_regenerate_id();
+             $_SESSION['userid'] = $userid;
+            session_write_close();
+            header('Location:../admin/index.php');
+                                exit();
+       }
+       
+       
+   }
+     else{
+         echo ' 		<script language="javascript">
+        alert("Invalid Password");
+        window.Location="index.php";
+	   			</script>
+	   		';
+            
+		header("Location:../index.php");
+     }
+    
+
+    
+    
+    
+}
+    
+    
+else
+{     
+    echo ' 		<script language="javascript">
+        alert("Invalid ID");
+        window.Location="index.php";
+	   			</script>
+	   		';
+            
+		header("Location:../index.php");
+    }
+
+         
+        
+ 
+   
+     
+     
+     
+ }      
+
+//}
+
+?>

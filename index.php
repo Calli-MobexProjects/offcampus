@@ -1,7 +1,9 @@
 <?php
-# code...
+ob_start();
 session_start();
-ini_set('session.use_strict_mode',1);
+//Unset the variables stored in the session
+unset($_SESSION['userid']);
+//ini_set('session.use_strict_mode',1);
 include("navbars/navbar.php");
 ?>
 <head>
@@ -18,7 +20,7 @@ include("navbars/navbar.php");
 				</div>
 				<div class="col s12 m8 l8 offset-m2 offset-l2">
 					<div class="card-panel col s12 form_main z-depth-2">
-						<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" autocomplete="on">
+						<form method="post" action="extras/extra.php" autocomplete="on">
 							<div class="input-field col s12 m12 l12" style="padding-top: 15px;">
 								  <i class="material-icons prefix">credit_card</i>
 						          <input id="icon_prefix" type="text" name="student_id" class="validate" data-length="14" required="required">
@@ -45,116 +47,4 @@ include("navbars/navbar.php");
 	include("footer/login_footer.php");
 	?>
 </body>
-
-<?php 
-          function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}   
-
-
-if($_SERVER["REQUEST_METHOD"]== "POST"){
- if(isset($_POST['login'])){
-     
-    include("../inc/connection.php");
-     
-     $id=test_input($_POST['student_id']); 
-     $password=test_input($_POST['password']); 
-     
-     $encryptpassword=md5($password);
-              
-     $querying="SELECT * FROM register WHERE Stud_id='$id' and password= '$encryptpassword' ";
-     while($row=mysqli_query($mysql,$querying))
-     {
-        
-            session_regenerate_id();
-             $_SESSION['userid'] = $id;
-            session_write_close();
-            header('Location:students/index.php');
-                                exit();
-     }
-     
-     
-     
-      /* $query=mysql_query("SELECT * FROM register WHERE Stud_id= '$id'");
-$fetch=mysql_fetch_assoc($run);
  
-      $userid=$fetch['Stud_id'];
-     $passwordnew=$fetch['password'];
-     $Profile=$fetch['Profile']; 
-         
-   
-     
-   
-if($id==''){
-echo ' 	<script>
-	   				var alert = $("<span>ID is required </span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-
-}    
-    elseif($password==''){
-    echo ' 	<script>
-	   				var alert = $("<span>Password is required </span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-}
-    
-    
-elseif(mysql_num_rows($query)){
-
-   if($encryptpassword==$passwordnew){
-       
-       if($Profile=='student'){
-            session_regenerate_id();
-             $_SESSION['userid'] = $userid;
-            session_write_close();
-            header('Location:students/index.php');
-                                exit();
-           
-       }
-       else{
-        
-           session_regenerate_id();
-             $_SESSION['userid'] = $userid;
-            session_write_close();
-            header('Location:admin/index.php');
-                                exit();
-       }
-       
-       
-   }
-     else{
-         echo ' 	<script>
-	   				var alert = $("<span>Invalid Password </span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-     }
-    
-    }
-else
-{     
-    echo ' 	<script>
-	   				var alert = $("<span>Invalid ID</span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-    }
-    */
-         
-        
- 
-   
-     
-     
-     
- }      
-
-}
-
-?>

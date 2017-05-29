@@ -1,3 +1,26 @@
+<?php
+include('session.php');
+include('../inc/connection.php');
+
+ $query="SELECT * FROM register WHERE Stud_id= '$ses_id'";
+     $querying=mysqli_query($mysqli,$query);
+$fetch=mysqli_fetch_assoc($querying);
+ 
+      $userid=$fetch['Stud_id'];
+     $f_name=$fetch['f_Name'];
+     $l_name=$fetch['l_Name'];
+     $other_name=$fetch['other_Name'];
+     $program=$fetch['program'];
+     $picture=$fetch['picture']; 
+     $phone=$fetch['phone']; 
+     $email=$fetch['email']; 
+     $login_time=$fetch['login_time']; 
+   $Name=$f_name.' '.$l_name.' '.$other_name;
+
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,19 +190,21 @@
 			<!-- hamburger button to show on small pages -->
 				<a href="#" class="brand-logo hide-on-med-and-up" id="button-collapse" data-activates="slide-out" style="margin-left: 10px;">
 					<i class="material-icons">menu</i>
-					<small class="name">Student Name</small>
+					<small class="name"><?php echo $Name; ?></small>
 				</a>
 
 			<!-- image  show on medium and large screens -->
 				<a href="#"  class="brand-logo hide-on-small-only" style="margin-left: 37px;margin-top: -4px;">
 					<i class="material-icons">perm_identity</i>
-					<small class="name">Student Name</small>
+					<small class="name"><?php echo $Name; ?></small>
 				</a>
+               
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>Login Time:  <small class="name" style="padding-right:20px;"><?php echo $login_time; ?></small></li>
 					<!--<li><a href=""><i class="material-icons left">bell</i></li>-->
 					<li>
 						<a  href data-dropdown="#dropdown-with-icons" class="bg">
-							<img class="circle toolbar_img" src="../images/boys.jpg" width="35px" height="35px" style="border:4px solid rgba(0,0,0,0.25);margin-top: 14px;">
+							<img class="circle toolbar_img" src="../<?php echo $picture; ?>" width="35px" height="35px" style="border:4px solid rgba(0,0,0,0.25);margin-top: 14px;">
 						</a>
 					</li>
 				</ul>
@@ -202,7 +227,7 @@
 		</ul>
 		<ul class="details right">
 			<li style="margin-right: 10px;">
-				<a  href><i class="material-icons right" style="margin-right: 15px;">email</i></a>
+				<a  href><i class="material-icons right" style="margin-right: 15px;"><?php echo $email; ?></i></a>
 			</li>
 			<li>
 				<a href data-dropdown="#dropdown-with-overlayDetails">
@@ -234,14 +259,14 @@
 						</a>
 					</div>
 					<div class="col s8 m8 l8" style="text-align:center;">
-							<span class="grey-text text-darken-3" style="margin-left: 45px;">Last First Name</span>
-				   		  	<span class="grey-text text-accent-2" style="margin-left: 40px;">offeilord@gamil.com</span>
+							<span class="grey-text text-darken-3" style="margin-left: 45px;"><?php echo $Name; ?></span>
+				   		  	<span class="grey-text text-accent-2" style="margin-left: 40px;"><?php echo $email; ?></span>
 				   		  	<span class="grey-text text-accent-2" style="margin-left: 40px;margin-right: 5px;">User Profile |  <a href="" style="margin-left: 5px;">Policy Info</a></span>
 				   		  	<a class="btn light-blue z-depth-1" href="#" style="text-transform: capitalize;font-size: 12px;margin-left: 40px;margin-top: 20px;">My Accounts</a>
 					</div>
 					<div class="col s12 m12 l12">
 						<div class="divider"></div>
-						<a href="#" class="btn-flat" style="text-transform: capitalize;font-size: 13px;margin-top: 10px;border:1px solid #ccc;">Sign out</a>
+						<a href="../students/logout.php" class="btn-flat" style="text-transform: capitalize;font-size: 13px;margin-top: 10px;border:1px solid #ccc;">Sign out</a>
 					</div>
 				</div>
 			</div>

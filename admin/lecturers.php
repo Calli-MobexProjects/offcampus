@@ -235,6 +235,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$user_checkmate1 = substr($lect_fullName, -3).mt_rand();
 
 										$user_edit     = substr($lect_region, 0,4).mt_rand();
+										$user_delete   = substr($lect_region, -3).mt_rand();
 
 										$user_image  = substr($lect_email, 0,3).mt_rand();
 
@@ -262,7 +263,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									<div class="col s2 m2 l2">
 										<span class="side_menu">
 											<a>
-												<i id="" class="material-icons right mt10 tooltipped <?php echo "$lect_district";?>" data-tooltip="Delete" data-delay="5" data-position="bottom">delete</i>
+												<i id="<?php echo "$user_delete";?>" class="material-icons right mt10 tooltipped <?php echo "$lect_district";?>" data-tooltip="Delete" data-delay="5" data-position="bottom">delete</i>
 											</a>
 											<a href>
 												<i id="" class="material-icons right mt10 tooltipped <?php echo "$lect_district";?>" data-tooltip="Move To Archives" data-position="bottom" data-delay="5">archive</i>
@@ -275,11 +276,13 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									</div>
 								</div>
 								<script type="text/javascript">
+									$("span.<?php echo "$user_checkmate";?>").css("visibility","hidden");
 									var res = 0;
 									var count = 0;
 									$(document).ready(function(){
 										var id = "<?php echo "$id"; ?>";
 										console.dir("div#"+id);
+
 
 										//settting the colors here 
 
@@ -343,27 +346,27 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;" id="<?php echo "$lect_id";?>">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
 													                <input type="text" name="firstname" class="validate" id="firstname" value="<?php echo "$lect_firstname";?>">\
-													                <label for="icon_prefix">First Name</label>\
+													                <label for="icon_prefix" class="active">First Name</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
 													                <input type="text" name="lastname" class="validate" id="lastname" value="<?php echo "$lect_lastname";?>">\
-													                <label for="icon_prefix">Last Name</label>\
+													                <label for="icon_prefix" class="active">Last Name</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">perm_phone_msg</i>\
 													                <input type="text" name="phone" id="phone" class="validate" value="<?php echo "$lect_phone";?>">\
-													                <label for="icon_prefix">Phone Number</label>\
+													                <label for="icon_prefix" class="active">Phone Number</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">place</i>\
 													                <input type="text" name="region" id="region" class="validate" value="<?php echo "$lect_region";?>">\
-													                <label for="icon_prefix">Region Of Choice</label>\
+													                <label for="icon_prefix" class="active">Region Of Choice</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin_circle</i>\
 													                <input type="text" name="district" id="district" class="validate" value=<?php echo "$lect_district_name";?>>\
-													                <label for="icon_prefix">District Of Choice</label>\
+													                <label for="icon_prefix" class="active">District Of Choice</label>\
 												                </div>\
 												           </form>',
 												width:'500px',
@@ -405,6 +408,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 															 				icon   : $.sweetModal.ICON_SUCCESS,
 															 				timeout: 4000
 															 			});
+															 			window.location.reload();
 															 		}
 															 	});
 															 }
@@ -422,8 +426,59 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												}								
 											});
 										});
+										
+										//Configuring the delete button for the lecturer operations
+										$("i#<?php echo "$user_delete"; ?>").on('click',function(){
+											 $.sweetModal({
+											 	title: 'Are You Sure ?',
+											 	icon : $.sweetModal.ICON_WARNING,
+											 	content: 'This Detail Will Permanently Be Deleted.',
+											 	width : '400px',
+											 	buttons:{
+											 		deleteButton:{
+											 			label:'Delete',
+											 			classes: 'redB bordered',
+											 			action : function()
+											 			{
+											 				var delete_id = "<?php echo "$lect_id";?>";
+											 				var dataString = "delete_id="+delete_id;
 
-							
+											 				if (delete_id == '')
+											 				 {
+											 				 	$.sweetModal({
+											 				 		icon:$.sweetModal.ICON_ERROR,
+											 				 		content:'Fatal Error Has Occurred, Contact Your Super Admin',
+											 				 	});
+											 				 }
+											 				 else{
+											 				 	$.ajax({
+											 				 		type:"POST",
+											 				 		url : "lecturers.php",
+											 				 		data: dataString,
+											 				 		success:function()
+											 				 		{
+											 				 			
+											 				 			$.sweetModal("Data Successfully Deleted");
+											 				 			window.location.reload();
+
+											 				 		}
+											 				 	});
+											 				 }
+											 				 console.dir(delete_id);
+											 			}
+
+											 		},
+											 		cancelButton:{
+											 			label:'Cancel',
+											 			classes: 'secondaryB bordered flat',
+											 			action : function()
+											 			{
+
+											 			}
+											 		}
+											 	}
+											 })
+										});	
 
 										$(window).load(function(){
 											$("span.<?php echo "$user_checkmate";?>").css("visibility","hidden");
@@ -535,6 +590,23 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 					    </ul> -->
 					  </div>
 
+					  <!-- Deleting lecturer Details from the database -->
+					  <?php
+					  	if (isset($_POST['delete_id']))
+					  	 {
+					  	 	$perform_delete = $_POST['delete_id'];
+					  	 	$lect_delete    = "DELETE FROM lecturer WHERE lect_ID = '$perform_delete'";
+					  	 	$lect_delete_res = $mysqli->query($lect_delete);
+
+					  	 	if ($lect_delete_res) 
+					  	 	{
+					  	 	  ?>
+					  	 	  <script type="text/javascript">console.dir("Nice something happen");</script>
+					  	 	  <?php
+					  	 	}
+					  	 } 
+					  ?>
+
 					  <script type="text/javascript">
 					  	//Adding a lecturer's modal pane 
 										$("#addLecturer").on('click',function(){
@@ -598,11 +670,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 															 		success: function()
 															 		{
 															 			//Then something should happen here
-															 			return $.sweetModal({
+															 			$.sweetModal({
 															 				content: "Details Saved Successfully !",
 															 				icon   : $.sweetModal.ICON_SUCCESS,
 															 				timeout: 4000
 															 			});
+															 			window.location.reload();
 															 		}
 															 	});
 															 }

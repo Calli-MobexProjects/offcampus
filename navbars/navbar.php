@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="libs/css/animate.css">
 	<link rel="stylesheet" type="text/css" href="libs/css/materialize.css">
 	<link rel="stylesheet" type="text/css" href="libs/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="vendors/sweetModal/min/jquery.sweet-modal.min.css">
 	<!-- <link rel="stylesheet" type="text/css" href="vendors/sweetalerts/css/sweetalert2.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="vendors/iziToast/css/iziToast.min.css">
 </head>
@@ -28,6 +29,7 @@
 	</div>
 	<script type="text/javascript" src="libs/js/jquery.js"></script>
 	<script type="text/javascript" src="vendors/iziToast/js/iziToast.min.js" ></script>
+	<script type="text/javascript" src="vendors/sweetModal/min/jquery.sweet-modal.min.js"></script>
 	<script type="text/javascript" src="libs/js/materialize.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<!-- <script type="text/javascript" src="vendors/sweetalerts/js/sweetalert2.min.js"></script> -->

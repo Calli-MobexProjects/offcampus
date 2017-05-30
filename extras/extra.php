@@ -3,12 +3,12 @@ session_start();
 //Unset the variables stored in the session
 unset($_SESSION['userid']);
 ?>
-<!DOCTYPE html>
+<1!DOCTYPE html>
 <html>
 <header>
 
 
-  <!--   <script type='text/javascript'>
+    <script type='text/javascript'>
         $(function(){
             $('.inner-addon right-addon').datepicker({
                 calendarWeeks:true,
@@ -17,7 +17,7 @@ unset($_SESSION['userid']);
             });
         });
 
-    </script> -->
+    </script>
 </header>
 <body>
 <head>
@@ -73,11 +73,11 @@ unset($_SESSION['userid']);
       'use strict'
 
 $(document).ready(function(){
-	var ctx = $("#myChart").get(0).getContext("2d");
+  var ctx = $("#myChart").get(0).getContext("2d");
 
-	var data = [
+  var data = [
         
-	   <?php 
+     <?php 
     
   include('../inc/connect.php');
         
@@ -117,18 +117,18 @@ $key2 = array_rand($strings2);
         
                                                  ?>                                    
     
-		{
-			value:"<?php echo $count; ?>",
-			color:" <?php echo $strings[$key]; ?>",
-			highlight:" <?php echo $strings2[$key2]; ?>",
-			label: "<?php echo $region; ?>"
-		},
-		
+    {
+      value:"<?php echo $count; ?>",
+      color:" <?php echo $strings[$key]; ?>",
+      highlight:" <?php echo $strings2[$key2]; ?>",
+      label: "<?php echo $region; ?>"
+    },
+    
         <?php  }   ?>
         
-	];
+  ];
 
-	var chart = new Chart(ctx).Doughnut(data);
+  var chart = new Chart(ctx).Doughnut(data);
 });
           </script>
 
@@ -182,24 +182,24 @@ $fetch=mysqli_fetch_assoc($querying);
    
    
 if($id==''){
-echo ' 	<script language="javascript">
+echo '  <script language="javascript">
         alert("ID is required");
         window.Location="index.php";
-	   				
-	   			</script>
-	   		';
             
-		header("Location:../index.php");
+          </script>
+        ';
+            
+    header("Location:../index.php");
 
 }    
     if($password==''){
-    echo ' 	<script language="javascript">
+    echo '  <script language="javascript">
         alert("Password is required");
         window.Location="index.php";
-	   			</script>
-	   		';
+          </script>
+        ';
             
-		header("Location:../index.php");
+    header("Location:../index.php");
 }
     
     
@@ -232,13 +232,13 @@ if($userid==$id){
        
    }
      else{
-         echo ' 		<script language="javascript">
+         echo '     <script language="javascript">
         alert("Invalid Password");
         window.Location="index.php";
-	   			</script>
-	   		';
+          </script>
+        ';
             
-		header("Location:../index.php");
+    header("Location:../index.php");
      }
     
 
@@ -250,13 +250,13 @@ if($userid==$id){
     
 else
 {     
-    echo ' 		<script language="javascript">
+    echo '    <script language="javascript">
         alert("Invalid ID");
         window.Location="index.php";
-	   			</script>
-	   		';
+          </script>
+        ';
             
-		header("Location:../index.php");
+    header("Location:../index.php");
     }
 
          

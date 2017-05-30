@@ -10,7 +10,7 @@
 		<div class="divider"></div>
 		<li class="grey-text text-accent-1 header disabled">Accounts Settings</li>
 		<li><a href="#"><i class="material-icons left icon">person_pin</i><span class="menu_name">Edit Profile</span></a></li>
-		<li><a href="change_password.php"><i class="material-icons left icon">lock</i><span class="menu_name">Change Password</span></a></li>
+		<li><a href="../admin/change_password.php"><i class="material-icons left icon">lock</i><span class="menu_name">Change Password</span></a></li>
 		<li><a href="#"><i class="material-icons left icon">forum</i><span class="menu_name">Forum</span></a></li>
 
 		<div class="divider"></div>

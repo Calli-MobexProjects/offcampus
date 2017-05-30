@@ -227,7 +227,7 @@ $fetch=mysqli_fetch_assoc($querying);
 		</ul>
 		<ul class="details right">
 			<li style="margin-right: 10px;">
-				<a  href><i class="material-icons right" style="margin-right: 15px;"><?php echo $email; ?></i></a>
+				<a  href><i class="material-icons right" style="margin-right: 15px;">email</i></a>
 			</li>
 			<li>
 				<a href data-dropdown="#dropdown-with-overlayDetails">

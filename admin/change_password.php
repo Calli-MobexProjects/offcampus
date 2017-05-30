@@ -9,7 +9,7 @@ include "../navbars/home_navbar.php";
 			position: relative;
 			width: 100%;
 			height: 70px;
-
+			margin-right: -25px;
 		}
 		ul.icon-stable{
 			position: absolute;
@@ -92,6 +92,13 @@ include "../navbars/home_navbar.php";
 			height: auto;
 
 		}
+		button.change{
+			margin-top: 10px;
+			margin-bottom: 15px;
+			padding: 15px auto;
+			text-transform: capitalize;
+			font-size: 16px;
+		}
 	</style>
 </head>
 <body>
@@ -125,7 +132,7 @@ include "../navbars/home_navbar.php";
 								<h5 class="grey-text text-darken-1 center-align">Change Password</h5>
 								<form role="form" method="post" action="">
 									<div class="input-field col s12">
-										<i class="material-icons prefix">lock</i>
+										<i class="material-icons prefix">lock_outline</i>
 										<input type="text" id="newpass" name="newpass" class="validate" required/>
 										<label for="newpass">Enter the New Password</label>
 									</div>
@@ -135,7 +142,7 @@ include "../navbars/home_navbar.php";
 										<label for="newpass">Repeat Password</label>
 									</div>
 									<div class="input-field col s12">
-										<button type="submit" class="btn light-blue accent-3 change" name="changepass">Change Password !</button>
+										<button type="submit" class="btn light-blue accent-3 change" name="changepass"><i class="material-icons left">security</i>Change Password !</button>
 									</div>
 								</form>
 							</div>

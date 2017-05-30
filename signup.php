@@ -82,7 +82,7 @@ if (isset($_POST['proceed']))
 							</div>
 							<div class="input-field col s12 m6 l6">
 								  <i class="material-icons prefix">person_pin</i>
-						          <input id="icon_prefix" type="text" name="lastname" class="validate" data-length="60" required="required">
+						          <input id="icon_prefix" type="text" name="lastname" class="validate" data-length="60" required>
 						          <label for="icon_prefix">Last Name</label>
 							</div>
 							<div class="input-field col s12 m6 l6">
@@ -123,12 +123,12 @@ if (isset($_POST['proceed']))
 							</div>
 							<div class="input-field col s12 m6 l6">
 								  <i class="material-icons prefix">lock</i>
-						          <input id="icon_prefix" type="password" name="password" class="validate" data-length="20" required="required">
+						          <input id="icon_prefix" type="password" name="password" class="validate" data-length="20" required>
 						          <label for="icon_prefix">Password</label>
 							</div>
 							<div class="input-field col s12 m6 l6">
 								  <i class="material-icons prefix">phone</i>
-						          <input id="icon_prefix" type="number" name="phone" class="validate" data-length="20" required="required">
+						          <input id="icon_prefix" type="number" name="phone" class="validate" data-length="20" required>
 						          <label for="icon_prefix">Phone</label>
 							</div>
 							<div class="input-field col s12 m12 l12">

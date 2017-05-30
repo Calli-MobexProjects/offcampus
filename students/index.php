@@ -70,13 +70,34 @@ $row=mysqli_fetch_assoc($querying);
                   <div class="divider"></div>  
                   <div class="col s12 m12 l12">
                       <div class="col s12 m12 l12" id="buzz_content" style="overflow-y:hidden; height:250px;">
-                        <img src="../images/buzz.svg" alt="image" class="responsive-img" width="150px" height="150px" 
+                          <?php if($action=='1'){ ?>
+                          <h4 class="blue-text flow-text lh2 center-text">
+                  REQUEST PENDING
+                    <p>WAITING ON APPROVAL</p>
+                </h4>
+                          <?php 
+                            }
+                            elseif($action=='2' ){
+                                ?>
+                <h4 class="blue-text flow-text lh2 center-text">
+                  REQUEST APPROVED 
+                    <p>APPROVAL LETTER IS AVAILABLE AT THE HOD'S OFFICE</p>
+                </h4>
+                          <?php 
+                            }                    
+                                                
+                                                else{ ?>
+                          <img src="../images/buzz.svg" alt="image" class="responsive-img" width="150px" height="150px" 
                         style="position:relative;left:125px;top:20px;"><br><br><br>
                         <small id="preview" style="position:relative;left:100px;font-size:12px;font-weight:500;color:grey;"
                          class="typer" data-delay="100" data-delim="," data-words="No Buzzes available at this moment" data-color="grey">
                          No Notices available at this moment
                                           <span class="cursor" data-cursorDisplay="|" data-owner="preview"></span>
                       </small>
+                          <?php 
+                            }
+                          
+                          ?>                           
                       </div>
                   </div>  
                 </div>
@@ -87,8 +108,7 @@ $row=mysqli_fetch_assoc($querying);
       <!-- Apply pane will be here -->
           <div class="row" id="apply">
             <div class="col s12 m12 l12">
-                <?php if($action=='1' or $action=='2' ){
-                ?>
+                <?php if($action=='1'){ ?>
     <div class="col s12 m10 l10 offset-l1 offset-m1 card-panel z-depth-0 green">
                 <h4 class="white-text flow-text lh2 center-text">
                   REQUEST PENDING
@@ -97,12 +117,22 @@ $row=mysqli_fetch_assoc($querying);
               </div>
     
     
-              <?php
-
-                    }
+              <?php 
+                            }
+                            elseif($action=='2' ){
+                                ?>
+                 <div class="col s12 m10 l10 offset-l1 offset-m1 card-panel z-depth-0 green">
+                <h4 class="white-text flow-text lh2 center-text">
+                  REQUEST PENDING
+                    <p>WAITING ON APPROVAL</p>
+                </h4>
+              </div>
+    
+                <?php 
+                            }                    
+                                                
+                                                else{ ?>
                 
-                else{
-                ?>
               <div class="col s12 m8 l8 card-panel offset-m2 offset-l2">
                 <h5 class="grey-text text-darken-2"><i class="material-icons left">mode_edit</i>Apply For OffCampus Teaching Curriculum</h5>
                 <div class="divider"></div>

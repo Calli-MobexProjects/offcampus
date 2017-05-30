@@ -204,7 +204,7 @@ $fetch=mysqli_fetch_assoc($querying);
 					<!--<li><a href=""><i class="material-icons left">bell</i></li>-->
 					<li>
 						<a  href data-dropdown="#dropdown-with-icons" class="bg">
-							<img class="circle toolbar_img" src="../<?php echo $picture; ?>" width="35px" height="35px" style="border:4px solid rgba(0,0,0,0.25);margin-top: 14px;">
+							<img class="circle toolbar_img" <?php if(empty($picture)){?>src='../images/boys.jpg' <?php } else{ ?> src="../<?php echo $picture; ?>" <?php } ?> width="35px" height="35px" style="border:4px solid rgba(0,0,0,0.25);margin-top: 14px;">
 						</a>
 					</li>
 				</ul>

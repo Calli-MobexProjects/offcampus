@@ -142,7 +142,7 @@ include "../navbars/home_navbar.php";
 										<label for="newpass">Repeat Password</label>
 									</div>
 									<div class="input-field col s12">
-										<button type="submit" class="btn light-blue accent-3 change" name="changepass"><i class="material-icons left">security</i>Change Password !</button>
+										<button type="submit" class="btn light-blue accent-3 change waves-effect waves-light" name="changepass"><i class="material-icons left">security</i>Change Password !</button>
 									</div>
 								</form>
 							</div>

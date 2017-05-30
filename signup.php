@@ -30,7 +30,7 @@ if (isset($_POST['proceed']))
     
     $Time=date("Y/m/d h:i:sa"); 
     
-	$qs = "INSERT INTO register (Stud_id,	f_Name,	l_Name,other_Name,program,department,picture,	password,phone,email,Profile,date_Created,login_time) VALUES('$student_id','$firstname','$lastname','$othername','$course','$department','$pic','$encyptpass','$phone','$email','student','$Time','')";
+	$qs = "INSERT INTO register (Stud_id,	f_Name,	l_Name,other_Name,program,department,picture,	password,phone,email,Profile,date_Created,login_time) VALUES('$student_id','$firstname','$lastname','$othername','$course','$department','$pic','$encryptpass','$phone','$email','student','$Time','')";
 
 
 	//Executing the queries

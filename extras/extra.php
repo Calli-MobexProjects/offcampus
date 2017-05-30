@@ -3,12 +3,12 @@ session_start();
 //Unset the variables stored in the session
 unset($_SESSION['userid']);
 ?>
-<1!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <header>
 
 
-    <script type='text/javascript'>
+  <!--   <script type='text/javascript'>
         $(function(){
             $('.inner-addon right-addon').datepicker({
                 calendarWeeks:true,
@@ -17,7 +17,7 @@ unset($_SESSION['userid']);
             });
         });
 
-    </script>
+    </script> -->
 </header>
 <body>
 <head>

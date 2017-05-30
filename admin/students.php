@@ -1,7 +1,8 @@
 <?php
- session_start();
+ require_once "../students/session.php";
  include '../navbars/home_navbar.php';
  require_once "../inc/connection.php";
+
 
  ?>
 <head>

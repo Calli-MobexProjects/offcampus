@@ -192,6 +192,10 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 			text-align: center;
 			margin-left: 26px;
 		}
+		span#checkmate{
+			visibility: hidden;
+			opacity: 0;
+		}
 	</style>
 </head>
 <body>
@@ -220,7 +224,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$lect_image = $row['lect_image'];
 										$lect_fullName = $row['lect_firstname']." ".$row['lect_lastname'];
 										$lect_district_name = $row['lect_district'];
-										$lect_district = $row['lect_indicator'];
+										$lect_dist = $row['lect_indicator'];
 										$lect_region   = $row['region'];
 										$lect_email    = $row['email'];
 										$lect_phone    = $row['phone_number'];
@@ -238,14 +242,15 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$user_delete   = substr($lect_region, -3).mt_rand();
 
 										$user_image  = substr($lect_email, 0,3).mt_rand();
+										$lect_district = lect_dist.mt_rand();
 
 
 								?>
 								<div class="card-panel z-depth-0 col s12 stud_list list1" id="<?php echo "$lect_id";?>">
 									<div class="col s2 m2 l2">
 										<span class="image"><img id="<?php echo "$user_image";?>" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle"></span>
-										 <span class="<?php echo "$user_checkmate";?>" id="checkmate" style="position: relative;bottom: 6px;">
-										 	<input type="checkbox" id="<?php echo "$user_checkmate1";?>" />
+										 <span class="<?php echo "$user_checkmate";?>" id="checkmate" style="position: relative;top: -7px;left: -33px;">
+										 	<input type="checkbox" id="<?php echo "$user_checkmate1";?>" class="checkbox" />
 				      			 		 	<label for="<?php echo "$user_checkmate1";?>"></label> 
 										 </span>
 									</div>
@@ -289,9 +294,11 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$("div#<?php echo "$lect_id";?>").hover(
 											function(){
 											 $("i.<?php echo "$lect_district";?>").css("display","block");
+											 $("img#<?php echo "$user_image";?>").css({"visibility":"hidden","opacity":"0"});
 											},
 											function(){
 											  $("i.<?php echo "$lect_district";?>").css("display","none");
+											  $("img#<?php echo "$user_image";?>").css({"visibility":"visible","opacity":"1"});
 											}
 
 										);

@@ -1,6 +1,6 @@
 <?php
 include('session.php');
-include('../inc/connection.php');
+require_once('../inc/connection.php');
 
  $query="SELECT * FROM register WHERE Stud_id= '$ses_id'";
      $querying=mysqli_query($mysqli,$query);

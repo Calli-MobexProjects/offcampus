@@ -1,5 +1,4 @@
 <?php
-include('session.php');
 include("../navbars/home_navbar.php");
 
 ?>
@@ -77,7 +76,7 @@ include("../navbars/home_navbar.php");
         // Set chart options
         var options = {'title':'Regions Chosen by students',
                        'width':500,
-                       'height':300,'pieHole':0.1};
+                       'height':240,'pieHole':0.1,is3D:true};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));

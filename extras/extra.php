@@ -134,7 +134,6 @@ $key2 = array_rand($strings2);
 
                                    
 
-
  <?php 
 
           function test_input($data) {

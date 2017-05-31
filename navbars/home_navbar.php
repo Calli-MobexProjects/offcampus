@@ -1,5 +1,5 @@
 <?php
-include('session.php');
+include('../session.php');
 require_once('../inc/connection.php');
 
  $query="SELECT * FROM register WHERE Stud_id= '$ses_id'";
@@ -222,7 +222,7 @@ $fetch=mysqli_fetch_assoc($querying);
 			</li>
 			<li style="position: absolute;top: 0px;left: 250px;">
 			      <input type="checkbox" id="test5" />
-			      <label for="test5"></label>  
+			      <label for="test5" id="selectLabel"></label>  
 			</li>
 		</ul>
 		<ul class="details right">
@@ -243,7 +243,7 @@ $fetch=mysqli_fetch_assoc($querying);
 		<ul>
 			<li><a href="#"><i class="material-icons left" style="margin-top:-3px;">archive</i>Move To Archives</a></li>
 			<li class="divider"></li>
-			<li><a href="#"><i class="material-icons left" style="margin-top:-3px;">delete_sweep</i>Delete Selected</a></a></li>
+			<li><a id="multipleDelete"><i class="material-icons left" style="margin-top:-3px;">delete_sweep</i>Delete Selected</a></a></li>
 			
 		</ul>
 	</div>

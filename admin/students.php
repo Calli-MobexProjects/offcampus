@@ -102,28 +102,96 @@
 											$stud_id 		= $row['Stud_id'];
 											$stud_email 	= $row['email'];
 											$stud_image 	= $row['picture'];
-											echo'
-												<div class="card-panel z-depth-0 col s12 stud_list">
-													<div class="col s2 m2 l2" id="img">
-														<span class="image"><img src="../'.$stud_image.'" alt="avatar" class="responsive-img circle"></span>
-													</div>
-													<div class="col s3 m3 l3" id="name">
-														<span class="name left-align">'.$stud_firstname." ".$stud_lastname."".$othername.'</span>
-													</div>
-													<div class="col s2 m2 l2" id="phone">
-														<span class="phone">'.$stud_id.'</span>
-													</div>
-													<div class="col s3 m3 l3" id="email">
-														<span class="email left-align"><a href="#">'.$stud_email.'</a></span>
-													</div>
-													
-													<div class="col s2 m2 l2">
-														<span class="side_menu">
-															Date Here
-														</span>
-													</div>
+											$stud_program   = $row['program'];
+											$stud_department = $row['department'];
+											//Defining some special characters
+											$student_image = substr($stud_firstname,0,4);
+											
+											?>
+											<div class="card-panel z-depth-0 col s12 stud_list" id="<?php echo "$stud_id";?>">
+												<div class="col s2 m2 l2" id="img">
+													<span class="image"><img src="../<?php echo "$stud_image";?>" alt="avatar" class="responsive-img circle"></span>
 												</div>
-											';
+												<div class="col s3 m3 l3" id="name">
+													<span class="name left-align"><?php echo "$stud_firstname"." ".$stud_lastname."".$stud_othername;?></span>
+												</div>
+												<div class="col s2 m2 l2" id="phone">
+													<span class="phone"><?php echo "$stud_id";?></span>
+												</div>
+												<div class="col s3 m3 l3" id="email">
+													<span class="email left-align"><a href="#"><?php echo "$stud_email";?></a></span>
+												</div>
+												
+												<div class="col s2 m2 l2">
+													<span class="side_menu">
+														Date Here
+													</span>
+												</div>
+											</div>
+											<script type="text/javascript">
+													$(document).ready(function(){
+														$("#edit_form").css("margin-top","-150px");
+														// $("div.stud_list").hover(
+														// 	function(){
+														// 	 $("i.mt10").css("display","block");
+														// 	},
+														// 	function(){
+														// 	  $("i.mt10").css("display","none");
+														// 	}
+
+														// );
+														var Name = "<?php echo "$lord"; ?>";
+														
+														$("div#<?php echo "$stud_id";?>").click(function(){
+															// $.each('arrayVaraible',function(){
+
+															// });
+															$.sweetModal({
+																	title: '<div class="col s12 m12 l12>\
+																	\			<div class="col s2 m2 l2">\
+																	\				<img src="../<?php echo "$stud_image";?>" style="width:80px; height=80px;border:4px solid rgba(0,0,0,0.25);" class="circle responsive-img">\
+																				</div>\
+																	\			<div class="col s8 m8 l8">\
+																	\				<span class="name" style="position:absolute;top:50px;left:135px;"><?php echo "$stud_firstname"." "."$stud_lastname"." "."$stud_othername";?></span>\
+																	\				<span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">delete</i></a><a href="" style="position:absolute;top:20px;right:100px;"><i class="material-icons right grey-text text-darken-2">archive</i></a></span>\
+																				<div>\
+																			</div>',
+
+																	content: '<form action="" method="post">\
+																                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+																	                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+																	                <input type="text" name="firstname" class="validate" id="firstname" value="<?php echo "$stud_firstname"." "."$stud_lastname".""."$stud_othername";?>" disabled><label for="firstname" class="active">First Name</label>\
+																                </div>\
+																                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+																	                <i class="material-icons prefix" id="icon_prefix">credit_card</i>\
+																	                <input type="text" name="id" class="validate" value="<?php echo "$stud_id";?>" disabled>\
+																	                <label for="icon_prefix" class="active">ID</label>\
+																                </div>\
+																                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+																	                <i class="material-icons prefix" id="icon_prefix">email</i>\
+																	                <input type="email" name="email" class="validate" value="<?php echo "$stud_email";?>" disabled>\
+																	                <label for="icon_prefix" class="active">Email</label>\
+																                </div>\
+																                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+																	                <i class="material-icons prefix" id="icon_prefix">book</i>\
+																	                <input type="email" name="email" class="validate" value="<?php echo "$stud_program";?>" disabled>\
+																	                <label for="icon_prefix" class="active">Program</label>\
+																                </div>\
+																                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+																	                <i class="material-icons prefix" id="icon_prefix">store</i>\
+																	                <input type="email" name="email" class="validate" value="<?php echo "$stud_department";?>" disabled>\
+																	                <label for="icon_prefix" class="active">Department</label>\
+																                </div>\
+																           </form>',
+																	width  : '680px'
+																});
+														});
+
+													  
+													});
+
+												</script>
+											<?php
 										}
 								}
 								else
@@ -164,10 +232,7 @@
 						while ($row = $res->fetch_array(MYSQLI_BOTH))
 						{
 							$distArray = array($row['district_name']=>$row['district_name']);	
-							$json = json_encode($distArray,JSON_PRETTY_PRINT);	
-
-							//write json to file
-							var_dump($json);
+							$json = json_encode($distArray,JSON_PRETTY_PRINT);
 							
 														
 						}
@@ -180,59 +245,7 @@
 			    <?php $lord = "Acheampong Kay"; ?>
 
 			</div>
-			<script type="text/javascript">
-				$(document).ready(function(){
-					$("#edit_form").css("margin-top","-150px");
-					// $("div.stud_list").hover(
-					// 	function(){
-					// 	 $("i.mt10").css("display","block");
-					// 	},
-					// 	function(){
-					// 	  $("i.mt10").css("display","none");
-					// 	}
-
-					// );
-					var Name = "<?php echo "$lord"; ?>";
-					
-					$("#img,#name,#email").click(function(){
-						// $.each('arrayVaraible',function(){
-
-						// });
-						$.sweetModal({
-								title: '<div class="col s12 m12 l12>\
-								\			<div class="col s2 m2 l2">\
-								\				<img src="../images/boys.jpg" style="width:80px; height=80px;border:4px solid rgba(0,0,0,0.25);" class="circle responsive-img">\
-											</div>\
-								\			<div class="col s8 m8 l8">\
-								\				<span class="name" style="position:absolute;top:50px;left:135px;"></span>\
-								\				<span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">delete</i></a><a href="" style="position:absolute;top:20px;right:100px;"><i class="material-icons right grey-text text-darken-2">archive</i></a></span>\
-											<div>\
-										</div>',
-
-								content: '<form action="" method="post">\
-							                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-								                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-								                <input type="text" name="firstname" class="validate" value="<?php echo "$lord";?>" disabled>\
-							                </div>\
-							                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-								                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-								                <input type="text" name="lastname" class="validate">\
-								                <label for="icon_prefix">Last Name</label>\
-							                </div>\
-							                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-								                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-								                <input type="text" name="othername" class="validate">\
-								                <label for="icon_prefix">Other Name</label>\
-							                </div>\
-							           </form>',
-								width  : '680px'
-							});
-					});
-
-				  
-				});
-
-			</script>
+			
 		</div>
 	</div>
 </body>

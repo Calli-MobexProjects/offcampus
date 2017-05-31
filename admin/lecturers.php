@@ -1,5 +1,4 @@
 <?php
-session_start();
 include '../navbars/home_navbar.php';
 require_once "../inc/connection.php";
 
@@ -16,7 +15,6 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
  	$lect_district  = $_POST['district'];
 
  	$lect_indicator = substr($lect_district,0,4);
- 	
 
  	$default_image = "images/boys.jpg";
 
@@ -244,13 +242,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$user_image  = substr($lect_email, 0,3).mt_rand();
 										$lect_district = lect_dist.mt_rand();
 
-
 								?>
 								<div class="card-panel z-depth-0 col s12 stud_list list1" id="<?php echo "$lect_id";?>">
 									<div class="col s2 m2 l2">
-										<span class="image"><img id="<?php echo "$user_image";?>" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle"></span>
+										<span class="image" id="<?php echo "$user_image";?>"><img id="<?php echo "$user_image";?>" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle"></span>
 										 <span class="<?php echo "$user_checkmate";?>" id="checkmate" style="position: relative;top: -7px;left: -33px;">
-										 	<input type="checkbox" id="<?php echo "$user_checkmate1";?>" class="checkbox" />
+										 	<input name="lectList[]" type="checkbox" id="<?php echo "$user_checkmate1";?>" class="checkbox" value="<?php echo "$lect_id";?>"/>
 				      			 		 	<label for="<?php echo "$user_checkmate1";?>"></label> 
 										 </span>
 									</div>
@@ -281,6 +278,8 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									</div>
 								</div>
 								<script type="text/javascript">
+									var arrayCount = 0;
+									var arr = [];
 									$("span.<?php echo "$user_checkmate";?>").css("visibility","hidden");
 									var res = 0;
 									var count = 0;
@@ -298,6 +297,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											},
 											function(){
 											  $("i.<?php echo "$lect_district";?>").css("display","none");
+
 											  $("img#<?php echo "$user_image";?>").css({"visibility":"visible","opacity":"1"});
 											}
 
@@ -503,11 +503,15 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											if ($(this).prop("checked") == true) 
 											{
 												$("div#overlay").css({"visibility":"visible","opacity":"1","transition":"0.2s all ease-in","transform":"translateY(0%),scale(1.2)"});
-												
+												$("span#<?php echo "$user_image";?>").css({"visibility":"hidden","opacity":"0"});
 												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
 												$("div#<?php echo "$lect_id";?>").addClass("checkedBg").css({"border-left":"3px solid #039be5"});
 												$("i#<?php echo "$lect_district";?>").css("display","block");
 												// $("input#test5").prop("checked",true);
+												arr.push($(this).val());
+
+												console.log("This is the array");
+												console.dir(arr);
 												count = count + 1;
 												res = 1;
 												console.log("this is the click: ");
@@ -531,10 +535,11 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 
 											}
 											else if ($(this).prop("checked") == false){
-												$("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
+												// $("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
 												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"hidden","opacity":"0"});
+												$("span#<?php echo "$user_image";?>").css({"visibility":"visible","opacity":"1"});
 												$("i#<?php echo "$lect_district";?>").css("display","none");
-												$("div.list1").removeClass("checkedBg").addClass("afterEffect").css({"border-left":"2px solid lightblue","transition":"0.2s all ease-in"});
+												$("div#<?php echo "$lect_id";?>").removeClass("checkedBg").addClass("afterEffect").css({"border-left":"2px solid lightblue","transition":"0.2s all ease-in"});
 												$("#<?php echo "$user_image";?>").css({"visibility":"visible","opacity":"1"});
 												// $("input#test5").prop("checked",false);
 												$('input#<?php echo "$user_checkmate1";?>').prop("checked",false);
@@ -554,7 +559,20 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												}
 												console.log("when deactivated");
 												console.dir(res);
+												arr.pop($(this).val());
+												console.log("This is a pop array");
+												console.dir(arr);
 											}
+
+											//Counting the list in the array
+											arrayCount = arr.length;
+											console.log("The length of the array");
+											console.dir(arrayCount);
+											$("label#selectLabel").text(arrayCount + " " + "selected").css({"font-weight":"400","color":"#00b0ff"});
+											if (arrayCount == 0)
+											 {
+											 	$("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
+											 }
 										});	
 
 										if (res == 0) 
@@ -570,6 +588,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 													}
 												);
 										}
+
 
 									});
 								</script>
@@ -744,6 +763,63 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 													  });
 
 													});
+
+						$("a#multipleDelete").on('click',function(){
+							$.sweetModal({
+								title:'Are You Sure About This ?',
+								icon: $.sweetModal.ICON_WARNING,
+								content: 'These Data Will Permanently Be Deleted',
+								width: '400px',
+								buttons:{
+									cancelButton:{
+										label: 'Cancel',
+										classes: 'secondaryB bordered flat',
+										action:function(){
+
+										}
+									},
+									deleteButton:{
+										label: 'Delete',
+										classes: 'redB',
+										action:function(){
+											var dataString = "dataArray="+arr;
+											if (arr.length == 0) 
+											{
+												$.sweetModal({
+													title:"Alert",
+													icon :$.sweetModal.ICON_ERROR,
+													content:"Something Went Wrong",
+													width:'350px',
+												});
+											}
+											else{
+												$.ajax({
+													type:"POST",
+													url :"lecturers.php",
+													data: dataString,
+
+													success:function(){
+														//Then something should happen here
+											 			$.sweetModal({
+											 				content: "Data Successfully Deleted!",
+											 				icon   : $.sweetModal.ICON_SUCCESS,
+											 				timeout: 4000
+											 			});
+											 			window.location.reload();
+													}
+												})
+												.done(function(){
+
+												})
+												.fail(function(){
+
+												})
+											}
+										}
+									}
+								}
+							})
+						});	
 					  </script>
 				</div>
 			</div>

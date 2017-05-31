@@ -1,7 +1,6 @@
 <?php
-
 include("../navbars/home_navbar.php");
- include('../inc/connection.php');
+ require_once('../inc/connection.php');
 
 
      $query="SELECT * FROM student_details WHERE Stud_id= '$ses_id'";
@@ -334,6 +333,7 @@ $row=mysqli_fetch_assoc($querying);
 	        		Materialize.toast(alert, 3500, "rounded");
 	   			</script>
 	   		';
+            header("Location:index.php");
 
  }
      else

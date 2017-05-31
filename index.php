@@ -20,7 +20,7 @@ include("navbars/navbar.php");
 				</div>
 				<div class="col s12 m8 l8 offset-m2 offset-l2">
 					<div class="card-panel col s12 form_main z-depth-2">
-						<form method="post" action="extras/extra.php" autocomplete="on">
+						<form method="post" action="log.php" autocomplete="on">
 							<div class="input-field col s12 m12 l12" style="padding-top: 15px;">
 								  <i class="material-icons prefix">credit_card</i>
 						          <input id="icon_prefix" type="text" name="student_id" class="validate" data-length="14" required="required">

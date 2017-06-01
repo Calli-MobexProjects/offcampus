@@ -262,7 +262,7 @@ $fetch=mysqli_fetch_assoc($querying);
 							<span class="grey-text text-darken-3" style="margin-left: 45px;"><?php echo $Name; ?></span>
 				   		  	<span class="grey-text text-accent-2" style="margin-left: 40px;"><?php echo $email; ?></span>
 				   		  	<span class="grey-text text-accent-2" style="margin-left: 40px;margin-right: 5px;">User Profile |  <a href="" style="margin-left: 5px;">Policy Info</a></span>
-				   		  	<a class="btn light-blue z-depth-1" href="#" style="text-transform: capitalize;font-size: 12px;margin-left: 40px;margin-top: 20px;">My Accounts</a>
+				   		  	<a class="btn light-blue z-depth-1" href="../admin/profile.php" style="text-transform: capitalize;font-size: 12px;margin-left: 40px;margin-top: 20px;">My Accounts</a>
 					</div>
 					<div class="col s12 m12 l12">
 						<div class="divider"></div>

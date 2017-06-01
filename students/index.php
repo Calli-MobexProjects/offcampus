@@ -19,46 +19,37 @@ $row=mysqli_fetch_assoc($querying);
 ?>
 <head>
 	<title>OCTPs&reg; | Home</title>
- 
+  <style type="text/css">
+    div.indicator{
+      top: 10px;
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+    small#preview{
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
 </head>
-<body class="animated fadeInRight">
+<body>
     <!-- Page Layout here -->
     <div class="row">
       <div id="loader" class="col s4 m4 l4 offset-s4 offset-m4 offset-l4 loader z-depth-2" style="width:120px; height: 30px;padding: 20px 10px 40px 10px;margin-top: 10px;border-radius: 2px;background-color: lightyellow;position:absolute;z-index: 9999;display: block;">
         <p>Loading ..</p>
        </div>
+       <div class="col s2 m2 l2" id="side-pane">
+         <?php include '../navbars/stud_sidenav.php';?>
+       </div>
 
-      <div class="col s12 m2 l2 hide-on-small-only animated fadeIn side_navigation"> <!-- Note that "m4 l3" was added -->
-      	<div class="card-panel z-depth-0 grey lighten-3 waves-effect waves-block waves-light" id="h_menu_item">
-      		<a href="#home" id="h_menu_item"><i class="material-icons left home blue-text">home</i><span class="title">Home</span></a>
-      	</div>
-      	<div class="card-panel z-depth-0 grey lighten-3 waves-effect waves-block waves-light" id="a_menu_item">
-      		<a href="#apply" id="a_menu_item"><i class="material-icons left home orange-text">insert_drive_file</i><span class="title"><?php if($action=='1' or $action=='2' ){ echo 'Request Status';} else{ echo 'Apply'; } ?></span></a>
-      	</div>
-      	<div class="card-panel z-depth-0 grey lighten-3 waves-effect waves-block waves-light" id="d_menu_item">
-      		<a href="#download_assessment" id="d_menu_item"><i class="material-icons left home green-text">file_download</i><span class="title">Assessment<br> Form</span></a>
-      	</div>
-      	<div class="divider"></div>
-        <h6 class="grey-text text-darken-2" style="margin-left: 31px;margin-top: 8px;">Accounts</h6>
-        <div class="card-panel z-depth-0 grey lighten-3 waves-effect waves-block waves-light" id="d_menu_item">
-          <a href="#download_assessment" id="d_menu_item"><i class="material-icons left home grey-text text-darken-2">build</i><span class="title">Settings</span></a>
-        </div>
-        <div class="card-panel z-depth-0 grey lighten-3 waves-effect waves-block waves-light" id="d_menu_item">
-          <a href="#download_assessment" id="d_menu_item"><i class="material-icons left home grey-text text-darken-2">info</i><span class="title">Help</span></a>
-        </div>
-        <div class="card-panel z-depth-0 grey lighten-3 waves-effect waves-block waves-light" id="d_menu_item">
-          <a href="#download_assessment" id="d_menu_item"><i class="material-icons left home grey-text text-darken-2">forum</i><span class="title">Feedback</span></a>
-        </div>
-
-      </div>
-
-      <div class="col s12 m9 l9" id="agent_list"> <!-- Note that "m8 l9" was added -->
+      <div class="col s10 m10 l10" id="agent_list"> <!-- Note that "m8 l9" was added -->
       <!-- home page will be here -->
         	<div class="row" id="home">
         		<div class="col s12 m12 l12">
         			<div class="col s12 m6 l6">
         				<div class="col s12 m12 l12 card-panel">
-                  <h5 class="grey-text text-darken-2">Notices</h5>
+                  <h5 class="grey-text text-darken-2">Calendar</h5>
                   <div class="divider"></div>    
                 </div>
         			</div>
@@ -86,13 +77,14 @@ $row=mysqli_fetch_assoc($querying);
                             }                    
                                                 
                                                 else{ ?>
-                          <img src="../images/buzz.svg" alt="image" class="responsive-img" width="150px" height="150px" 
-                        style="position:relative;left:125px;top:20px;"><br><br><br>
-                        <small id="preview" style="position:relative;left:100px;font-size:12px;font-weight:500;color:grey;"
-                         class="typer" data-delay="100" data-delim="," data-words="No Buzzes available at this moment" data-color="grey">
-                         No Notices available at this moment
-                                          <span class="cursor" data-cursorDisplay="|" data-owner="preview"></span>
-                      </small>
+                         <div class="indicator">
+                            <img src="../images/buzz.svg" alt="image" class="responsive-img" width="150px" height="150px"><br>
+                         </div>
+                          <small id="preview" style="position:relative;left:100px;font-size:12px;font-weight:500;color:grey;"
+                               class="typer hide-on-small-only" data-delay="100" data-delim="," data-words="No Buzzes available at this moment" data-color="grey">
+                               No Notices available at this moment
+                              <span class="cursor" data-cursorDisplay="|" data-owner="preview"></span>
+                          </small>
                           <?php 
                             }
                           
@@ -160,40 +152,32 @@ $row=mysqli_fetch_assoc($querying);
                     </div>
                     <div class="input-field col s12 m12 l12" style="padding-top: 15px">
                         <i class="material-icons prefix">location_on</i>
-                         <select name="region" required="required" class="REGION" >
+                         <select name="region" required="required" class="REGION"  id="totalRegion">
                           <option value="" disabled selected>Select Region</option>
                             <optgroup label="List Of Regions">
-                                
                                 <?php
                             $query="SELECT * FROM region ";
                             $querying=mysqli_query($mysqli,$query);
                             while($fetch=mysqli_fetch_assoc($querying)){
                                  
                                 ?>
-                              <option  value="<?php echo $fetch['reg_Abbrv']; ?>"><?php echo $fetch['reg_Abbrv']; ?></option>
+                              <option id="region" value="<?php echo $fetch['reg_Abbrv']; ?>"><?php echo $fetch['fullname']; ?></option>
                                 <?php 
                                 
                             }
                               ?>
-                                
-                            <!--    <script type="text/javascript">
-                                    $(document).ready(function(){
-                          $("select.REGION").change(function(){
-            var selectedRegion = $(".REGION option:selected").val();
-            $.ajax({
-            type: "POST",
-            url: "loadregion.php",
-            data: { region : selectedRegion } 
-            }).done(function(data){
-            $("#response").html(data);
-                        });
-                            });
-                                    });
-</script>-->
                             </optgroup>
                         </select>
                         <label for="icon_prefix">Regions</label>
                     </div>
+                    <script type="text/javascript">
+                      $("#totalRegion").change(function(event){
+                          event.preventDefault();
+                          var valueSelected = $("#totalRegion option:selected").val();
+                          console.dir(valueSelected);
+                          // window.location.hash="?data="+valueSelected+"";
+                        });
+                    </script>
                     <div class="input-field col s12 m12 l12" style="padding-top: 15px">
                         <i class="material-icons prefix">map_marker</i>
                          <select name="district" required="required" id="district">
@@ -201,7 +185,8 @@ $row=mysqli_fetch_assoc($querying);
                             <optgroup label="List Of Regions" id="response">
                                                                 
                              <?php
-                            $dist="SELECT * FROM district";
+                             $somevar = $_GET["data"];
+                            $dist="SELECT * FROM district WHERE reg_Abbrv = '$somevar'";
                             $run=mysqli_query($mysqli,$dist);
                             while($row=mysqli_fetch_assoc($run)){
                                  

@@ -209,7 +209,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 						<div class="col s12 m12 l12">
 							<h5 class="grey-text text-accent-3 left-align stud_list_title"><i class="material-icons left view">view_list</i>Lecturers' List</h5>
 							<?php
-							$qs = "SELECT * FROM lecturer";
+							$qs = "SELECT * FROM lecturer ORDER BY lect_firstname ASC";
 							$res = $mysqli->query($qs);
 							$count = $res->num_rows;
 							
@@ -242,8 +242,15 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$user_image  = substr($lect_email, 0,3).mt_rand();
 										$lect_district = lect_dist.mt_rand();
 
+										//Generating random colors scheme
+										$number_gen = mt_rand(1,9);
+
+										$str = 'abcdef';
+										$shuffled = str_shuffle($str);
+
+
 								?>
-								<div class="card-panel z-depth-0 col s12 stud_list list1" id="<?php echo "$lect_id";?>">
+								<div class="card-panel z-depth-0 col s12 stud_list list1" id="<?php echo "$lect_id";?>"" style="background-color:#<?php echo "$random";?>">
 									<div class="col s2 m2 l2">
 										<span class="image" id="<?php echo "$user_image";?>"><img id="<?php echo "$user_image";?>" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle"></span>
 										 <span class="<?php echo "$user_checkmate";?>" id="checkmate" style="position: relative;top: -7px;left: -33px;">

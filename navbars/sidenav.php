@@ -1,4 +1,4 @@
-<div class="navigation">
+<div class="navigation" style="border-right: 1px solid #e8e8e8;">
 	<ul class="nav-demo">
 		<li id="home" class="active"><a href="index.php"><i class="material-icons left icon">home</i><span class="menu_name">Home</span></a></li>
 		<li id="stud"><a href="students.php"><i class="material-icons left icon">supervisor_account</i><span class="menu_name">Students' List</span></a></li>
@@ -6,6 +6,10 @@
 		<li><a href="analytics.php"><i class="material-icons left icon">trending_up</i><span class="menu_name">Analytics</span></a></li>
 		<li><a href="#"><i class="material-icons left icon">add</i><span class="menu_name">Create Events</span></a></li>
 		<li><a href="#"><i class="material-icons left icon">place</i><span class="menu_name">Distance</span></a></li>
+
+		<div class="divider"></div>
+		<li class="grey-text text-accent-1 header disabled">Manage Admins</li>
+		<li><a href="#"><i class="material-icons left icon">security</i><span class="menu_name">Admins' List</span></a></li>
 
 		<div class="divider"></div>
 		<li class="grey-text text-accent-1 header disabled">Accounts Settings</li>

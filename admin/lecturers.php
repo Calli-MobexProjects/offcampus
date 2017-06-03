@@ -712,9 +712,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 															 			$.sweetModal({
 															 				content: "Details Saved Successfully !",
 															 				icon   : $.sweetModal.ICON_SUCCESS,
-															 				timeout: 4000
+															 				width  :'400px',
+															 				timeout: 2300
 															 			});
-															 			window.location.reload();
+															 			setTimeout(function() {
+															 				window.location.reload();
+															 			}, 2800);
 															 		}
 															 	});
 															 }
@@ -804,8 +807,16 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												$.post({
 													url:"lecturers.php",
 													data:{ardata:arr},
-													success:function(data){
-														console.dir(data);
+													success:function(){
+														$.sweetModal({
+											 				content: "Delete Successfull !",
+											 				icon   : $.sweetModal.ICON_SUCCESS,
+											 				width  :'400px',
+											 				timeout: 2300
+											 			});
+											 			setTimeout(function() {
+											 				window.location.reload();
+											 			}, 2800);
 													}
 												});
 											}

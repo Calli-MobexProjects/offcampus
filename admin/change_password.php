@@ -176,7 +176,7 @@ include "../navbars/home_navbar.php";
 									url:'change_password.php',
 									data:{ndata:newpass,rdata:reppass},
 									success:function(){
-
+										
 									}
 								});
 							 }

@@ -180,6 +180,11 @@ $fetch=mysqli_fetch_assoc($querying);
 			cursor: pointer;
 			padding: 5px 5px 5px 5px;	
 		}
+		/* codes for some heuristics */
+		.activate{
+			visibility: hidden;
+			opacity: 0;
+		}
 	</style>
 </head>
 <body>
@@ -311,6 +316,7 @@ $fetch=mysqli_fetch_assoc($querying);
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<script type="text/javascript" src="../libs/js/custom.js"></script>
 	<script type="text/javascript" src="../libs/js/activities.js"></script>
+	<script type="text/javascript" src="../libs/js/sidenav.js"></script>
 	<script type="text/javascript">
 		var monitor = 0;
 		$(document).ready(function(){

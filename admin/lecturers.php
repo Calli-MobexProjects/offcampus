@@ -772,6 +772,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 													});
 
 						$("a#multipleDelete").on('click',function(){
+							console.dir(arr);
 							$.sweetModal({
 								title:'Are You Sure About This ?',
 								icon: $.sweetModal.ICON_WARNING,
@@ -800,34 +801,36 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												});
 											}
 											else{
-												$.ajax({
-													type:"POST",
-													url :"lecturers.php",
-													data: dataString,
-
-													success:function(){
-														//Then something should happen here
-											 			$.sweetModal({
-											 				content: "Data Successfully Deleted!",
-											 				icon   : $.sweetModal.ICON_SUCCESS,
-											 				timeout: 4000
-											 			});
-											 			window.location.reload();
+												$.post({
+													url:"lecturers.php",
+													data:{ardata:arr},
+													success:function(data){
+														console.dir(data);
 													}
-												})
-												.done(function(){
-
-												})
-												.fail(function(){
-
-												})
+												});
 											}
 										}
 									}
 								}
-							})
+							});
 						});	
 					  </script>
+					  <?php 
+					  if (isset($_POST['ardata']))
+					  {
+					  	$arrayData = $_POST['ardata'];
+					    for ($i=0; $i < count($arrayData) ; $i++) { 
+					    	# code...
+					    	$deleteData = $arrayData[$i];
+					    	$deleteQuery = "DELETE FROM lecturer WHERE lect_ID = '$deleteData'";
+					    	$deleteFetch = $mysqli->query($deleteQuery);
+					    	if ($deleteFetch) 
+					    	{
+					    		# code...
+					    	}
+					    }
+					  }
+					  ?>
 				</div>
 			</div>
 		</div>

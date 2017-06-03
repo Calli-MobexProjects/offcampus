@@ -175,9 +175,23 @@ $row=mysqli_fetch_assoc($querying);
                           event.preventDefault();
                           var valueSelected = $("#totalRegion option:selected").val();
                           console.dir(valueSelected);
-                          // window.location.hash="?data="+valueSelected+"";
+                          $.post({
+                              url:'index.php',
+                              data:{val:valueSelected},
+                              success:function(){
+
+                              }
+                          });
                         });
                     </script>
+                    <?php 
+                      if (isset($_POST['val']))
+                      {
+                        $bb = $_POST['val'];
+                        $cygen = "INSERT INTO lord VALUES('Banks','$bb')";
+                        $filter = $mysqli->query($cygen);
+                      }
+                    ?>
                     <div class="input-field col s12 m12 l12" style="padding-top: 15px">
                         <i class="material-icons prefix">map_marker</i>
                          <select name="district" required="required" id="district">
@@ -185,7 +199,7 @@ $row=mysqli_fetch_assoc($querying);
                             <optgroup label="List Of Regions" id="response">
                                                                 
                              <?php
-                             $somevar = $_GET["data"];
+                          
                             $dist="SELECT * FROM district WHERE reg_Abbrv = '$somevar'";
                             $run=mysqli_query($mysqli,$dist);
                             while($row=mysqli_fetch_assoc($run)){

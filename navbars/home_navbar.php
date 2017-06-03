@@ -142,7 +142,7 @@ $fetch=mysqli_fetch_assoc($querying);
 		}
 		/* styles for the overlay navbar */
 		div#overlay{
-			position: absolute;
+			position: fixed;
 			width: 100%;
 			height: 66px;
 			background-color: #e1f5fe;

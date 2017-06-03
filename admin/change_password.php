@@ -1,6 +1,9 @@
 <?php
 require_once '../inc/connection.php';
 include "../navbars/home_navbar.php";
+
+
+
 ?>
 <head>
 	<title>OCTPs &reg; | Change Password</title>
@@ -130,19 +133,19 @@ include "../navbars/home_navbar.php";
 						<div class="col s12 m12 l12">
 							<div class="form-container col s10 m10 l10 offset-l1 offset-m1 card-panel">
 								<h5 class="grey-text text-darken-1 center-align">Change Password</h5>
-								<form role="form" method="post" action="">
+								<form role="form" method="post" action="" id="cpForm">
 									<div class="input-field col s12">
 										<i class="material-icons prefix">lock_outline</i>
-										<input type="text" id="newpass" name="newpass" class="validate" required/>
+										<input type="password" id="newpass" name="newpass" class="validate" required/>
 										<label for="newpass">Enter the New Password</label>
 									</div>
 									<div class="input-field col s12">
 										<i class="material-icons prefix">lock</i>
-										<input type="text" id="newpass" name="newpass" class="validate" required/>
+										<input type="password" id="reppass" name="reppass" class="validate" required/>
 										<label for="newpass">Repeat Password</label>
 									</div>
 									<div class="input-field col s12">
-										<button type="submit" class="btn light-blue accent-3 change waves-effect waves-light" name="changepass"><i class="material-icons left">security</i>Change Password !</button>
+										<button type="submit" class="btn light-blue accent-3 change waves-effect waves-light" name="changepass"><i class="material-icons left">security</i>Change Password</button>
 									</div>
 								</form>
 							</div>
@@ -150,6 +153,50 @@ include "../navbars/home_navbar.php";
 						</div>
 					</div>
 				</div>
+
+				<!-- Submitting the form using jquery and ajax -->
+				<script type="text/javascript">
+					$(function(){
+						$("#cpForm").submit(function(event){
+							event.preventDefault();
+							var newpass = $("#newpass").val();
+							var reppass = $("#reppass").val();
+
+							if (newpass != reppass)
+							 {
+							 	$.sweetModal({
+							 		icon:$.sweetModal.ICON_ERROR,
+							 		content: 'Password Do not Match<b style="margin-left:10px;">Cross Check It</b>',
+							 		width:'400px',
+							 		timeout: 4000,
+							 	});
+							 }
+							 else{
+								$.post({
+									url:'change_password.php',
+									data:{ndata:newpass,rdata:reppass},
+									success:function(){
+
+									}
+								});
+							 }
+							
+						});
+					});
+				</script>
+				<?php
+					if (isset($_POST['ndata']) && isset($_POST['rdata']))
+						{
+							$newpass = $_POST['ndata'];
+							$reppass = $_POST['rdata'];
+							$query = "INSERT INTO lord(newpass,reppass) VALUES('$newpass','$reppass')";
+							$res   = $mysqli->query($query);
+							if ($res)
+							{
+								echo "Good Someting";
+							}
+						}
+				?>
 			</div>
 		</div>
 	</div>

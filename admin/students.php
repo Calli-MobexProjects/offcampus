@@ -108,7 +108,7 @@
 											$student_image = substr($stud_firstname,0,4);
 											
 											?>
-											<div class="card-panel z-depth-0 col s12 stud_list" id="<?php echo "$stud_id";?>">
+											<div class="card-panel z-depth-0 waves-effect waves-block waves-ripple col s12 stud_list" id="<?php echo "$stud_id";?>">
 												<div class="col s2 m2 l2" id="img">
 													<span class="image"><img src="../<?php echo "$stud_image";?>" alt="avatar" class="responsive-img circle"></span>
 												</div>

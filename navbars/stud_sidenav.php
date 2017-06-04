@@ -10,7 +10,7 @@
 		<li  style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">list</i><span class="menu_name">Incentives</span></a></li>
 		<div class="divider"></div>
 		<li class="grey-text text-accent-1 header disabled">Settings</li>
-		<li  style="margin-right: -6px;"><a href="../admin/change_password.php"><i class="material-icons left icon">lock</i><span class="menu_name">Change Password</span></a></li>
+		<li  style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">lock</i><span class="menu_name">Change Password</span></a></li>
 		<li class="grey-text text-accent-1 header disabled">Discussions</li>
 		<li  style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">forum</i><span class="menu_name">Forum</span></a></li>
 

@@ -250,7 +250,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 
 
 								?>
-								<div class="card-panel z-depth-0 col s12 stud_list list1" id="<?php echo "$lect_id";?>"" style="background-color:#<?php echo "$random";?>">
+								<div class="card-panel z-depth-0 waves-effect waves-block waves-ripple col s12 stud_list list1" id="<?php echo "$lect_id";?>"" style="background-color:#<?php echo "$random";?>">
 									<div class="col s2 m2 l2">
 										<span class="image" id="<?php echo "$user_image";?>"><img id="<?php echo "$user_image";?>" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle"></span>
 										 <span class="<?php echo "$user_checkmate";?>" id="checkmate" style="position: relative;top: -7px;left: -33px;">
@@ -737,42 +737,55 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												}
 
 											});
+											$("#region").change(function(){
+												var banks = $("input#region").val();
+												 $('input.autocomplete').autocomplete({
+												    data: {
+												    	 <?php 
+												    	   
+													       $reg_query = "SELECT * FROM region ORDER BY fullname ASC";
+													       $reg_fetch = $mysqli->query($reg_query);
+													       $reg_count = $reg_fetch->num_rows;
+													       while ($row = $reg_fetch->fetch_array(MYSQLI_BOTH))
+													       {
+													       		 $fullname = $row['fullname'];
+													      ?>
+													      "<?php echo "$fullname";?>": null,
+													      <?php
+													  		}		
+													      ?>
+												    },
+												    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+												    onAutocomplete: function(val) {
+												      // Callback function when value is autcompleted.
+												    },
+												    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+												  });
+											});
 
-														
-													  $('input.autocomplete').autocomplete({
-													    data: {
-													      "Apple": null,
-													      "Microsoft": null,
-													      "Google": 'http://placehold.it/250x250'
-													    },
-													    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-													    onAutocomplete: function(val) {
-													      // Callback function when value is autcompleted.
-													    },
-													    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-													  });
+										   $('input.region').autocomplete({
+										    data: {
+										      <?php 
+										       $reg_query = "SELECT * FROM region ORDER BY fullname ASC";
+										       $reg_fetch = $mysqli->query($reg_query);
+										       $reg_count = $reg_fetch->num_rows;
+										       while ($row = $reg_fetch->fetch_array(MYSQLI_BOTH))
+										       {
+										       		 $fullname = $row['fullname'];
+										      ?>
+										      "<?php echo "$fullname";?>": null,
+										      <?php
+										  		}		
+										      ?>
+										    },
+										    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+										    onAutocomplete: function(val) {
+										      // Callback function when value is autcompleted.
+										    },
+										    minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
+										  });
 
-													   $('input.region').autocomplete({
-													    data: {
-													      "Ashanti": null,
-													      "Brong Ahafo ": null,
-													      "Central ": null,
-													      "Eastern ":null,
-													      "Greater Accra":null,
-													      "Northen":null,
-													      "Upper East":null,
-													      "Upper West":null,
-													      "Volta":null,
-													      "Western":null
-													    },
-													    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-													    onAutocomplete: function(val) {
-													      // Callback function when value is autcompleted.
-													    },
-													    minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
-													  });
-
-													});
+									});
 
 						$("a#multipleDelete").on('click',function(){
 							console.dir(arr);

@@ -411,6 +411,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 															 	$.sweetModal({
 															 		content:"Fields Cannot Be Empty",
 															 		icon   :$.sweetModal.ICON_ERROR,
+															 		width : '400px'
 
 															 	});
 															 }

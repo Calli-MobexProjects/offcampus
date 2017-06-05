@@ -1,6 +1,13 @@
 <?php
 include("../navbars/home_navbar.php");
+require_once '../inc/connection.php';
 
+$user_reg = "SELECT COUNT(*) AS NUM FROM register WHERE Profile = 'student'";
+$user_res = $mysqli->query($user_reg);
+while ($count = $user_res->fetch_array(MYSQLI_BOTH)) 
+{
+  $countStudent = $count['NUM'];
+}
 ?>
 <head>
     
@@ -59,15 +66,15 @@ include("../navbars/home_navbar.php");
                                     <i class="material-icons total_img">supervisor_account</i>
                                     <span class="indicator">Registered Users</span>
                                     <div class="divider"></div>
-                                    <h5 class="grey-text text-darken-2 small-text">Total Number Of Students<span class="chip right">50</span></h5>
+                                    <h5 class="grey-text text-darken-2 small-text">Total Number Of Students<span class="chip right"><?php echo "$countStudent";?></span></h5>
                                 </div>
                             </div>
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">
                                     <i class="material-icons total_img">mode_edit</i>
-                                    <span class="indicator">Applied Users</span>
+                                    <span class="indicator">Student With Schools</span>
                                     <div class="divider"></div>
-                                    <h5 class="grey-text text-darken-2 small-text">Total Number Of Applicants <span class="chip right">80</span></h5>
+                                    <h5 class="grey-text text-darken-2 small-text">Students Who've Gotten Schools<span class="chip right">80</span></h5>
                                 </div>
                             </div>
                         </div>
@@ -82,8 +89,7 @@ include("../navbars/home_navbar.php");
                             </div>
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">
-                                <div style="background-color: transparent;" id="chart_div"></div>
-
+                                  <div style="background-color: transparent;" id="chart_div"></div>
                                 
                                 </div>
                                

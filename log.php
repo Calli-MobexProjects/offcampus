@@ -87,7 +87,6 @@ if($userid==$id){
            
        }
        else{
-             
            session_regenerate_id();
              $_SESSION['userid'] = $userid;
             session_write_close();

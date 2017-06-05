@@ -16,7 +16,7 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 	$profile = "Admin";
 	//inserting data into the database
 	$admin_manage_query = "INSERT INTO register VALUES('$verification','$firstname','$lastname','','$unknown','$unknown','$unknown','$encryptpass','$unknown','$email','$profile','2017-05-30 05:08:12','2017-05-30 05:08:12')";
-	$admin_manage_query1 = "INSERT INTO privileges(id,add_admin,add_lecturer,delete_admin,delete_lecturer) VALUES('$verification','0','0','0','0')";
+	$admin_manage_query1 = "INSERT INTO privileges(id,add_admin,add_lecturer,delete_admin,delete_lecturer,status) VALUES('$verification','0','0','0','0','1')";
 
 	$admin_result = $mysqli->query($admin_manage_query);
 	$admin_result1 = $mysqli->query($admin_manage_query1);
@@ -113,7 +113,7 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 									</div>
 								</div>
 								<?php
-									if ($staus == 1)
+									if ($status == 1)
 									 {
 									 	?>
 									 	<span id="<?php echo "$user_identifier"; ?>" class="status z-depth-1 waves-effect waves-block waves-ripple green darken-2"><i class="material-icons left">bubble_chart</i>active</span>
@@ -141,6 +141,46 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 										content:'',
 										width:'700px',
 
+									});
+								});
+
+								//Changing the status of added admins
+								$("span#<?php echo "$user_identifier";?>").on('click',function(){
+									var monitor = "<?php echo "$status"; ?>";
+									var Label;
+									var color;
+									if (monitor == 0)
+									 {
+									 	Label = 'Activate';
+									 	color = 'greenB';
+									 }
+									 else{
+									 	Label = 'Deactivate';
+									 	color = 'redB';
+									 }
+									$.sweetModal({
+										title:'Change Status',
+										content:'<input type="checkbox" id="status"/>\
+												 <label for="status">Check To Change Status</label>',
+										width:'400px',
+										buttons:{
+											cancelButton:{
+												label:'Cancel',
+												classes:'secondaryB bordered flat',
+												action:function(){
+
+												}
+											},
+											deleteButton:{
+												label:Label,
+												classes:color,
+												action:function()
+												{
+
+												}
+
+											}
+										}
 									});
 								});
 							</script>

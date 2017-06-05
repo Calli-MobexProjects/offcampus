@@ -16,8 +16,11 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 	$profile = "Admin";
 	//inserting data into the database
 	$admin_manage_query = "INSERT INTO register VALUES('$verification','$firstname','$lastname','','$unknown','$unknown','$unknown','$encryptpass','$unknown','$email','$profile','2017-05-30 05:08:12','2017-05-30 05:08:12')";
+	$admin_manage_query1 = "INSERT INTO privileges(id,add_admin,add_lecturer,delete_admin,delete_lecturer) VALUES('$verification','0','0','0','0')";
 
 	$admin_result = $mysqli->query($admin_manage_query);
+	$admin_result1 = $mysqli->query($admin_manage_query1);
+
 }
 
 ?>

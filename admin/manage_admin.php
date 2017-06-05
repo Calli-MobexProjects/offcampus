@@ -218,11 +218,11 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 								 				content: "Details Saved Successfully !",
 								 				icon   : $.sweetModal.ICON_SUCCESS,
 								 				width  :'400px',
-								 				timeout: 3000
+								 				timeout: 2000
 								 			});
 								 			setTimeout(function() {
 								 				window.location.reload();
-								 			}, 4200);
+								 			}, 2800);
 										}
 									});
 								 }

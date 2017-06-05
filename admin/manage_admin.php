@@ -86,6 +86,7 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 								{
 									while ($admin_rows = $select_admin_fetch->fetch_array(MYSQLI_BOTH))
 									{
+										$stud_id   = $admin_rows['Stud_id'];
 										$firstname = $admin_rows['f_Name'];
 										$lastname  = $admin_rows['l_Name'];
 										$email     = $admin_rows['email'];
@@ -94,6 +95,11 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 
 										$user_identifier = substr($firstname, 0,3).mt_rand();
 										
+										$status_query = "SELECT * FROM privileges WHERE id = '$stud_id'";
+										$status_results = $mysqli->query($status_query);
+										while ($status_row = $status_results->fetch_array(MYSQLI_BOTH)) 
+										{
+											$status = $status_row['status'];
 									
 							 ?>
 							<div class="col s12 m4 l4">
@@ -106,7 +112,19 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 									<span class="sub text-center"><?php echo "$email";?></span>
 									</div>
 								</div>
-								<span class="status z-depth-1 waves-effect waves-block waves-ripple green darken-2"><i class="material-icons left">bubble_chart</i>active</span>
+								<?php
+									if ($staus == 1)
+									 {
+									 	?>
+									 	<span id="<?php echo "$user_identifier"; ?>" class="status z-depth-1 waves-effect waves-block waves-ripple green darken-2"><i class="material-icons left">bubble_chart</i>active</span>
+									 	<?php
+									 } 
+									 else{
+									 	?>
+									 	<span id="<?php echo "$user_identifier"; ?>" class="status z-depth-1 waves-effect waves-block waves-ripple red darken-2"><i class="material-icons left">bubble_chart</i>Inactive</span>
+									 	<?php
+									 }
+								?>
 							</div>
 							<script type="text/javascript">
 								$("#<?php echo "$user_identifier";?>").on('click',function(){
@@ -127,6 +145,7 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 								});
 							</script>
 							<?php
+										}
 									}
 								}
 							?>

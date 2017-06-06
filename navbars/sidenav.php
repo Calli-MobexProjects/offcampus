@@ -38,7 +38,13 @@
 		<li class="grey-text text-accent-1 header disabled">Accounts Settings</li>
 		<li style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">person_pin</i><span class="menu_name">Edit Profile</span></a></li>
 		<li style="margin-right: -6px;"><a href="../admin/change_password.php"><i class="material-icons left icon">lock</i><span class="menu_name">Change Password</span></a></li>
-		<li style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">forum</i><span class="menu_name">Forum</span></a></li>
+
+		<li style="margin-right: -6px;">
+			<a href="forum.php">
+				<i class="material-icons left icon">forum</i>
+				<span class="menu_name">Forum</span>
+			</a>
+		</li>
 
 		<div class="divider"></div>
 		<li class="grey-text text-accent-1 header" disabled="disabled">Report Issues ?</li>

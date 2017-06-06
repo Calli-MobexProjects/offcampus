@@ -23,6 +23,21 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 
 }
 
+if (isset($_POST['statusID']) && isset($_POST['statusValue'])) 
+{
+	$current_id =  $_POST['statusID'];
+	$current_value	    = $_POST['statusValue'];
+	if ($current_value == 0)
+	{
+		$current_value = 1;
+	}
+	else if ($current_value == 1)
+	{
+		$current_value = 0;
+	}
+	$change_status_query = "UPDATE privileges SET status = '$current_value' WHERE id = '$current_id'";
+	$change_status_fetch = $mysqli->query($change_status_query);
+}
 ?>
 <head>
 	<title>OCTPs&reg; | Manage Admin</title>
@@ -99,7 +114,10 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 										$status_results = $mysqli->query($status_query);
 										while ($status_row = $status_results->fetch_array(MYSQLI_BOTH)) 
 										{
+											$status_id = $status_row['id'];
 											$status = $status_row['status'];
+											$checkbox_id = substr($status_id, 0,2).mt_rand();
+
 									
 							 ?>
 							<div class="col s12 m4 l4">
@@ -147,21 +165,37 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 								//Changing the status of added admins
 								$("span#<?php echo "$user_identifier";?>").on('click',function(){
 									var monitor = "<?php echo "$status"; ?>";
+									var statusID;
+									var statusValue;
 									var Label;
 									var color;
+									var stateValue;
 									if (monitor == 0)
 									 {
 									 	Label = 'Activate';
 									 	color = 'greenB';
+									 	stateValue = 1;
 									 }
 									 else{
 									 	Label = 'Deactivate';
 									 	color = 'redB';
+									 	stateValue = 0;
 									 }
+					 				//check the status of the checkbox
+									$("input#<?php echo "$checkbox_id";?>").on('click',function(){
+										if ($(this).prop("checked") == true)
+										 {
+										 	console.dir("Something is clicked");
+
+										 }
+
+									});
 									$.sweetModal({
 										title:'Change Status',
-										content:'<input type="checkbox" id="status"/>\
-												 <label for="status">Check To Change Status</label>',
+										content:'<form action="" method="post">\
+													<input type="checkbox" id="<?php echo "$checkbox_id"; ?>" value="<?php echo "$status";?>"/>\
+												 	<label for="<?php echo "$checkbox_id"; ?>">Check To Change Status</label>\
+												 </form>',
 										width:'400px',
 										buttons:{
 											cancelButton:{
@@ -176,6 +210,33 @@ if (isset($_POST['verData']) && isset($_POST['fData']) && isset($_POST['lData'])
 												classes:color,
 												action:function()
 												{
+													var dataString = "statusID="+statusID +"&statusValue="+statusValue;
+													console.dir(dataString);
+													if (statusID == '' && statusValue == '')
+													 {
+													 	$.sweetModal({
+													 		content:'Something Went Wrong',
+													 		width:'350px',
+													 	});
+													 }
+													 else{
+													 	$.post({
+													 		url:"manage_admin.php",
+													 		data:dataString,
+													 		success:function(){
+													 			$.sweetModal({
+													 				icon:$.sweetModal.ICON_SUCCESS,
+													 				content:'Status Successfully Changed',
+													 				width:'350px',
+													 				timeout:3300
+													 			});
+
+													 			setTimeout(function() {
+													 				window.location.reload();
+													 			}, 3900);
+													 		}
+													 	});
+													 }
 
 												}
 

@@ -35,7 +35,16 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
         #chart_div{
             background-color: transparent;
         } 
-        
+        span.total_img{
+          position: relative;
+          width: 200px;
+          height: 200px;
+        }
+        img.show{
+          width: 200px;
+          height: 200px;
+          position: relative;
+        }
     </style>
 </head>
 <body>
@@ -63,7 +72,8 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
                         <div class="col s12 m10 l10 offset-m1 offset-l1 animated fadeIn" id="firstpane">
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">
-                                    <i class="material-icons total_img">supervisor_account</i>
+                                   <!--  <i class="material-icons total_img">supervisor_account</i> -->
+                                   <span class="total_img"><img src="../images/admin/users.svg" alt="Registered Users" class="responsive-img show"></span>
                                     <span class="indicator">Registered Users</span>
                                     <div class="divider"></div>
                                     <h5 class="grey-text text-darken-2 small-text">Total Number Of Students<span class="chip right"><?php echo "$countStudent";?></span></h5>
@@ -71,7 +81,7 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
                             </div>
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">
-                                    <i class="material-icons total_img">mode_edit</i>
+                                   <span class="total_img"><img src="../images/admin/school.svg" alt="Registered Users" class="responsive-img show"></span>
                                     <span class="indicator">Student With Schools</span>
                                     <div class="divider"></div>
                                     <h5 class="grey-text text-darken-2 small-text">Students Who've Gotten Schools<span class="chip right">80</span></h5>
@@ -81,7 +91,7 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
                         <div class="col s12 m10 l10 offset-m1 offset-l1 animated fadeIn" id="secondpane">
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">
-                                    <i class="material-icons total_img">perm_identity</i>
+                                    <span class="total_img"><img src="../images/admin/mortarboard.svg" alt="Registered Users" class="responsive-img show"></span>
                                     <span class="indicator">Added Lecturers</span>
                                     <div class="divider"></div>
                                     <h5 class="grey-text text-darken-2 small-text">Total Number Of Lecturers<span class="chip right">50</span></h5>

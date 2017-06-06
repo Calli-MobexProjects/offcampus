@@ -59,6 +59,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 			padding-right: 10px;
 			padding-top: 3px;
 		}
+		
 		div.template{
 			border-radius:3px;
 		}
@@ -78,6 +79,25 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 			font-weight: 500;
 			font-size: 12px;
 
+		}
+		span.priv_settings{
+			margin-top: 5px;
+		}
+		ul.manager
+		{
+			list-style: none none;
+		}
+		ul.manager li{
+			display: inline-block;
+
+		}
+		ul.manager li > i{
+			font-size: 23px;
+			text-shadow: 1px 1px 1px #929292;
+		}
+		li.edit,li.archive,li.delete{
+			margin-right: 18px;
+			margin-left: 4px;
 		}
 	</style>
 </head>
@@ -121,14 +141,24 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 									
 							 ?>
 							<div class="col s12 m4 l4">
-								<div class="card-panel col s12 waves-effect waves-block waves-ripple template" id="<?php echo "$user_identifier";?>">
-									<div class="col s12">
+								<div class="card-panel col s12 waves-effect waves-block waves-ripple template">
+									<div class="cont_size" id="<?php echo "$user_identifier";?>">
+										<div class="col s12">
 										<img src="../images/admin/boy.svg" class="responsive-img mt10"/>
+										</div>
+										<div class="col s12 ">
+										<span class="admin_det text-center"><?php echo "$firstname"." "."$lastname";?></span><br>
+										<span class="sub text-center"><?php echo "$email";?></span>
+										</div>
 									</div>
-									<div class="col s12 ">
-									<span class="admin_det text-center"><?php echo "$firstname"." "."$lastname";?></span><br>
-									<span class="sub text-center"><?php echo "$email";?></span>
-									</div>
+									<span class="priv_settings col s12">
+										<ul class="manager">
+											<li class="edit"><i class="material-icons grey-text text-darken-2">mode_edit</i></li>
+											<li class="delete"><i class="material-icons grey-text text-darken-2">delete_sweep</i></li>
+											<li class="archive"><i class="material-icons grey-text text-darken-2">archive</i></li>
+											<li><i class="material-icons grey-text text-darken-2">call_merge</i></li>
+										</ul>
+									</span>
 								</div>
 								<?php
 									if ($status == 1)
@@ -145,6 +175,10 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 								?>
 							</div>
 							<script type="text/javascript">
+								$("li.edit").on('click',function(){
+
+									$.sweetModal("Something");
+								});
 								$("#<?php echo "$user_identifier";?>").on('click',function(){
 									$.sweetModal({
 										title:'<div class="col s12 m12 l12">\
@@ -181,15 +215,6 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 									 	color = 'redB';
 									 	stateValue = 0;
 									 }
-					 				//check the status of the checkbox
-									$("input#<?php echo "$checkbox_id";?>").on('click',function(){
-										if ($(this).prop("checked") == true)
-										 {
-										 	console.dir("Something is clicked");
-
-										 }
-
-									});
 									$.sweetModal({
 										title:'Change Status',
 										content:'<form action="" method="post">\
@@ -210,32 +235,37 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 												classes:color,
 												action:function()
 												{
-													var dataString = "statusID="+statusID +"&statusValue="+statusValue;
-													console.dir(dataString);
-													if (statusID == '' && statusValue == '')
-													 {
-													 	$.sweetModal({
-													 		content:'Something Went Wrong',
-													 		width:'350px',
-													 	});
-													 }
-													 else{
-													 	$.post({
+													if ($("input#<?php echo "$checkbox_id";?>").prop("checked") == true) 
+													{
+														statusID = "<?php echo "$status_id";?>";
+														statusValue = "<?php echo "$status";?>";
+
+														var dataString = "statusID="+statusID +"&statusValue="+statusValue;
+														console.dir(dataString);
+														$.post({
 													 		url:"manage_admin.php",
 													 		data:dataString,
 													 		success:function(){
+
 													 			$.sweetModal({
 													 				icon:$.sweetModal.ICON_SUCCESS,
 													 				content:'Status Successfully Changed',
 													 				width:'350px',
 													 				timeout:3300
 													 			});
-
 													 			setTimeout(function() {
 													 				window.location.reload();
 													 			}, 3900);
 													 		}
 													 	});
+													}
+													else{
+														$.sweetModal({
+															icon:$.sweetModal.ICON_ERROR,
+													 		content:'Checkbox Haven\'t been Checked',
+													 		width:'350px',
+													 	});
+													 	
 													 }
 
 												}

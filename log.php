@@ -87,6 +87,7 @@ if($userid==$id){
            
        }
        else{
+          // $active_query = "SELECT * FROM privileges WHERE id = '$userid'";
            session_regenerate_id();
              $_SESSION['userid'] = $userid;
             session_write_close();

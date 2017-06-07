@@ -82,10 +82,13 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 		}
 		span.priv_settings{
 			margin-top: 5px;
+			
 		}
 		ul.manager
 		{
 			list-style: none none;
+			visibility: hidden;
+			opacity: 0;
 		}
 		ul.manager li{
 			display: inline-block;
@@ -129,6 +132,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 										$fullName  = $firstname." ".$lastname;
 
 										$user_identifier = substr($firstname, 0,3).mt_rand();
+										$ad_set_manager  = mt_rand();
 										
 										$status_query = "SELECT * FROM privileges WHERE id = '$stud_id'";
 										$status_results = $mysqli->query($status_query);
@@ -141,7 +145,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 									
 							 ?>
 							<div class="col s12 m4 l4">
-								<div class="card-panel col s12 waves-effect waves-block waves-ripple template">
+								<div id="temp<?php echo "$user_identifier";?>" class="card-panel col s12 waves-effect waves-block waves-ripple template">
 									<div class="cont_size" id="<?php echo "$user_identifier";?>">
 										<div class="col s12">
 										<img src="../images/admin/boy.svg" class="responsive-img mt10"/>
@@ -152,11 +156,11 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 										</div>
 									</div>
 									<span class="priv_settings col s12">
-										<ul class="manager">
-											<li class="edit"><i class="material-icons grey-text text-darken-2">mode_edit</i></li>
-											<li class="delete"><i class="material-icons grey-text text-darken-2">delete_sweep</i></li>
-											<li class="archive"><i class="material-icons grey-text text-darken-2">archive</i></li>
-											<li><i class="material-icons grey-text text-darken-2">call_merge</i></li>
+										<ul class="manager <?php echo "$user_identifier";?>">
+											<li id="edi<?php echo "$ad_set_manager";?>" class="edit"><i class="material-icons grey-text text-darken-2">mode_edit</i></li>
+											<li id="del<?php echo "$ad_set_manager";?>" class="delete"><i class="material-icons grey-text text-darken-2">delete_sweep</i></li>
+											<li id="arc<?php echo "$ad_set_manager";?>" class="archive"><i class="material-icons grey-text text-darken-2">archive</i></li>
+											<li id="cal<?php echo "$ad_set_manager";?>"><i class="material-icons grey-text text-darken-2">call_merge</i></li>
 										</ul>
 									</span>
 								</div>
@@ -174,11 +178,11 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 									 }
 								?>
 							</div>
+							<script type="text/javascript" src="../scripts/admin/admin_settings.js"></script>
 							<script type="text/javascript">
-								$("li.edit").on('click',function(){
+								sampleFunc("div#temp<?php echo "$user_identifier"; ?>","ul.<?php echo "$user_identifier";?>");
 
-									$.sweetModal("Something");
-								});
+								//Scripting for the displaying of the admin overview information
 								$("#<?php echo "$user_identifier";?>").on('click',function(){
 									$.sweetModal({
 										title:'<div class="col s12 m12 l12">\
@@ -270,6 +274,41 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 
 												}
 
+											}
+										}
+									});
+								});
+
+								//Scripting for showing the edit dialog for the extra admins
+								$("li#edi<?php echo "$ad_set_manager";?>").on('click',function(){
+									$.sweetModal({
+										title:'Edit Admin Credentials',
+										content:'',
+										width:'400px',
+									});
+								});
+
+								//Scripting for showing the delete dialog of the extra admins
+								$("li#del<?php echo "$ad_set_manager";?>").on('click',function(){
+									$.sweetModal({
+										title:'Are you sure ?',
+										icon: $.sweetModal.ICON_WARNING,
+										content:'This Data Will Be Deleted Permanently !',
+										width:'370px',
+										buttons:{
+											cancelButton:{
+												label:'Cancel',
+												classes:'secondaryB bordered flat',
+												action:function(){
+
+												}
+											},
+											deleteButton:{
+												label:'Delete',
+												classes:'redB',
+												action:function(){
+
+												}
 											}
 										}
 									});

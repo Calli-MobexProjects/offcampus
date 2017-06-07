@@ -314,6 +314,7 @@ $fetch=mysqli_fetch_assoc($querying);
 	<script type="text/javascript" src="../vendors/noty/lib/noty.js"></script>
 	<script type="text/javascript" src="../libs/js/materialize.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+	<script type="text/javascript" src="../libs/js/typer.js"></script>
 	<script type="text/javascript" src="../libs/js/custom.js"></script>
 	<script type="text/javascript" src="../libs/js/activities.js"></script>
 	<script type="text/javascript" src="../libs/js/sidenav.js"></script>

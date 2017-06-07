@@ -24,7 +24,13 @@
 		</li>
 		<li style="margin-right: -6px;"><a href="analytics.php"><i class="material-icons left icon">trending_up</i><span class="menu_name">Analytics</span></a></li>
 		<li style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">add</i><span class="menu_name">Create Events</span></a></li>
-		<li style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">place</i><span class="menu_name">Distance</span></a></li>
+
+		<li style="margin-right: -6px;">
+			<a href="distance.php">
+				<i class="material-icons left icon">place</i>
+				<span class="menu_name">Distance</span>
+			</a>
+		</li>
 
 		<div class="divider"></div>
 		<li class="grey-text text-accent-1 header disabled">Manage Admins</li>

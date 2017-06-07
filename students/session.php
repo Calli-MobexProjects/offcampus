@@ -1,7 +1,7 @@
 <?php session_start();
 if(!isset($_SESSION['userid']))
 {
-    header('Location:index.php');
+    header('Location:../index.php');
     exit();
 }
 $ses_id = $_SESSION['userid'];

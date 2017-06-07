@@ -160,7 +160,7 @@ $row=mysqli_fetch_assoc($querying);
                     </div>
                     <div class="input-field col s12 m12 l12" style="padding-top: 15px">
                         <i class="material-icons prefix">location_on</i>
-                         <select name="region" required="required" class="REGION" >
+                         <select name="region" required="required" class="REGION" id="reg" >
                           <option value="" disabled selected>Select Region</option>
                             <optgroup label="List Of Regions">
                                 
@@ -176,20 +176,23 @@ $row=mysqli_fetch_assoc($querying);
                             }
                               ?>
                                 
-                            <!--    <script type="text/javascript">
+                           <script type="text/javascript">
                                     $(document).ready(function(){
-                          $("select.REGION").change(function(){
-            var selectedRegion = $(".REGION option:selected").val();
-            $.ajax({
-            type: "POST",
-            url: "loadregion.php",
-            data: { region : selectedRegion } 
-            }).done(function(data){
-            $("#response").html(data);
+                                        $(document).on('change', '#reg',function(){
+                                            console.log("we are here");
+                                            
+                                 var selectedRegion = $("#reg ").val();
+                                    
+                                            $.ajax({
+                                type: "get",
+                                url: "loadregion.php",
+                                data: { region : selectedRegion } 
+                                        }).done(function(data){
+                                        $("#response").html(data);
                         });
                             });
                                     });
-</script>-->
+</script>
                             </optgroup>
                         </select>
                         <label for="icon_prefix">Regions</label>
@@ -201,7 +204,7 @@ $row=mysqli_fetch_assoc($querying);
                             <optgroup label="List Of Regions" id="response">
                                                                 
                              <?php
-                            $dist="SELECT * FROM district";
+                            /*$dist="SELECT * FROM district";
                             $run=mysqli_query($mysqli,$dist);
                             while($row=mysqli_fetch_assoc($run)){
                                  
@@ -209,7 +212,7 @@ $row=mysqli_fetch_assoc($querying);
                               <option  value="<?php echo $row['district_name']; ?>"><?php echo $row['district_name']; ?></option>
                                 <?php 
                                 
-                            }
+                            }*/
                               ?>
 
    

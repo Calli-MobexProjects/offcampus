@@ -15,10 +15,10 @@ $(document).ready(function(){
 		
 	  //activating the preloader for the loading of the content of the page
 	  // $("div.loader").css("display","none");
-	   $(window).load(function(){
-		 	$("div.loader").fadeOut('slow').delay(15000);
-		 	$("div#agent_list").fadeIn('slow').delay(18000);
-		 });
+	  //  $(window).load(function(){
+		 // 	$("div.loader").fadeOut('slow').delay(15000);
+		 // 	$("div#agent_list").fadeIn('slow').delay(18000);
+		 // });
 
 	
 	});

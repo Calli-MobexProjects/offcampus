@@ -1,0 +1,19 @@
+div.bottomsheet
+{
+	display: none;
+}
+ul.bottomItem{
+	list-style: none none;
+}
+ul.bottomItem li{
+	display: inline-block;
+	margin-left: 90px;
+}
+ul.bottomItem li a{
+	color: white;
+}
+ul.bottomItem > small{
+	color:white;
+	margin-left: 80px;
+	font-weight: 600;
+}

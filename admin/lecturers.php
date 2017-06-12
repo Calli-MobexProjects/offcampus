@@ -336,22 +336,22 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 													content: '<form action="" method="post">\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-													                <input type="text" name="firstname" class="validate" value="<?php echo "$lect_firstname";?>" disabled style="font-size:18px;font-weight:500;line-height:1;color:#919191;">\
+													                <input type="text" name="firstname" class="validate" value="<?php echo "$lect_firstname";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
 													                <label for="firstname" class="active">First Name</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-													                <input type="text" name="lastname" class="validate" value="<?php echo "$lect_lastname";?>" disabled style="font-size:18px;font-weight:500;line-height:1;color:#919191;">\
+													                <input type="text" name="lastname" class="validate" value="<?php echo "$lect_lastname";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
 													                <label for="icon_prefix" class="active">Last Name</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">perm_phone_msg</i>\
-													                <input type="text" name="phone"  value="<?php echo "$lect_phone";?>" class="validate" disabled style="font-size:18px;font-weight:500;line-height:1;color:#919191;">\
+													                <input type="text" name="phone"  value="<?php echo "$lect_phone";?>" class="validate" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
 													                <label for="icon_prefix" class="active">Phone Number</label>\
 												                </div>\
 												                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 													                <i class="material-icons prefix" id="icon_prefix">person_pin_circle</i>\
-													                <input type="text" name="district"  value="<?php echo "$lect_district_name";?>" class="validate" disabled style="font-size:18px;font-weight:500;line-height:1;color:#919191;">\
+													                <input type="text" name="district"  value="<?php echo "$lect_district_name";?>" class="validate" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
 													                <label for="icon_prefix" class="active">District Of Choice</label>\
 												                </div>\
 												           </form>',
@@ -567,7 +567,8 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												}
 												console.log("when deactivated");
 												console.dir(res);
-												arr.pop($(this).val());
+												var itemToRemove = $(this).val();
+												arr.splice($.inArray(itemToRemove, arr),1);
 												console.log("This is a pop array");
 												console.dir(arr);
 											}

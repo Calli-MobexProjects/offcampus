@@ -98,7 +98,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 			font-size: 23px;
 			text-shadow: 1px 1px 1px #929292;
 		}
-		li.edit,li.archive,li.delete{
+		li.edit,li.permission,li.delete{
 			margin-right: 18px;
 			margin-left: 4px;
 		}
@@ -159,7 +159,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 										<ul class="manager <?php echo "$user_identifier";?>">
 											<li id="edi<?php echo "$ad_set_manager";?>" class="edit"><i class="material-icons grey-text text-darken-2">mode_edit</i></li>
 											<li id="del<?php echo "$ad_set_manager";?>" class="delete"><i class="material-icons grey-text text-darken-2">delete_sweep</i></li>
-											<li id="arc<?php echo "$ad_set_manager";?>" class="archive"><i class="material-icons grey-text text-darken-2">archive</i></li>
+											<li id="per<?php echo "$ad_set_manager";?>" class="permission"><i class="material-icons grey-text text-darken-2">verified_user</i></li>
 											<li id="cal<?php echo "$ad_set_manager";?>"><i class="material-icons grey-text text-darken-2">call_merge</i></li>
 										</ul>
 									</span>
@@ -306,6 +306,34 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 											deleteButton:{
 												label:'Delete',
 												classes:'redB',
+												action:function(){
+
+												}
+											}
+										}
+									});
+								});
+
+								//Scripting for showing the privileges dialog at the admins
+								$("li#per<?php echo "$ad_set_manager";?>").on('click',function(){
+									$.sweetModal({
+										title:'Set Privileges',
+										content:'',
+										width:'500px',
+										buttons:{
+											cancelButton:{
+												label:'Cancel',
+												classes:'secondaryB bordered flat',
+												action:function(){
+													$.sweetModal({
+														icon:$.sweetModal.ICON_SUCCESS,
+
+													});
+												}
+											},
+											deleteButton:{
+												label:'Set',
+												classes:'blueB',
 												action:function(){
 
 												}

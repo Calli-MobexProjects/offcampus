@@ -26,7 +26,7 @@
  			</div>
  			<div class="col s10 m10 l10">
  				<div class="card-panelm bg">
-					<img src="../images/admin/placeholder(1).svg" alt="Help Desk" class="responsive-img help"/>
+					<img src="../images/admin/placeholder.svg" alt="Help Desk" class="responsive-img help"/>
 				</div>
 				<h5 class="center-align grey-text text-darken-3">Location Mapper</h5>
 				<h5 class="center-align grey-text text-darken-3 small-text">This page is under construction</h5>

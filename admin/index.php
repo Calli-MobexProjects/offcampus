@@ -31,6 +31,8 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
        }
        #firstpane,#secondpane{
          display: none;
+         position: relative;
+         z-index: 999;
        }
         #chart_div{
             background-color: transparent;
@@ -45,6 +47,7 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
           height: 200px;
           position: relative;
         }
+  
     </style>
 </head>
 <body>
@@ -54,26 +57,18 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
                 <?php include '../navbars/sidenav.php'; ?>
             </div>
             <div class="col s10 m10 l10">
+                <div id="preloader">
+                 <div class="progress" id="loader">
+                      <div class="indeterminate blue"></div>
+                  </div>
+                </div>
                 <div class="content_body">
                     <div class="row">
-                       <!--  <div id="preloader">
-                            <div class="preloader-wrapper small active" id="loader">
-                                <div class="spinner-layer spinner-blue-only">
-                                  <div class="circle-clipper left">
-                                    <div class="circle"></div>
-                                  </div><div class="gap-patch">
-                                    <div class="circle"></div>
-                                  </div><div class="circle-clipper right">
-                                    <div class="circle"></div>
-                                  </div>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="col s12 m10 l10 offset-m1 offset-l1 animated fadeIn" id="firstpane">
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">
                                    <!--  <i class="material-icons total_img">supervisor_account</i> -->
-                                   <span class="total_img"><img src="../images/admin/users.svg" alt="Registered Users" class="responsive-img show"></span>
+                                   <span class="total_img"><img src="../images/admin/bookshelf.svg" alt="Registered Users" class="responsive-img show"></span>
                                     <span class="indicator">Registered Users</span>
                                     <div class="divider"></div>
                                     <h5 class="grey-text text-darken-2 small-text">Total Number Of Students<span class="chip right"><?php echo "$countStudent";?></span></h5>
@@ -91,7 +86,7 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
                         <div class="col s12 m10 l10 offset-m1 offset-l1 animated fadeIn" id="secondpane">
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">
-                                    <span class="total_img"><img src="../images/admin/mortarboard.svg" alt="Registered Users" class="responsive-img show"></span>
+                                    <span class="total_img"><img src="../images/admin/medal.svg" alt="Registered Users" class="responsive-img show"></span>
                                     <span class="indicator">Added Lecturers</span>
                                     <div class="divider"></div>
                                     <h5 class="grey-text text-darken-2 small-text">Total Number Of Lecturers<span class="chip right">50</span></h5>
@@ -112,12 +107,15 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
 		</div>
 	</div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $(window).load(function(){
-                $("div#preloader").fadeOut('slow').delay(15000);
-                $("#firstpane,#secondpane").fadeIn('slow').delay(15000);
+          $(window).load(function(){
+              setTimeout(function() {
+                 $("div#preloader").fadeOut('slow');
+              }, 5000);
+              setTimeout(function() {
+                $("#firstpane,#secondpane").fadeIn('slow');
+              }, 5000);
+                
             });
-        });
     </script>
 </body>
 

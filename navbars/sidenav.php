@@ -2,8 +2,8 @@
 	<ul class="nav-demo">
 		<li id="home" class="active" style="margin-right: -6px;">
 			<a href="index.php">
-				<i class="material-icons left icon">home</i>
-				<span class="menu_name">Home</span>
+				<i class="material-icons left icon">dashboard</i>
+				<span class="menu_name">Dashboard</span>
 				<i id="indicator" class="material-icons right icon">bubble_chart</i>
 			</a>
 		</li>
@@ -23,12 +23,32 @@
 			</a>
 		</li>
 		<li style="margin-right: -6px;"><a href="analytics.php"><i class="material-icons left icon">trending_up</i><span class="menu_name">Analytics</span></a></li>
-		<li style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">add</i><span class="menu_name">Create Events</span></a></li>
+
+		<li style="margin-right: -6px;">
+			<a href="events.php">
+				<i class="material-icons left icon">add</i>
+				<span class="menu_name">Create Events</span>
+			</a>
+		</li>
 
 		<li style="margin-right: -6px;">
 			<a href="distance.php">
-				<i class="material-icons left icon">place</i>
+				<i class="material-icons left icon">explore</i>
 				<span class="menu_name">Distance</span>
+			</a>
+		</li>
+
+		<li style="margin-right: -6px;">
+			<a href="archives.php">
+				<i class="material-icons left icon">archive</i>
+				<span class="menu_name">Archives</span>
+			</a>
+		</li>
+
+		<li style="margin-right: -6px;">
+			<a >
+				<i class="material-icons left icon">delete</i>
+				<span class="menu_name">Trash</span>
 			</a>
 		</li>
 

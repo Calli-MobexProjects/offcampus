@@ -142,7 +142,7 @@
 									 	$("div.bottomsheet").removeClass("animated fadeIn").addClass("animated fadeOut").css({"display":"none"});
 									 	setTimeout(function() {
 										 		$("div#view").removeClass("animated bounceOutRight").addClass("animated bounceInRight");
-										 	}, 100);
+										 	}, 50);
 									 }
 									
 								});
@@ -275,7 +275,7 @@
 							
 							$("div.<?php echo "$pend_id";?>").on('click',function(){
 								$.sweetModal({
-									title:'<div class="pulse" style="background-color:#<?php echo "$overall_color";?>;color:white;border-radius:50%;width:60px;height:60px;position:relative;left:-20px;margin-left:-1px;font-size:20px;padding-top:18px;padding-left:24px;"><?php echo "$getUpper";?></div><span style="position:absolute;top:42px;left:89px;">Letter Details</span>',
+									title:'<div class="pulse" style="background-color:#<?php echo "$overall_color";?>;color:white;border-radius:50%;width:60px;height:60px;position:relative;left:-20px;margin-left:-1px;font-size:20px;padding-top:18px;padding-left:24px;"><?php echo "$getUpper";?></div><span style="position:absolute;top:42px;left:89px;">Letter Details</span><span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">mode_edit</i></a></span>',
 									content:'<form action="" method="post">\
 								                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">store</i>\

@@ -31,19 +31,24 @@ $fetch=mysqli_fetch_assoc($querying);
 	<link rel="shortcut icon" href="../images/octps.ico">
 
 	<!-- Css links for the system -->
-	<link rel="stylesheet" type="text/css" href="../libs/css/animate.css">
-	<link rel="stylesheet" type="text/css" href="../libs/css/materialize.css">
-	<link rel="stylesheet" type="text/css" href="../libs/css/styles.css">
-
+	<link rel="stylesheet" type="text/css" href="../libs/css/animate.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/css/materialize.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/css/styles.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/css/ads_style.css"/>
 
 	<!-- <link rel="stylesheet" type="text/css" href="../vendors/sweetalerts/css/sweetalert2.min.css"> -->
-	<link rel="stylesheet" type="text/css" href="../libs/css/mods.css">
-	<link rel="stylesheet" type="text/css" href="../vendors/iziToast/css/iziToast.min.css">
-	<link rel="stylesheet" type="text/css" href="../vendors/sweetModal/min/jquery.sweet-modal.min.css">
-	<link rel="stylesheet" type="text/css" href="../vendors/sweetDropdown/min/jquery.sweet-dropdown.min.css">
-	<link rel="stylesheet" type="text/css" href="../vendors/noty/lib/noty.css">
+
+	<link rel="stylesheet" type="text/css" href="../vendors/iziToast/css/iziToast.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../vendors/sweetModal/min/jquery.sweet-modal.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../vendors/sweetDropdown/min/jquery.sweet-dropdown.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../vendors/noty/lib/noty.css"/>
+	<link rel="stylesheet" type="text/css" href="../vendors/monthly/monthly.css"/>
+	
 
 	<style type="text/css">
+		html,body{
+			background-color: #f1f1f1 !important;
+		}
 		div.navigation{
 			position: fixed;
 			margin-top: -5px;
@@ -174,7 +179,7 @@ $fetch=mysqli_fetch_assoc($querying);
 		}
 
 		/* codes for the pointer on the back arrow button */
-		a#close
+		i#close
 		{
 			margin-top: -4px;
 			cursor: pointer;
@@ -221,8 +226,8 @@ $fetch=mysqli_fetch_assoc($querying);
 	<div class="overlay-navbar" id="overlay">
 		<ul class="back left">
 			<li>
-				<a id="close" class="waves-effect waves-blue">
-					<i class="material-icons left">arrow_back</i><span style="font-weight: 500;font-size: 16px;">Back</span>
+				<a>
+					<i id="close" class="material-icons left waves-effect waves-blue circle" style="padding: 5px;">arrow_back</i><span style="font-weight: 500;font-size: 18px;">Back</span>
 				</a>
 			</li>
 			<li style="position: absolute;top: 0px;left: 250px;">
@@ -236,7 +241,7 @@ $fetch=mysqli_fetch_assoc($querying);
 			</li>
 			<li>
 				<a href data-dropdown="#dropdown-with-overlayDetails">
-					<i class="material-icons right">more_vert</i>
+					<i class="material-icons right waves-effect waves-ripple circle">more_vert</i>
 				</a>
 			</li>
 		
@@ -248,7 +253,7 @@ $fetch=mysqli_fetch_assoc($querying);
 		<ul>
 			<li><a href="#"><i class="material-icons left" style="margin-top:-3px;">archive</i>Move To Archives</a></li>
 			<li class="divider"></li>
-			<li><a id="multipleDelete"><i class="material-icons left" style="margin-top:-3px;">delete_sweep</i>Delete Selected</a></a></li>
+			<li class="waves-effect waves-ripple"><a id="multipleDelete"><i class="material-icons left" style="margin-top:-3px;">delete_sweep</i>Delete Selected</a></a></li>
 			
 		</ul>
 	</div>
@@ -318,6 +323,13 @@ $fetch=mysqli_fetch_assoc($querying);
 	<script type="text/javascript" src="../libs/js/custom.js"></script>
 	<script type="text/javascript" src="../libs/js/activities.js"></script>
 	<script type="text/javascript" src="../libs/js/sidenav.js"></script>
+	<!-- <script src="../libs/js/events.js" type="text/javascript"></script> -->
+
+	<!-- Vendor libraries -->
+	<script src="../vendors/monthly/monthly.js" type="text/javascript"></script>
+	<script src="../vendors/amcharts/amcharts.js" type="text/javascript"></script>
+    <script src="../vendors/amcharts/pie.js" type="text/javascript"></script>
+    <script src="../vendors/amcharts/serial.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		var monitor = 0;
 		$(document).ready(function(){
@@ -369,11 +381,11 @@ $fetch=mysqli_fetch_assoc($querying);
 					});
 			 });
 
-			$("#close").click(function(){
+			$("i#close").click(function(){
 				$("div#overlay").css({"visibility":"hidden","opacity":"0"});
 				$('input[type="checkbox"]').prop("checked",false);
-				$("#img").css({"visibility":"visible","opacity":"1","transition":"all 0.1s ease-in"});
-				$("span.checkmate").css({"visibility":"hidden","opacity":"0","transition":"all 0.1s ease-out"});
+				$("span.image").css({"visibility":"visible","opacity":"1","transition":"all 0.1s ease-in"});
+				$("span#checkmate").css({"visibility":"hidden","opacity":"0","transition":"all 0.1s ease-out"});
 				$('div.stud_list').css({"border-left":"2px solid lightblue","background-color":"#eeeeee"});
 				monitor = 1;
 				if (monitor == 1) 

@@ -1,3 +1,77 @@
+<!-- 
+     <div class="preloader-wrapper big active" id="loader">
+                        <div class="spinner-layer spinner-blue">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div><div class="gap-patch">
+                            <div class="circle"></div>
+                          </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-red">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div><div class="gap-patch">
+                            <div class="circle"></div>
+                          </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div><div class="gap-patch">
+                            <div class="circle"></div>
+                          </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div><div class="gap-patch">
+                            <div class="circle"></div>
+                          </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+                      </div> -->
+
+<div class="card-panel z-depth-0 waves-effect waves-block waves-ripple col s12 stud_list" id="<?php echo "$stud_id";?>">
+                                                <div class="col s2 m2 l2" id="img">
+                                                    <span class="image"><img src="../<?php echo "$stud_image";?>" alt="avatar" class="responsive-img circle"></span>
+                                                </div>
+                                                <div class="col s3 m3 l3" id="name">
+                                                    <span class="name left-align"><?php echo "$stud_firstname"." ".$stud_lastname."".$stud_othername;?></span>
+                                                </div>
+                                                <div class="col s2 m2 l2" id="phone">
+                                                    <span class="phone"><?php echo "$stud_id";?></span>
+                                                </div>
+                                                <div class="col s3 m3 l3" id="email">
+                                                    <span class="email left-align"><a href="#"><?php echo "$stud_email";?></a></span>
+                                                </div>
+                                                
+                                                <div class="col s2 m2 l2">
+                                                    <span class="side_menu">
+                                                        Date Here
+                                                    </span>
+                                                </div>
+                                            </div>
+
+<span class="priv_settings col s12">
+    <ul class="manager <?php echo "$user_identifier";?>">
+        <li id="edi<?php echo "$ad_set_manager";?>" class="edit"><i class="material-icons grey-text text-darken-2">mode_edit</i></li>
+        <li id="del<?php echo "$ad_set_manager";?>" class="delete"><i class="material-icons grey-text text-darken-2">delete_sweep</i></li>
+        <li id="arc<?php echo "$ad_set_manager";?>" class="archive"><i class="material-icons grey-text text-darken-2">archive</i></li>
+        <li id="cal<?php echo "$ad_set_manager";?>"><i class="material-icons grey-text text-darken-2">call_merge</i></li>
+    </ul>
+</span>
+
+
   <div class="col s12 m2 l2 hide-on-small-only animated fadeIn side_navigation"> <!-- Note that "m4 l3" was added -->
         <div class="card-panel z-depth-0 grey lighten-3 waves-effect waves-block waves-light" id="h_menu_item">
             <a href="#home" id="h_menu_item"><i class="material-icons left home blue-text">home</i><span class="title">Home</span></a>

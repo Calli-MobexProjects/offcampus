@@ -43,6 +43,7 @@ $fetch=mysqli_fetch_assoc($querying);
 	<link rel="stylesheet" type="text/css" href="../vendors/sweetDropdown/min/jquery.sweet-dropdown.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../vendors/noty/lib/noty.css"/>
 	<link rel="stylesheet" type="text/css" href="../vendors/monthly/monthly.css"/>
+	<link rel="stylesheet" type="text/css" href="../vendors/flatpickr/dist/flatpickr.min.css"/>
 	
 
 	<style type="text/css">
@@ -330,6 +331,7 @@ $fetch=mysqli_fetch_assoc($querying);
 	<script src="../vendors/amcharts/amcharts.js" type="text/javascript"></script>
     <script src="../vendors/amcharts/pie.js" type="text/javascript"></script>
     <script src="../vendors/amcharts/serial.js" type="text/javascript"></script>
+    <script src="../vendors/dist/flatpickr.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		var monitor = 0;
 		$(document).ready(function(){

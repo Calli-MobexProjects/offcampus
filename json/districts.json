@@ -1,0 +1,1 @@
+<img id="<?php echo "$user_image";?>" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle">

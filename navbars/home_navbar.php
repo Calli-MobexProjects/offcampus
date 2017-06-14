@@ -404,18 +404,20 @@ $fetch=mysqli_fetch_assoc($querying);
 					});
 			 });
 
-			$("i#close").click(function(){
-				$("div#overlay").css({"visibility":"hidden","opacity":"0"});
-				$('input[type="checkbox"]').prop("checked",false);
-				$("span.image").css({"visibility":"visible","opacity":"1","transition":"all 0.1s ease-in"});
-				$("span#checkmate").css({"visibility":"hidden","opacity":"0","transition":"all 0.1s ease-out"});
-				$('div.stud_list').css({"border-left":"2px solid lightblue","background-color":"#eeeeee"});
-				monitor = 1;
-				if (monitor == 1) 
-				{
-					navbarHover();
-				}
-			});
+			 //configuring the  back button and the checkboxes for multiple users 
+			
+			// $("i#close").click(function(){
+			// 	$("div#overlay").css({"visibility":"hidden","opacity":"0"});
+			// 	$('input[type="checkbox"]').prop("checked",false);
+			// 	$("span.image").css({"visibility":"visible","opacity":"1","transition":"all 0.1s ease-in"});
+			// 	$("span#checkmate").css({"visibility":"hidden","opacity":"0","transition":"all 0.1s ease-out"});
+			// 	$('div.stud_list').css({"border-left":"2px solid lightblue","background-color":"#eeeeee"});
+			// 	monitor = 1;
+			// 	if (monitor == 1) 
+			// 	{
+			// 		navbarHover();
+			// 	}
+			// });
 				//Creating a flatpickr instance using jquery selectors
 			$("input#allTarget").flatpickr();
 		});

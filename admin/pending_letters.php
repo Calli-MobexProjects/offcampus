@@ -70,6 +70,7 @@
 								</span><br> -->
 							</div>
 						</div>
+						
 						<!-- Scripts for the hover effects -->
 						<script type="text/javascript">
 							var arrayCount = 0;
@@ -329,34 +330,41 @@
 							
 							$("div.<?php echo "$pend_id";?>").on('click',function(){
 								$.sweetModal({
-									title:'<div class="pulse" style="background-color:#<?php echo "$overall_color";?>;color:white;border-radius:50%;width:60px;height:60px;position:relative;left:-20px;margin-left:-1px;font-size:20px;padding-top:18px;padding-left:24px;"><?php echo "$getUpper";?></div><span style="position:absolute;top:42px;left:89px;">Letter Details</span><span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">mode_edit</i></a></span>',
+									title:'<div class="pulse" style="background-color:#<?php echo "$overall_color";?>;color:white;border-radius:50%;width:60px;height:60px;position:relative;left:-20px;margin-left:-1px;font-size:20px;padding-top:18px;padding-left:24px;"><?php echo "$getUpper";?></div><span style="position:absolute;top:42px;left:89px;">Letter Details</span><span class="more_vert"><a id="edit" style="position:absolute;top:20px;right:60px;cursor:pointer;"><i class="material-icons right grey-text text-darken-2">mode_edit</i></a></span>',
 									content:'<form action="" method="post">\
 								                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">store</i>\
-									                <input type="text" name="schoolName" class="validate" id="schoolName" value="<?php echo "$pend_schoolName";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;"><label for="schoolName" class="active">School Name</label>\
+									                <input type="text" name="schoolName" class="validate" id="schoolName" value="<?php echo "$pend_schoolName";?>" disabled="disabled"  style="font-size:14px;font-weight:400;line-height:1;color:#919191;"><label for="schoolName" class="active">School Name</label>\
 								                </div>\
 								                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">library_books</i>\
-									                <input type="text" name="program" class="validate" value="<?php echo "$pend_schoolProg";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
+									                <input type="text" name="program" class="validate" value="<?php echo "$pend_schoolProg";?>" disabled="disabled"  style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
 									                <label for="icon_prefix" class="active">Subject To Teach</label>\
 								                </div>\
 								                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">supervisor_account</i>\
-									                <input type="text" name="directed_To" class="validate" value="<?php echo "$pend_directedTo";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
+									                <input type="text" name="directed_To" class="validate" value="<?php echo "$pend_directedTo";?>" disabled="disabled"  style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
 									                <label for="icon_prefix" class="active">To The</label>\
 								                </div>\
 								                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">location_on</i>\
-									                <input type="email" name="email" class="validate" value="<?php echo "$pend_region_fullName";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
+									                <input type="text" name="region" class="validate" value="<?php echo "$pend_region_fullName";?>" disabled="disabled"  style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
 									                <label for="icon_prefix" class="active">Region</label>\
 								                </div>\
 								                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">map_marker</i>\
-									                <input type="email" name="email" class="validate" value="<?php echo "$pend_district";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
+									                <input type="text" name="district" class="validate" value="<?php echo "$pend_district";?>" disabled="disabled" style="font-size:14px;font-weight:400;line-height:1;color:#919191;"/>\
 									                <label for="icon_prefix" class="active">District</label>\
 								                </div>\
 								           </form>',
 									width:'500px',
+									buttons:{
+										
+									}
+								});
+
+								$("a#edit").on('click',function(){
+									$("input:disabled").prop("disabled",false);
 								});
 							});
 						</script>

@@ -24,9 +24,13 @@
 			height: 569px;
 			font-size: 0.8em;
 		}
-		
-
-
+		.input-field textarea.materialize_textarea:focus{
+		  border-bottom: 1px solid #00b0ff !important;
+		  box-shadow: 0 1px 0 0 #00b0ff !important;
+		 }
+		 div.sweet-modal-box{
+		 	margin-top: -240px !important;
+		 }
 	</style>
 </head>
 <body>
@@ -76,19 +80,23 @@
 						content:'<form  method="post" action="" id="lectForm" style="margin-top:10px;">\
 						              <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 							                <i class="material-icons prefix" id="event_name">event_seat</i>\
-							                <input type="text" name="name" class="validate" id="name" required>\
+							                <input type="text" name="name" class="validate" id="name" required style="font-weight:400;color:#424242;padding-top:12px;text-transform:capitalize;">\
 							                <label for="event_name">Event Name</label>\
 						                </div>\
 						                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 							                <i class="material-icons prefix" id="icon_prefix">date_range</i>\
-							                <input type="date" name="date" class="datepicker" id="mytarget" required>\
-							                <label for="mytarget">Start Date</label>\
+							                <input type="text" name="sDate" class="allTarget" id="sDate" required style="font-weight:400;color:#424242;padding-top:12px;">\
+							                <label for="sDate">Start Date</label>\
 						                </div>\
 						                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 							                <i class="material-icons prefix" id="icon_prefix">date_range</i>\
-							                <input type="date" name="date" class="validate" id="phone" required>\
-							                <label for="icon_prefix">End Date</label>\
-						                </div>\
+							                <input type="text" name="eDate" class="allTarget" id="eDate" required style="font-weight:400;color:#424242;padding-top:12px;">\
+							                <label for="eDate">End Date</label>\
+						                </div><div class="input-field col s12">\
+								          <i class="material-icons prefix">mode_edit</i>\
+								          <textarea id="description" class="materialize-textarea" data-length="120" style="margin-top:-10px;"></textarea>\
+								          <label for="description">Description</label>\
+								        </div>\
 									</form>',
 						width:'500px',
 						buttons:{
@@ -108,11 +116,11 @@
 							}
 						}
 					});
-
-					   $('.datepicker').pickadate({
-						    selectMonths: true, // Creates a dropdown to control month
-						    selectYears: 15 // Creates a dropdown of 15 years to control year
-					  });
+					$("input.allTarget").flatpickr({
+						minDate:"today",
+						weekNumbers:true
+					});
+					$('textarea#description').characterCounter();
 				});
 
 			</script>

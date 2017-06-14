@@ -75,6 +75,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 			-moz-transition:0.2s all ease-in;
 			-ms-transition:0.2s all ease-in;
 			-o-transition:0.2s all ease-in;
+			
 		}
 		div.bgColor_list{
 			background-color: #e9e9e9;
@@ -232,8 +233,8 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$lect_lastname  = $row['lect_lastname'];
 
 										//using generated random numbers
-
-										$user_checkmate = substr($lect_fullName, 0,4).mt_rand();
+										$space_stripping = substr($lect_fullName, 0,4).mt_rand();
+										$user_checkmate = str_replace(' ','', $space_stripping);
 										$user_checkmate1 = substr($lect_fullName, -3).mt_rand();
 
 										$user_edit     = substr($lect_region, 0,4).mt_rand();
@@ -717,10 +718,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 															 				width  :'400px',
 															 				timeout: 2300
 															 			});
-															 			setTimeout(function() {
-															 				window.location.reload();
-															 			}, 2800);
 															 		}
+															 	})
+															 	.done(function(){
+															 		setTimeout(function() {
+															 			window.location.reload();
+															 		}, 3000);
 															 	});
 															 }
 

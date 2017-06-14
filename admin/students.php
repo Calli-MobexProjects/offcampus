@@ -261,7 +261,7 @@
 					      <i class="large material-icons tooltipped" data-tooltip="View" data-position="left" data-delay="5">remove_red_eye</i>
 					    </a>
 					    <ul>
-					      <li><a id="approved" class="btn-floating green accent-3 tooltipped pulse" data-tooltip="Approved Student Letters" data-position="left" data-delay="5"><i class="material-icons">done_all</i></a></li>
+					      <li><a id="approved" class="btn-floating green accent-4 tooltipped pulse" data-tooltip="Approved Student Letters" data-position="left" data-delay="5"><i class="material-icons">done_all</i></a></li>
 					      <li><a id="pend" class="btn-floating amber darken-3 tooltipped" data-tooltip="Pending Student Letters" data-position="left" data-delay="5"><i class="material-icons">timeline</i></a></li>
 					    </ul>
 
@@ -269,14 +269,25 @@
 					<?php
 						$qs = "SELECT district_name FROM district";
 						$res = $mysqli->query($qs);
-					
+						$count = $res->num_rows;
+						$distArray = array();
 						while ($row = $res->fetch_array(MYSQLI_BOTH))
 						{
-							$distArray = array($row['district_name']=>$row['district_name']);	
-							$json = json_encode($distArray,JSON_PRETTY_PRINT);
+							// $distArray = array($row['district_name']=>$row['district_name']);	
+							// $json = json_encode($distArray,JSON_PRETTY_PRINT);
+							if ($count > 0)
+							 {
+								foreach ($row as $rs) {
+									$distArray[] = $rs;
+								}
+							 }
 							
 														
 						}
+						$dir = dirname(__FILE__);
+						$fp = fopen('../json/districts.json','w+');
+						fwrite($fp, json_encode($distArray));
+						fclose($fp);
 					?>
 					<script type="text/javascript">
 						$("a#pend").on('click',function(){

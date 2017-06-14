@@ -43,7 +43,7 @@ $fetch=mysqli_fetch_assoc($querying);
 	<link rel="stylesheet" type="text/css" href="../vendors/sweetDropdown/min/jquery.sweet-dropdown.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../vendors/noty/lib/noty.css"/>
 	<link rel="stylesheet" type="text/css" href="../vendors/monthly/monthly.css"/>
-	<link rel="stylesheet" type="text/css" href="../vendors/flatpickr/dist/flatpickr.min.css"/>
+	<link rel="stylesheet" href="../vendors/flatpickr/dist/flatpickr.css"/>
 	
 
 	<style type="text/css">
@@ -191,6 +191,27 @@ $fetch=mysqli_fetch_assoc($querying);
 			visibility: hidden;
 			opacity: 0;
 		}
+		/*i.notify{
+			font-size: 48px;
+		}*/
+		span.counter{
+			position: absolute;
+			width: 23px;
+			height: 12px;
+			top: 26px;
+			margin-left: -27px;
+			border-radius: 10px;
+			box-shadow: none;
+			border:1px solid #00b0f0;
+		}
+		/*span.pulse{
+			animation-name: pulse;
+			animation:pulse 3000;
+			animation-iteration-count: infinite;
+			animation-timing-function: 1s;
+			animation-delay: 2s;
+			animation-duration: 3s;
+		}*/
 	</style>
 </head>
 <body>
@@ -211,8 +232,8 @@ $fetch=mysqli_fetch_assoc($querying);
 				</a>
                
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li>Login Time:  <small class="name" style="padding-right:20px;"><?php echo $login_time; ?></small></li>
-					<!--<li><a href=""><i class="material-icons left">bell</i></li>-->
+                   <!--  <li>Login Time:  <small class="name" style="padding-right:20px;"></small></li> -->
+					<li><a href=""><i class="material-icons left notify" style="font-size: 30px;">notifications</i><span class="counter white pulse">.</span></a></li>
 					<li>
 						<a  href data-dropdown="#dropdown-with-icons" class="bg">
 							<img class="circle toolbar_img" <?php if(empty($picture)){?>src='../images/boys.jpg' <?php } else{ ?> src="../<?php echo $picture; ?>" <?php } ?> width="35px" height="35px" style="border:4px solid rgba(0,0,0,0.25);margin-top: 14px;">
@@ -254,7 +275,7 @@ $fetch=mysqli_fetch_assoc($querying);
 		<ul>
 			<li><a href="#"><i class="material-icons left" style="margin-top:-3px;">archive</i>Move To Archives</a></li>
 			<li class="divider"></li>
-			<li class="waves-effect waves-ripple"><a id="multipleDelete"><i class="material-icons left" style="margin-top:-3px;">delete_sweep</i>Delete Selected</a></a></li>
+			<li><a id="multipleDelete"><i class="material-icons left" style="margin-top:-3px;">delete_sweep</i>Delete Selected</a></a></li>
 			
 		</ul>
 	</div>
@@ -331,7 +352,7 @@ $fetch=mysqli_fetch_assoc($querying);
 	<script src="../vendors/amcharts/amcharts.js" type="text/javascript"></script>
     <script src="../vendors/amcharts/pie.js" type="text/javascript"></script>
     <script src="../vendors/amcharts/serial.js" type="text/javascript"></script>
-    <script src="../vendors/dist/flatpickr.min.js" type="text/javascript"></script>
+    <script src="../vendors/flatpickr/dist/flatpickr.js"></script>
 	<script type="text/javascript">
 		var monitor = 0;
 		$(document).ready(function(){
@@ -395,7 +416,8 @@ $fetch=mysqli_fetch_assoc($querying);
 					navbarHover();
 				}
 			});
-
+				//Creating a flatpickr instance using jquery selectors
+			$("input#allTarget").flatpickr();
 		});
 
 		function navbarHover()
@@ -412,7 +434,7 @@ $fetch=mysqli_fetch_assoc($querying);
 				}
 			  );
 		}
-	
+		
 	</script>
 </body>
 </html>

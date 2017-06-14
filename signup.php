@@ -29,7 +29,7 @@ require_once "inc/connection.php";
 			$profile 	= "student";
 
 			//inserting data into the database
-			$signup_query = "INSERT INTO register VALUES('$student_id','$firstname','$lastname','$othername','$course','$department','$picture','$encryptpass','$phone','$email','$profile','2017-05-30 05:08:12','2017-05-30 05:08:12')";
+			$signup_query = "INSERT INTO register VALUES('$student_id','$firstname','$lastname','$othername','$course','$department','$picture','$encryptpass','$phone','$email','$profile',NOW(),'2017-05-30 05:08:12')";
 
 			$signup_result = $mysqli->query($signup_query);
 

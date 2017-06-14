@@ -1,3 +1,52 @@
+  if($sch_Name==''){
+         echo 
+            '   <script>
+                    var alert = $("<span>Name of school is required</span>");
+                    Materialize.toast(alert, 3500, "rounded");
+                </script>
+            ';
+
+ }
+      elseif($sch_prog==''){
+         echo 
+            '   <script>
+                    var alert = $("<span>Program for school is required</span>");
+                    Materialize.toast(alert, 3500, "rounded");
+                </script>
+            ';
+
+ }
+      elseif($directed_To==''){
+         echo 
+            '   <script>
+                    var alert = $("<span>The letter should be directed to someone</span>");
+                    Materialize.toast(alert, 3500, "rounded");
+                </script>
+            ';
+
+ }
+ elseif($set){
+         echo 
+            '   <script>
+                    var alert = $("<span>Request Placed Successfully</span>");
+                    Materialize.toast(alert, 3500, "rounded");
+                </script>
+            ';
+            header("Location:index.php");
+
+ }
+else
+     {
+      echo 
+            '   <script>
+                    var alert = $("<span>An error occured while request was being placed</span>");
+                    Materialize.toast(alert, 3500, "rounded");
+                </script>
+            ';
+
+         
+     } 
+
 <!-- 
      <div class="preloader-wrapper big active" id="loader">
                         <div class="spinner-layer spinner-blue">

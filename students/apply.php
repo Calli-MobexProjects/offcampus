@@ -1,18 +1,20 @@
 <?php
 	require_once '../inc/connection.php';
+  require_once 'session.php';
+  ini_set( 'error_reporting', E_ALL);
+ini_set( 'display_errors', true );
+  //Quering from the database using -->
 
-     $query="SELECT * FROM student_details WHERE Stud_id= '$ses_id'";
-     $querying=mysqli_query($mysqli,$query);
-$row=mysqli_fetch_assoc($querying);
- 
-      $userid=$row['Stud_id'];
-      $action=$row['action'];
-      $start_Date=$row['start_Date'];
-      $start_Date=$row['start_Date'];
-      
-         
-
+  $query=" SELECT * FROM student_details WHERE Stud_id= '$ses_id'";
+  $querying=$mysqli->query($query);
+  $row = $querying->fetch_array(MYSQLI_BOTH);
+  
+  $userid=$row['Stud_id'];
+  $action=$row['action'];
+  $start_Date=$row['start_Date'];
+  $start_Date=$row['start_Date'];  
  ?>
+   <!-- Sending the data to the database -->
  <title>
  	OCTPs&reg; | Apply Now
  </title>
@@ -20,7 +22,7 @@ $row=mysqli_fetch_assoc($querying);
  	   <div class="row animated fadeIn">
             <div class="col s12 m12 l12">
                 <?php if($action=='1'){ ?>
-    			<div class="col s12 m10 l10 offset-l1 offset-m1 card-panel z-depth-0 green">
+    			     <div class="col s12 m10 l10 offset-l1 offset-m1 card-panel z-depth-0 green">
 	                <h4 class="white-text flow-text lh2 center-text">
 	                  REQUEST PENDING
 	                    <p>WAITING ON APPROVAL</p>
@@ -31,35 +33,34 @@ $row=mysqli_fetch_assoc($querying);
                             elseif($action=='2' ){
                                 ?>
                  <div class="col s12 m10 l10 offset-l1 offset-m1 card-panel z-depth-0 green">
-                <h4 class="white-text flow-text lh2 center-text">
-                  REQUEST PENDING
-                    <p>WAITING ON APPROVAL</p>
-                </h4>
-              </div>
+                    <h4 class="white-text flow-text lh2 center-text">
+                      REQUEST PENDING
+                        <p>WAITING ON APPROVAL</p>
+                    </h4>
+                  </div>
     
                 <?php 
                             }                    
                                                 
-                                                else{ ?>
-                
-              <div class="col s12 m8 l8 card-panel offset-m2 offset-l2">
+                 else{ ?>
+                <div class="col s12 m8 l8 card-panel offset-m2 offset-l2">
                 <h5 class="grey-text text-darken-2"><i class="material-icons left">mode_edit</i>Apply For OffCampus Teaching Curriculum</h5>
                 <div class="divider"></div>
                 <div class="col s12 m12 l12">
-                  <form method="post" action="index.php" >
+                  <form method="post" action="index.php" id="signUpForm">
                     <div class="input-field col s12 m12 l12" style="padding-top: 15px;">
                         <i class="material-icons prefix">store</i>
-                        <input id="icon_prefix" type="text" name="sch_Name" class="validate" data-length="100" required="required">
-                        <label for="icon_prefix">School Name (In Which School Do you want to teach)</label>
+                        <input id="sch_Name" type="text" name="sch_Name" class="validate" data-length="100" required="required">
+                        <label for="sch_Name">School Name (In Which School Do you want to teach)</label>
                     </div>
                      <div class="input-field col s12 m12 l12" style="padding-top: 15px;">
                         <i class="material-icons prefix">library_books</i>
-                        <input id="icon_prefix" type="text" name="sch_prog" class="validate" data-length="100" required="required">
-                        <label for="icon_prefix">Program Name (Program you want to teach)</label>
+                        <input id="school_program" type="text" name="sch_prog" class="validate" data-length="100" required="required">
+                        <label for="school_program">Program Name (Program you want to teach)</label>
                     </div>
                      <div class="input-field col s12 m12 l12" style="padding-top: 15px;">
                         <i class="material-icons prefix">supervisor_account</i>
-                         <select name="directed_To" required="required">
+                         <select name="directed_To" required="required" id="letterHead">
                           <option value="" disabled selected>Select Letter Head</option>
                             <optgroup label="Letter Heads">
                               <option value="Headmaster">Headmaster</option>
@@ -92,21 +93,9 @@ $row=mysqli_fetch_assoc($querying);
                       $("#totalRegion").change(function(event){
                           event.preventDefault();
                           var valueSelected = $("#totalRegion option:selected").val();
-                          document.cookie = "val="+valueSelected;
-                          console.dir(valueSelected);
-                          $.post({
-                              url:'apply.php',
-                              data:{val:valueSelected},
-                              success:function(data){
-                              	console.dir(data);
-                              }
-                          })
-                          .done(function(){
-                          	
-                          })
-                          .fail(function(){
-
-                          });
+                          localStorage.setItem('region_id',valueSelected);
+                          var ll = localStorage.getItem('region_id');
+                          console.dir(ll);
                         });
                     </script>
                     <div class="input-field col s12 m12 l12" style="padding-top: 15px">
@@ -116,24 +105,19 @@ $row=mysqli_fetch_assoc($querying);
                             <optgroup label="List Of Regions" id="response">
                                                                 
                              <?php
-                             if (isset($_COOKIE['val'])) 
-                             {
-                             	$somevar = $_COOKIE['val'];
-                             
-                            $dist="SELECT * FROM district WHERE reg_Abbrv = '$somevar'";
-                            $run=mysqli_query($mysqli,$dist);
-                            while($row=mysqli_fetch_assoc($run)){
-                                 
-                                ?>
+                              // $somevar = "<script>document.writeln(ll);</script>";
+                              // echo "$somevar";
+                              $dist="SELECT * FROM district WHERE reg_Abbrv = 'ASH'";
+                              $run=mysqli_query($mysqli,$dist);
+                              while($row=mysqli_fetch_assoc($run)){
+                                   
+                                  ?>
                               <option  value="<?php echo $row['district_name']; ?>"><?php echo $row['district_name']; ?></option>
                                 <?php 
                                 
-		                            }
-		                        }
+                                }
+                            
                               ?>
-
-   
-                             
                             </optgroup>
                         </select>
                         <label for="icon_prefix">District</label>
@@ -144,9 +128,8 @@ $row=mysqli_fetch_assoc($querying);
                   </form>
                 </div>
               </div>
-                
                 <?php
-                }
+                 }
                 ?>
                 
             </div>
@@ -158,85 +141,12 @@ $row=mysqli_fetch_assoc($querying);
           </script>
  </body>
 
- <?php 
-
-          function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}   
 
 
-
- if(isset($_POST['apply'])){
-     
-     
-    include('../inc/connection.php');
-     
-     $Time=date("Y/m/d h:i:sa"); 
-     $sch_Name=test_input($_POST['sch_Name']); 
-     $sch_prog=test_input($_POST['sch_prog']); 
-     $directed_To=test_input($_POST['directed_To']); 
-     $region=test_input($_POST['region']); 
-     $district=test_input($_POST['district']); 
-     
-     $insert = "INSERT INTO  student_details (Stud_id,ID,sch_Name,sch_prog,directed_To,region,district,	start_Date,end_Date,action,date_Created) VALUES('$ses_id','','$sch_Name','$sch_prog','$directed_To','$region','$district','','','1','$Time')";
-     $set=mysqli_query($mysqli,$insert);
-     
-     if($sch_Name==''){
-     	 echo 
-	   		' 	<script>
-	   				var alert = $("<span>Name of school is required</span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-
- }
-      elseif($sch_prog==''){
-     	 echo 
-	   		' 	<script>
-	   				var alert = $("<span>Program for school is required</span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-
- }
-      elseif($directed_To==''){
-     	 echo 
-	   		' 	<script>
-	   				var alert = $("<span>The letter should be directed to someone</span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-
- }
-     
-          elseif($set){
-     	 echo 
-	   		' 	<script>
-	   				var alert = $("<span>Request Placed Successfully</span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-            header("Location:index.php");
-
- }
-     else
-     {
-      echo 
-	   		' 	<script>
-	   				var alert = $("<span>An error occured while request was being placed</span>");
-	        		Materialize.toast(alert, 3500, "rounded");
-	   			</script>
-	   		';
-
-         
-     }
-     
-     
-     
-     
- }
-?>
-     
+<!-- // function test_input($data) {
+//   $data = trim($data);
+//   $data = stripslashes($data);
+//   $data = htmlspecialchars($data);
+//   return $data;
+// }   
+ -->

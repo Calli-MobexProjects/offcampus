@@ -1,9 +1,43 @@
 <?php
-include("../navbars/home_navbar.php");
- require_once('../inc/connection.php');
+  include("../navbars/home_navbar.php");
+  require_once('../inc/connection.php');
+  ini_set( 'error_reporting', E_ALL);
+  ini_set( 'display_errors', true );
+      //Accepting inputs from the apply pane
+      if (isset($_POST['apply']))
+      {
+        $school_name = $_POST['sch_Name'];
+        $school_prog = $_POST['sch_prog'];
+        $letter_head = $_POST['directed_To'];
+        $region      = $_POST['region'];
+        $district    = $_POST['district'];
 
+        $apply_query = "INSERT INTO student_details(Stud_id,sch_Name,sch_prog,directed_To,region,district,start_Date,end_Date,action,date_Created) VALUES('$ses_id','$school_name','$school_prog','$letter_head','$region','$district','1990-01-01','1990-01-01','1',NOW())";
+        $apply_fetch = $mysqli->query($apply_query);
+        if ($apply_fetch) 
+        {
+          ?>
+          <script type="text/javascript">
+            $.sweetModal({
+              icon:$.sweetModal.ICON_SUCCESS,
+              content:'Data Send Successfully',
+              width:'400px',
+              timeout:3000
+            });
+          </script>
+          <?php
+        }
+        else{
+          echo '
+          <script>
+                    var alert = $("<span>Eiii,Something Bad Happened</span>");
+                    Materialize.toast(alert, 3500, "rounded");
+                </script>
+          ';
+        }
+      }
 
-     $query="SELECT * FROM student_details WHERE Stud_id= '$ses_id'";
+$query="SELECT * FROM student_details WHERE Stud_id= '$ses_id'";
      $querying=mysqli_query($mysqli,$query);
 $row=mysqli_fetch_assoc($querying);
  
@@ -12,7 +46,6 @@ $row=mysqli_fetch_assoc($querying);
       $start_Date=$row['start_Date'];
       $start_Date=$row['start_Date'];
       
-
 ?>
 <head>
 	<title>OCTPs&reg; | Home</title>
@@ -37,7 +70,10 @@ $row=mysqli_fetch_assoc($querying);
       font-size: 16px;
       line-height: 1;
     }
-      </style>
+    div.monthly{
+      margin-top: 8px;
+    }
+    </style>
 </head>
 <body>
     <!-- Page Layout here -->
@@ -56,14 +92,13 @@ $row=mysqli_fetch_assoc($querying);
       <!-- home page will be here -->
         	<div class="row">
         		<div class="col s12 m12 l12">
-        			<div class="col s12 m6 l6">
-        				<div class="col s12 m12 l12 card-panel">
-                  <h5 class="grey-text text-darken-2">Calendar</h5>
-                  <div class="divider"></div>    
+        			<div class="col s12 m7 l7">
+        				<div class="col s12 m12 l12">
+                  <div class="monthly z-depth-1" id="mycalendar"></div>    
                 </div>
         			</div>
         			<!-- notices pane  -->
-        			<div class="col s12 m6 l6">
+        			<div class="col s12 m5 l5">
         			  <div class="col s12 m12 l12 card-panel">
                   <h5 class="grey-text text-darken-2">Notices</h5>
                   <div class="divider"></div>  
@@ -108,7 +143,14 @@ $row=mysqli_fetch_assoc($querying);
     <script type="text/javascript">
       $(document).ready(function(){
        
-
+       $(window).load(function(){
+            $('#mycalendar').monthly({
+                mode: 'event',
+                jsonUrl: '../vendors/monthly/events.json',
+                dataType: 'json'
+                // xmlUrl: '../vendors/monthly/events.xml'
+              });
+        });
         $(".download").click(function(){
             //Using the iziToast to perform operations
             // iziToast.info({

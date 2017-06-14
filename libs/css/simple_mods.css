@@ -17,3 +17,7 @@ ul.bottomItem > small{
 	margin-left: 80px;
 	font-weight: 600;
 }
+div.sweet-modal-box
+{
+	margin-top: -240px !important;
+}

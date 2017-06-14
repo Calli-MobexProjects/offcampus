@@ -3,14 +3,22 @@
   require_once('../inc/connection.php');
   ini_set( 'error_reporting', E_ALL);
   ini_set( 'display_errors', true );
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}   
+
       //Accepting inputs from the apply pane
       if (isset($_POST['apply']))
       {
-        $school_name = $_POST['sch_Name'];
-        $school_prog = $_POST['sch_prog'];
-        $letter_head = $_POST['directed_To'];
-        $region      = $_POST['region'];
-        $district    = $_POST['district'];
+        $school_name = test_input($_POST['sch_Name']);
+        $school_prog = test_input($_POST['sch_prog']);
+        $letter_head = test_input($_POST['directed_To']);
+        $region      = test_input($_POST['region']);
+        $district    = test_input($_POST['district']);
 
         $apply_query = "INSERT INTO student_details(Stud_id,sch_Name,sch_prog,directed_To,region,district,start_Date,end_Date,action,date_Created) VALUES('$ses_id','$school_name','$school_prog','$letter_head','$region','$district','1990-01-01','1990-01-01','1',NOW())";
         $apply_fetch = $mysqli->query($apply_query);

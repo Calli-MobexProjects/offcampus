@@ -238,18 +238,20 @@
 						<script type="text/javascript">
 
 							$("span#<?php echo "$pend_id";?>").on('click',function(){
+								var lolo = "<?php echo "$pend_primary_id";?>";
+								console.dir("pend_id = "+lolo);
 								$.sweetModal({
 									title:'<div class="pulse" style="background-color:#<?php echo "$overall_color";?>;color:white;border-radius:50%;width:60px;height:60px;position:relative;left:-20px;margin-left:-1px;font-size:20px;padding-top:18px;padding-left:24px;"><?php echo "$getUpper";?></div><span style="position:absolute;top:42px;left:89px;">Approve Letter</span>',
 									content:'<form  method="post" action="" id="lectForm" style="margin-top:10px;">\
 								                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">event</i>\
-									                <input type="text" name="date" class="datepicker" id="mytarget" required>\
-									                <label for="mytarget">Start Date</label>\
+									                <input type="text" name="ssDate" class="allTarget" id="ssDate" required style="font-weight:400;color:424242;padding-top:12px;">\
+									                <label for="ssDate">Start Date</label>\
 								                </div>\
 								                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">date_range</i>\
-									                <input type="text" name="date" class="validate" id="phone" required>\
-									                <label for="icon_prefix">End Date</label>\
+									                <input type="text" name="seDate" class="allTarget" id="seDate" required style="font-weight:400;color:424242;padding-top:12px;">\
+									                <label for="seDate">End Date</label>\
 								                </div>\
 											</form>',
 									width:'400px',
@@ -265,11 +267,63 @@
 											label:'Set Date',
 											classes:'blueB',
 											action:function(){
+												var user_id = "<?php echo "$pend_primary_id";?>";
+												var startDate = $("#ssDate").val();
+												var endDate   = $("#seDate").val();
+												//validating user inputs simple ones bi
+												if (user_id == '') 
+												{
+													$.sweetModal({
+														icon:$.sweetModal.ICON_ERROR,
+														content:'Fatal Error,Contact Admin',
+														width:'400px',
+														timeout:3000
+													});
+												}
+												else if(startDate == '' || endDate == ''){
+													$.sweetModal({
+														icon:$.sweetModal.ICON_ERROR,
+														content:'Date Field(s) Empty',
+														width:'400px',
+														timeout:3000
+													});
+												}
+												else{
+													var dataString = "user_id="+user_id +"&startDate="+startDate + "&endDate="+endDate;
+													console.dir(dataString);
+													$.post({
+														url:"pending_letters.php",
+														data:dataString,
+														success:function(){
+															setTimeout(function() {
+																	$.sweetModal({
+																		icon:$.sweetModal.ICON_SUCCESS,
+																		content:'Letter Successfully Approved',
+																		width:'400px',
+																		timeout:3000
+																	});
+															}, 1000);
+															setTimeout(function() {
+																window.location.reload();
+															}, 3400);
+														}
+													})
+													.done(function(){
+														console.log("success for you");
+													})
+													.fail(function(){
+														console.log("Error has occurred");
+													});
+												}
 
 											}
 
 										}
 									}
+								});
+								$("input.allTarget").flatpickr({
+									minDate:"today",
+									weekNumbers:true
 								});
 							});
 							
@@ -349,8 +403,26 @@
 	 		border-bottom: 2px solid white;
 	 		border-left: 2px solid transparent;
 	 	}
-
+	 	 div.sweet-modal-box{
+		 	margin-top: -240px !important;
+		 }
 	 </style>
+	 <!-- Codes for submiting the single letter approval credentials -->
+	 <?php
+	 	if (isset($_POST['user_id']) && isset($_POST['startDate']) && isset($_POST['endDate']))
+	 	{
+	 		$user_id = $_POST['user_id'];
+	 		$startDate = $_POST['startDate'];
+	 		$endDate   = $_POST['endDate'];
+
+	 		$approve_letter_query = "UPDATE student_details SET start_Date = '$startDate',end_Date ='$endDate',action='2' WHERE ID='$user_id'";
+	 		$approve_letter_fetch = $mysqli->query($approve_letter_query);
+	 		if ($approve_letter_fetch) 
+	 		{
+	 			echo "Something happened";
+	 		}
+	 	}
+	 ?>
 	 <script type="text/javascript">
 	 	$(document).ready(function(){
 	 		//Getting the values from the array and setting dates for all//
@@ -362,13 +434,13 @@
 					content:'<form  method="post" action="" id="lectForm" style="margin-top:10px;">\
 				                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 					                <i class="material-icons prefix" id="icon_prefix">event</i>\
-					                <input type="text" name="date" class="datepicker" id="mytarget" required>\
-					                <label for="mytarget">Start Date</label>\
+					                <input type="text" name="sDate" class="allTarget" id="sDate" required style="font-weight:400;color:424242;padding-top:12px;">\
+					                <label for="sDate">Start Date</label>\
 				                </div>\
 				                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 					                <i class="material-icons prefix" id="icon_prefix">date_range</i>\
-					                <input type="text" name="date" class="validate" id="phone" required>\
-					                <label for="icon_prefix">End Date</label>\
+					                <input type="text" name="eDate" class="allTarget" id="eDate" required style="font-weight:400;color:424242;padding-top:12px;">\
+					                <label for="eDate">End Date</label>\
 				                </div>\
 							 </form>',
 					width:'400px',
@@ -390,7 +462,15 @@
 						}
 					}
 				});
+				$("input.allTarget").flatpickr({
+					minDate:"today",
+					weekNumbers:true
+				});
+				// console.dir("hmm " + hmm);
 			});
+			//Creating a flatpickr instance using jquery selectors
+		// $("input#allTarget").flatpickr();
+
 	 	});
 	 </script>
 </body>

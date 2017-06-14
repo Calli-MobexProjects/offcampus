@@ -70,7 +70,7 @@
 						if ($pend_action == 2)
 						{
 							?>
-							<span id="<?php echo "$pend_id"; ?>" class="status z-depth-1 waves-effect waves-block waves-ripple orange darken-2"><i class="material-icons left">done_all</i>Approved</span>
+							<span id="<?php echo "$pend_id"; ?>" class="status z-depth-1 waves-effect waves-block waves-ripple green accent-4"><i class="material-icons left">done_all</i>Approved</span>
 							<?php
 						}
 						?>

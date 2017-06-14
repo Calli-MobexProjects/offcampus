@@ -256,12 +256,13 @@
 						</div>
 					</div>
 				</div>
+					<script  src="../scripts/admin/letter_status.js" type="text/javascript"></script>
 					<div id="view" class="fixed-action-btn" style="right: 70px;bottom: 40px;">
 					    <a  href class="btn-floating btn-large light-blue accent-3">
 					      <i class="large material-icons tooltipped" data-tooltip="View" data-position="left" data-delay="5">remove_red_eye</i>
 					    </a>
 					    <ul>
-					      <li><a id="approved" class="btn-floating green accent-4 tooltipped pulse" data-tooltip="Approved Student Letters" data-position="left" data-delay="5"><i class="material-icons">done_all</i></a></li>
+					      <li><a id="approved" class="btn-floating green accent-4 tooltipped" data-tooltip="Approved Student Letters" data-position="left" data-delay="5"><i class="material-icons">done_all</i></a></li>
 					      <li><a id="pend" class="btn-floating amber darken-3 tooltipped" data-tooltip="Pending Student Letters" data-position="left" data-delay="5"><i class="material-icons">timeline</i></a></li>
 					    </ul>
 
@@ -305,7 +306,48 @@
 				                $("div#student_body").fadeIn('slow');
 				              }, 2000);
 				                
-				            });
+				        });
+
+				      
+
+					</script>
+					<?php 
+						$pend_query = "SELECT COUNT(*) AS TOTAL_PEND from student_details WHERE action='1'";
+						$pend_query1 = "SELECT COUNT(*) AS TOTAL_APPROVED from student_details WHERE action='2'";
+
+						$pend_fetch = $mysqli->query($pend_query);
+						$pend_fetch1 = $mysqli->query($pend_query1);
+
+						$pend_row = $pend_fetch->fetch_array(MYSQLI_BOTH);
+						$total_pending_letters = $pend_row['TOTAL_PEND'];
+
+						$pend_row1 = $pend_fetch1->fetch_array(MYSQLI_BOTH);
+						$total_approved_letters = $pend_row1['TOTAL_APPROVED'];
+					?>
+					<!-- scripts for some magics -->
+					<script type="text/javascript">
+						var pendCount = "<?php echo "$total_pending_letters";?>";
+						var approvedCount = "<?php echo "$total_approved_letters"; ?>";
+						console.dir("pENDCOUNT " +pendCount);
+						console.dir("aPPROVEDCOUNT " + approvedCount);
+
+						//scripts for pending
+						if (pendCount > 0)
+						 {
+						 	$("a#pend").addClass("pulse");
+						 }
+						 else{
+						 	$("a#pend").removeClass("pulse");
+						 }
+
+						 //scripts for approved
+						 if (approvedCount > 0)
+						  {
+						  	$("a#approved").addClass("pulse");
+						  }
+						  else{
+						  	$("a#approved").removeClass("pulse");
+						  }
 					</script>
 		
 			</div>

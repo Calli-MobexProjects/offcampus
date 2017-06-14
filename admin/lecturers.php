@@ -286,6 +286,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									</div>
 								</div>
 								<script type="text/javascript">
+									$("div#<?php echo "$lect_id";?>").css({"margin-bottom":"-7px"});
 									var arrayCount = 0;
 									var arr = [];
 									$("span.<?php echo "$user_checkmate";?>").css("visibility","hidden");
@@ -294,10 +295,6 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									$(document).ready(function(){
 										var id = "<?php echo "$id"; ?>";
 										console.dir("div#"+id);
-
-
-										//settting the colors here 
-
 										$("div#<?php echo "$lect_id";?>").hover(
 											function(){
 											 $("i.<?php echo "$lect_district";?>").css("display","block");
@@ -310,16 +307,6 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											}
 
 										);
-
-										// $("div#"+id+"").hover(
-										// 	function(){
-										// 	 $("i.mt11").css("display","block");
-										// 	},
-										// 	function(){
-										// 	  $("i.mt11").css("display","none");
-										// 	}
-
-										// );
 
 										var Name = "<?php echo "$lord"; ?>";
 										$("#<?php echo "$lect_district";?>").click(function(){
@@ -599,7 +586,76 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												);
 										}
 
+										//configuring the multicheckbox effect for the navbar overlay
+										$("input#test5").click(function(){
+											if ($(this).prop("checked") == true)
+											 {
+											 	//Magic script for array definition
+										 	 	var existValue = $('input#<?php echo "$user_checkmate1";?>').val();
+										 	 	arr = $.grep(arr,function(i){
+										 	 		return i !== existValue;
+										 	 	});
+										 	 	arr.push($('input#<?php echo "$user_checkmate1";?>').val());
+										 	 	console.dir(arr);
+										 	 	$("input#<?php echo "$user_checkmate1";?>").prop("checked",true);
+										 	 	$("span#<?php echo "$user_image";?>").css({"visibility":"hidden","opacity":"0"});
+												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+												$("div#<?php echo "$lect_id";?>").addClass("checkedBg").css({"border-left":"3px solid #039be5"});
+												$("i#<?php echo "$lect_district";?>").css("display","block");
+										 	 	res = 1;
+										 	 	if (res == 1)
+												 {
+												 	//calling the outhover function
+												 	$("div#<?php echo "$lect_id";?>").hover(
+															function(){
+																$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+															},function(){
+																
+																$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+															}
+														);
 
+												 }
+											 }
+											 else if ($(this).prop("checked") == false)
+											 {
+											 	$("span.<?php echo "$user_checkmate";?>").css({"visibility":"hidden","opacity":"0"});
+												$("span#<?php echo "$user_image";?>").css({"visibility":"visible","opacity":"1"});
+												$("i#<?php echo "$lect_district";?>").css("display","none");
+												$("div#<?php echo "$lect_id";?>").removeClass("checkedBg").addClass("afterEffect").css({"border-left":"2px solid lightblue","transition":"0.2s all ease-in"});
+												$("#<?php echo "$user_image";?>").css({"visibility":"visible","opacity":"1"});
+
+											 	$("input#<?php echo "$user_checkmate1";?>").prop("checked",false);
+											 	var mItemToRemove = $('input#<?php echo "$user_checkmate1";?>').val();
+											 	arr.splice($.inArray(mItemToRemove,arr),1);
+											 	console.log("this is the poping splice array");
+											 	console.dir(arr);
+
+											 	res = 0;
+											 	if (res == 0)
+												{
+												 	//calling the outhover function
+												 	$("div#<?php echo "$lect_id";?>").hover(
+															function(){
+																$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
+															},function(){
+																
+																$("span.<?php echo "$user_checkmate";?>").css({"visibility":"hidden","opacity":"0"});
+															}
+														);
+
+												}
+
+											 }
+											 arrayCount = arr.length;
+											 $("label#selectLabel").text(arrayCount + " " + "selected").css({"font-weight":"400","color":"#00b0ff"});
+											 if (arrayCount == 0)
+											 {
+											 	$("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
+											 }
+										});
+
+										//configuring the back button
 									});
 								</script>
 								<?php

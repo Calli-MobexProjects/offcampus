@@ -195,6 +195,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 			visibility: hidden;
 			opacity: 0;
 		}
+		
 	</style>
 </head>
 <body>
@@ -267,7 +268,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										<span class="phone"><?php echo $lect_district_name; ?></span>
 									</div>
 									<div class="col s3 m3 l3" id="email">
-										<span class="email left-align"><a href="#"><?php echo "$lect_phone";?></a></span>
+										<span class="email left-align"><a href="#">+233<?php echo "$lect_phone";?></a></span>
 									</div>
 									
 									<div class="col s2 m2 l2">
@@ -286,7 +287,10 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									</div>
 								</div>
 								<script type="text/javascript">
-									$("div#<?php echo "$lect_id";?>").css({"margin-bottom":"-7px"});
+									//configuration for the email array
+									var mailray = [];
+									var mailCount = 0;
+									//configuration for the multiselect arrays and count
 									var arrayCount = 0;
 									var arr = [];
 									$("span.<?php echo "$user_checkmate";?>").css("visibility","hidden");
@@ -492,6 +496,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$(window).load(function(){
 											$("span.<?php echo "$user_checkmate";?>").css("visibility","hidden");
 											// $("div.stud_list").css("background-color","#e9e9e9");
+											$("div#<?php echo "$lect_id";?>").css({"margin-bottom":"-7px"});
 										});
 
 										 console.dir(res);
@@ -503,6 +508,11 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
 												$("div#<?php echo "$lect_id";?>").addClass("checkedBg").css({"border-left":"3px solid #039be5"});
 												$("i#<?php echo "$lect_district";?>").css("display","block");
+												//Pushing to the email array list
+												var user_mailer = "<?php echo "$lect_email"; ?>";
+												mailray.push(user_mailer);
+												console.log("user mailer");
+												console.dir(mailray);
 												// $("input#test5").prop("checked",true);
 												arr.push($(this).val());
 
@@ -565,10 +575,15 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											arrayCount = arr.length;
 											console.log("The length of the array");
 											console.dir(arrayCount);
-											$("label#selectLabel").text(arrayCount + " " + "selected").css({"font-weight":"400","color":"#00b0ff"});
-											if (arrayCount == 0)
+											if (arrayCount > 0)
+											 {
+											 	$("label#selectLabel").text(arrayCount + " " + "selected").css({"font-weight":"400","color":"#00b0ff"});
+											 	$("div#addLectBtn").addClass("bounceOutRight").removeClass("bounceInRight");
+											 }
+											else if (arrayCount == 0)
 											 {
 											 	$("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
+											 	$("div#addLectBtn").addClass("bounceInRight").removeClass("bounceOutRight");
 											 }
 										});	
 
@@ -590,6 +605,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$("input#test5").click(function(){
 											if ($(this).prop("checked") == true)
 											 {
+
 											 	//Magic script for array definition
 										 	 	var existValue = $('input#<?php echo "$user_checkmate1";?>').val();
 										 	 	arr = $.grep(arr,function(i){
@@ -648,10 +664,15 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 
 											 }
 											 arrayCount = arr.length;
-											 $("label#selectLabel").text(arrayCount + " " + "selected").css({"font-weight":"400","color":"#00b0ff"});
-											 if (arrayCount == 0)
+											 if (arrayCount > 0) 
+											 {
+											 	$("label#selectLabel").text(arrayCount + " " + "selected").css({"font-weight":"400","color":"#00b0ff"});
+											 	$("div#addLectBtn").addClass("bounceOutRight").removeClass("bounceInRight");
+											 }
+											 else if(arrayCount == 0)
 											 {
 											 	$("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
+											 	$("div#addLectBtn").addClass("bounceInRight").removeClass("bounceOutRight");
 											 }
 										});
 
@@ -684,10 +705,15 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 
 											}
 											arrayCount = arr.length;
-											 $("label#selectLabel").text(arrayCount + " " + "selected").css({"font-weight":"400","color":"#00b0ff"});
-											 if (arrayCount == 0)
+											 if (arrayCount > 0) 
+											 {
+											 	$("div#addLectBtn").addClass("bounceOutRight").removeClass("bounceInRight");
+											 	$("label#selectLabel").text(arrayCount + " " + "selected").css({"font-weight":"400","color":"#00b0ff"});
+											 }
+											 else if(arrayCount == 0)
 											 {
 											 	$("div#overlay").css({"visibility":"hidden","opacity":"0","transition":"0.2s all ease-out","transform":"translateY(0%),scale(1.2)"});
+											 	$("div#addLectBtn").addClass("bounceInRight").removeClass("bounceOutRight");
 											 }
 										});
 									});
@@ -713,7 +739,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 						</div>
 					</div>
 
-					<div class="fixed-action-btn" style="right: 70px;bottom: 40px;">
+					<div id="addLectBtn" class="fixed-action-btn animated" style="right: 70px;bottom: 40px;">
 					    <a  id="addLecturer" class="btn-floating btn-large light-blue accent-3">
 					      <i class="large material-icons tooltipped" data-tooltip="Add Lecturer" data-position="left" data-delay="5">person_add</i>
 					    </a>
@@ -881,12 +907,43 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										  });
 
 									});
+						//Configuring the email for multi user provided mails
+						$("i#email").on('click',function(){
+							$.sweetModal({
+								title:'<div class="input-field col s12">\
+								          <input type="text" id="emails" name="emails" value="" style="margin-left:-5px;"/>\
+								          <label for="emails"></label>\
+								        </div>',
+								content:'<div class="input-field col s12">\
+								          \
+								          <textarea id="description" class="materialize-textarea" data-length="120" style="margin-top:-10px;"></textarea>\
+								          <label for="description">Message</label>\
+								        </div>',
+								width:'500px',
+								buttons:{
+									cancelButton:{
+										label:'Cancel',
+										classes:'secondaryB bordered flat',
+										action:function(){
 
+										}
+									},
+									sendButton:{
+										label:'Send',
+										classes:'blueB',
+										action:function(){
+
+										}
+									}
+								}
+							});
+						});
 						$("a#multipleDelete").on('click',function(){
 							console.dir(arr);
 							$.sweetModal({
 								title:'Are You Sure About This ?',
 								icon: $.sweetModal.ICON_WARNING,
+								type:$.sweetModal.TYPE_ALERT,
 								content: 'These Data Will Permanently Be Deleted',
 								width: '400px',
 								buttons:{

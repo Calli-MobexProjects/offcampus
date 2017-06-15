@@ -159,7 +159,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 										<ul class="manager <?php echo "$user_identifier";?>">
 											<li id="edi<?php echo "$ad_set_manager";?>" class="edit"><i class="material-icons grey-text text-darken-2">mode_edit</i></li>
 											<li id="del<?php echo "$ad_set_manager";?>" class="delete"><i class="material-icons grey-text text-darken-2">delete_sweep</i></li>
-											<li id="per<?php echo "$ad_set_manager";?>" class="permission"><i class="material-icons grey-text text-darken-2">verified_user</i></li>
+											<li id="per<?php echo "$ad_set_manager";?>" class="permission"><i class="material-icons grey-text text-darken-2">vpn_lock</i></li>
 											<li id="cal<?php echo "$ad_set_manager";?>"><i class="material-icons grey-text text-darken-2">call_merge</i></li>
 										</ul>
 									</span>
@@ -392,7 +392,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 						                <label for="email">Email</label>\
 					                </div>\
 					           </form>',
-					           width:'700px',
+					           width:'600px',
 					buttons:{
 						cancelButton:{
 							label:'Cancel',

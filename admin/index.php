@@ -32,7 +32,7 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
        #firstpane,#secondpane{
          display: none;
          position: relative;
-         z-index: 999;
+         z-index: 2;
        }
         #chart_div{
             background-color: transparent;
@@ -110,10 +110,10 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
           $(window).load(function(){
               setTimeout(function() {
                  $("div#preloader").fadeOut('slow');
-              }, 5000);
+              }, 3000);
               setTimeout(function() {
                 $("#firstpane,#secondpane").fadeIn('slow');
-              }, 5000);
+              }, 3000);
                 
             });
     </script>

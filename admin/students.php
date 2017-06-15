@@ -271,24 +271,25 @@
 						$qs = "SELECT district_name FROM district";
 						$res = $mysqli->query($qs);
 						$count = $res->num_rows;
-						$distArray = array();
+						$district = array();
+						$response = array();
+
 						while ($row = $res->fetch_array(MYSQLI_BOTH))
 						{
-							// $distArray = array($row['district_name']=>$row['district_name']);	
-							// $json = json_encode($distArray,JSON_PRETTY_PRINT);
-							if ($count > 0)
-							 {
-								foreach ($row as $rs) {
-									$distArray[] = $rs;
-								}
-							 }
-							
+							$reg_abbr = $row['reg_Abbrv'];
+							$fullname = $row['district_name'];
+
+							//Assigning to the first array 
+							$district[] = array('fullname'=>$fullname);
+						
 														
 						}
-						$dir = dirname(__FILE__);
-						$fp = fopen('../json/districts.json','w+');
-						fwrite($fp, json_encode($distArray));
+						$response['districts'] = $district;
+						$fp = fopen('/var/www/html/offcampus/json/districts.json','w');
+						fwrite($fp, json_encode($response,JSON_PRETTY_PRINT));
 						fclose($fp);
+
+						
 					?>
 					<script type="text/javascript">
 						$("a#pend").on('click',function(){

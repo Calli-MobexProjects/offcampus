@@ -1,1 +1,484 @@
-<img id="<?php echo "$user_image";?>" src="../<?php echo "$lect_image";?>" alt="avatar" class="responsive-img circle">
+{
+    "districts": [
+        {
+            "fullname": "Adansi North"
+        },
+        {
+            "fullname": "Adansi South"
+        },
+        {
+            "fullname": "Afigya-Kwabre"
+        },
+        {
+            "fullname": "Ahafo Ano North"
+        },
+        {
+            "fullname": "Ahafo Ano South"
+        },
+        {
+            "fullname": "Amansie Central"
+        },
+        {
+            "fullname": "Amansie West"
+        },
+        {
+            "fullname": "Asante Akim North (New)"
+        },
+        {
+            "fullname": "Asante Akim South"
+        },
+        {
+            "fullname": "Atwima Kwanwoma"
+        },
+        {
+            "fullname": "Atwima Mponua"
+        },
+        {
+            "fullname": "Atwima Nwabiagya"
+        },
+        {
+            "fullname": "Bosome Freho"
+        },
+        {
+            "fullname": "Bosomtwe"
+        },
+        {
+            "fullname": "Ejura Sekyedumase"
+        },
+        {
+            "fullname": "AKwabre East"
+        },
+        {
+            "fullname": "Offinso North"
+        },
+        {
+            "fullname": "Sekyere Afram Plains (New)"
+        },
+        {
+            "fullname": "Sekyere Central"
+        },
+        {
+            "fullname": "Sekyere East"
+        },
+        {
+            "fullname": "Sekyere South"
+        },
+        {
+            "fullname": "Kumawu"
+        },
+        {
+            "fullname": "Asunafo South"
+        },
+        {
+            "fullname": "Asutifi"
+        },
+        {
+            "fullname": "Asunafo South"
+        },
+        {
+            "fullname": "Asutifi"
+        },
+        {
+            "fullname": "Asutifi South (New)"
+        },
+        {
+            "fullname": "Banda (New)"
+        },
+        {
+            "fullname": "Dormaa East new"
+        },
+        {
+            "fullname": "Dormaa West (New)"
+        },
+        {
+            "fullname": "Jaman North"
+        },
+        {
+            "fullname": "Jaman South"
+        },
+        {
+            "fullname": "Kintampo South"
+        },
+        {
+            "fullname": "Nkoranza North"
+        },
+        {
+            "fullname": "Nkoranza South"
+        },
+        {
+            "fullname": "Pru"
+        },
+        {
+            "fullname": "Sene"
+        },
+        {
+            "fullname": "Sene West (New)"
+        },
+        {
+            "fullname": "Sunyani West"
+        },
+        {
+            "fullname": "Tain"
+        },
+        {
+            "fullname": "Tano North"
+        },
+        {
+            "fullname": "Tano South"
+        },
+        {
+            "fullname": "TTechiman North (New)"
+        },
+        {
+            "fullname": "Abura\/Asebu\/Kwamankese"
+        },
+        {
+            "fullname": "Agona East"
+        },
+        {
+            "fullname": "Ajumako\/Enyan\/Essiam"
+        },
+        {
+            "fullname": "Asikuma\/Odoben\/Brakwa"
+        },
+        {
+            "fullname": "Assin South"
+        },
+        {
+            "fullname": "Awutu Senya East (New)"
+        },
+        {
+            "fullname": "Awutu Senya "
+        },
+        {
+            "fullname": "Ekumfi (New)"
+        },
+        {
+            "fullname": "Gomoa East"
+        },
+        {
+            "fullname": "Gomoa West"
+        },
+        {
+            "fullname": "Twifo\/Heman\/Lower\/Denkyira"
+        },
+        {
+            "fullname": "Twifo-Ati Mokwa"
+        },
+        {
+            "fullname": "Upper Denkyira West"
+        },
+        {
+            "fullname": "Afram Plains South (New)"
+        },
+        {
+            "fullname": "Akuapim South (New)"
+        },
+        {
+            "fullname": "Akuapim North"
+        },
+        {
+            "fullname": "Akyemansa"
+        },
+        {
+            "fullname": "Asuogyaman"
+        },
+        {
+            "fullname": "Atiwa"
+        },
+        {
+            "fullname": "Ayensuano (New) "
+        },
+        {
+            "fullname": "Birim North"
+        },
+        {
+            "fullname": "Birim South"
+        },
+        {
+            "fullname": "Fanteakwa"
+        },
+        {
+            "fullname": "Kwaebibirem"
+        },
+        {
+            "fullname": "Kwahu East"
+        },
+        {
+            "fullname": "Kwahu North"
+        },
+        {
+            "fullname": "Kwahu South"
+        },
+        {
+            "fullname": "Suhum"
+        },
+        {
+            "fullname": "Upper Manya Krobo"
+        },
+        {
+            "fullname": "Denkyembour (New)"
+        },
+        {
+            "fullname": "Upper West Akim (New)"
+        },
+        {
+            "fullname": "Ada West (New)"
+        },
+        {
+            "fullname": "Danme East"
+        },
+        {
+            "fullname": "Dangme West"
+        },
+        {
+            "fullname": "Kpone katamanso (New"
+        },
+        {
+            "fullname": "Ningo Prampram"
+        },
+        {
+            "fullname": "Bole"
+        },
+        {
+            "fullname": " Bunkprugu-Yunyoo"
+        },
+        {
+            "fullname": "Central Gonja"
+        },
+        {
+            "fullname": "Chereponi"
+        },
+        {
+            "fullname": "East Gonja"
+        },
+        {
+            "fullname": "East Mamprusi"
+        },
+        {
+            "fullname": "Gushegu"
+        },
+        {
+            "fullname": "Karaga"
+        },
+        {
+            "fullname": "Kpandai"
+        },
+        {
+            "fullname": "Kumbungu (New)"
+        },
+        {
+            "fullname": "Mamprugu Moadu"
+        },
+        {
+            "fullname": "Mion (New)"
+        },
+        {
+            "fullname": "Nanumba North"
+        },
+        {
+            "fullname": "Nanumba South"
+        },
+        {
+            "fullname": "North Gonja (New) "
+        },
+        {
+            "fullname": "Saboba"
+        },
+        {
+            "fullname": "Sagnarigu (New)"
+        },
+        {
+            "fullname": "Savelugu\/Nanton"
+        },
+        {
+            "fullname": "Sawla-Tuna-Kalba"
+        },
+        {
+            "fullname": "Tatale Sangule (New)"
+        },
+        {
+            "fullname": "Tolon"
+        },
+        {
+            "fullname": "West Gonja"
+        },
+        {
+            "fullname": "West Mamprusi"
+        },
+        {
+            "fullname": "Zabzugu\/Tatale"
+        },
+        {
+            "fullname": "Bawku West"
+        },
+        {
+            "fullname": " Binduri (New)"
+        },
+        {
+            "fullname": "Bongo"
+        },
+        {
+            "fullname": "Builsa"
+        },
+        {
+            "fullname": "Builsa South"
+        },
+        {
+            "fullname": "Garu-Tempane"
+        },
+        {
+            "fullname": "Kassena Nankana West"
+        },
+        {
+            "fullname": "Kassena Nankana East"
+        },
+        {
+            "fullname": "Nabdam (New)"
+        },
+        {
+            "fullname": "Pusiga (New)"
+        },
+        {
+            "fullname": "Talensi-Nabdam"
+        },
+        {
+            "fullname": "Daffiama Bussie Issa (new))"
+        },
+        {
+            "fullname": "Jirapa"
+        },
+        {
+            "fullname": "Lambussie Karni (New)"
+        },
+        {
+            "fullname": "Lawra"
+        },
+        {
+            "fullname": "Nadowli"
+        },
+        {
+            "fullname": "Nandom (New)"
+        },
+        {
+            "fullname": "Sissala East"
+        },
+        {
+            "fullname": "Sissala West"
+        },
+        {
+            "fullname": "Wa East"
+        },
+        {
+            "fullname": "Wa West"
+        },
+        {
+            "fullname": "Adaklu (New)"
+        },
+        {
+            "fullname": "Akatsi South"
+        },
+        {
+            "fullname": "Afadjato"
+        },
+        {
+            "fullname": "Agortime Ziope"
+        },
+        {
+            "fullname": "Akatsi North"
+        },
+        {
+            "fullname": "Biakoye"
+        },
+        {
+            "fullname": "asikan"
+        },
+        {
+            "fullname": "Kadjebi"
+        },
+        {
+            "fullname": "Ketu North"
+        },
+        {
+            "fullname": "Krachi East"
+        },
+        {
+            "fullname": "Krachi Nchumuru "
+        },
+        {
+            "fullname": "Krachi West"
+        },
+        {
+            "fullname": "Nkwanta South"
+        },
+        {
+            "fullname": "Nkwanta North"
+        },
+        {
+            "fullname": "North Tongu (New)"
+        },
+        {
+            "fullname": "South Dayi"
+        },
+        {
+            "fullname": "South Tongu"
+        },
+        {
+            "fullname": "Ahanta West"
+        },
+        {
+            "fullname": "Aowin\/Suaman "
+        },
+        {
+            "fullname": "Bia"
+        },
+        {
+            "fullname": "Bia East (New)"
+        },
+        {
+            "fullname": "Bibiani\/Ahwiaso\/Bekwai"
+        },
+        {
+            "fullname": "Bodi (New)"
+        },
+        {
+            "fullname": "Ellembele"
+        },
+        {
+            "fullname": "Jomoro"
+        },
+        {
+            "fullname": "Juaboso"
+        },
+        {
+            "fullname": "Mpohor (New)"
+        },
+        {
+            "fullname": "Mpohor\/Wassa East"
+        },
+        {
+            "fullname": "Prestea-Huni Valley"
+        },
+        {
+            "fullname": "Sefwi Akontobra"
+        },
+        {
+            "fullname": "Sefwi-Wiawso "
+        },
+        {
+            "fullname": "Shama new"
+        },
+        {
+            "fullname": "Suaman (New)"
+        },
+        {
+            "fullname": "Wassa Amenfi East"
+        },
+        {
+            "fullname": "Wassa Amenfi West"
+        },
+        {
+            "fullname": "Wassa Amenfi Central (New)"
+        }
+    ]
+}

@@ -34,7 +34,7 @@ $fetch=mysqli_fetch_assoc($querying);
 	<link rel="stylesheet" type="text/css" href="../libs/css/animate.css"/>
 	<link rel="stylesheet" type="text/css" href="../libs/css/materialize.css"/>
 	<link rel="stylesheet" type="text/css" href="../libs/css/styles.css"/>
-	<link rel="stylesheet" type="text/css" href="../libs/css/ads_style.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/css/simple_mods.css"/>
 
 	<!-- <link rel="stylesheet" type="text/css" href="../vendors/sweetalerts/css/sweetalert2.min.css"> -->
 
@@ -212,6 +212,10 @@ $fetch=mysqli_fetch_assoc($querying);
 			animation-delay: 2s;
 			animation-duration: 3s;
 		}*/
+		div.dropdown-menu{
+			position:fixed !important;
+		}
+
 	</style>
 </head>
 <body>
@@ -258,12 +262,15 @@ $fetch=mysqli_fetch_assoc($querying);
 			</li>
 		</ul>
 		<ul class="details right">
-			<li style="margin-right: 10px;">
-				<a  href><i class="material-icons right" style="margin-right: 15px;">email</i></a>
+			<li style="margin-right: 10px;cursor: pointer;">
+				<a ><i id="email" class="material-icons right tooltipped" data-tooltip="Email" data-position="bottom" data-delay="5" style="margin-right: 15px;">email</i></a>
+			</li>
+			<li style="margin-right: 10px;cursor: pointer;">
+				<a ><i id="label" class="material-icons right tooltipped" data-tooltip="Add Label" data-position="bottom" data-delay="5" style="margin-right: 2px;">label</i></a>
 			</li>
 			<li>
 				<a href data-dropdown="#dropdown-with-overlayDetails">
-					<i class="material-icons right waves-effect waves-ripple circle">more_vert</i>
+					<i class="material-icons right waves-effect waves-ripple circle tooltipped" data-tooltip="More" data-position="bottom" data-delay="5">more_vert</i>
 				</a>
 			</li>
 		
@@ -344,7 +351,7 @@ $fetch=mysqli_fetch_assoc($querying);
 	<script type="text/javascript" src="../libs/js/typer.js"></script>
 	<script type="text/javascript" src="../libs/js/custom.js"></script>
 	<script type="text/javascript" src="../libs/js/activities.js"></script>
-	<script type="text/javascript" src="../libs/js/sidenav.js"></script>
+	<script type="text/javascript" src="../libs/js/activate_sidenav.js"></script>
 	<!-- <script src="../libs/js/events.js" type="text/javascript"></script> -->
 
 	<!-- Vendor libraries -->
@@ -405,7 +412,7 @@ $fetch=mysqli_fetch_assoc($querying);
 			 });
 
 			 //configuring the  back button and the checkboxes for multiple users 
-			
+
 			// $("i#close").click(function(){
 			// 	$("div#overlay").css({"visibility":"hidden","opacity":"0"});
 			// 	$('input[type="checkbox"]').prop("checked",false);

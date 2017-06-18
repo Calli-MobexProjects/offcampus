@@ -2,11 +2,29 @@
 include("../navbars/home_navbar.php");
 require_once '../inc/connection.php';
 
+#students count
 $user_reg = "SELECT COUNT(*) AS NUM FROM register WHERE Profile = 'student'";
 $user_res = $mysqli->query($user_reg);
 while ($count = $user_res->fetch_array(MYSQLI_BOTH)) 
 {
   $countStudent = $count['NUM'];
+ 
+}
+
+#lecturers' count
+$lect_reg = "SELECT COUNT(*) AS LECT FROM lecturer";
+$lect_res = $mysqli->query($lect_reg);
+while ($c = $lect_res->fetch_array(MYSQLI_BOTH)) 
+{
+   $countLecturer = $c['LECT'];
+}
+
+#students with schools
+$student_school = "SELECT COUNT(*) AS STUD_COUNT FROM student_details";
+$student_result = $mysqli->query($student_school);
+while ($counting = $student_result->fetch_array(MYSQLI_BOTH))
+{
+  $countStudentschools = $counting['STUD_COUNT'];
 }
 ?>
 <head>
@@ -78,7 +96,7 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
                                    <span class="total_img"><img src="../images/admin/school.svg" alt="Registered Users" class="responsive-img show"></span>
                                     <span class="indicator">Student With Schools</span>
                                     <div class="divider"></div>
-                                    <h5 class="grey-text text-darken-2 small-text">Students Who've Gotten Schools<span class="chip right">80</span></h5>
+                                    <h5 class="grey-text text-darken-2 small-text">Students Who've Gotten Schools<span class="chip right"><?php echo "$countStudentschools"; ?></span></h5>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +106,7 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
                                     <span class="total_img"><img src="../images/admin/medal.svg" alt="Registered Users" class="responsive-img show"></span>
                                     <span class="indicator">Added Lecturers</span>
                                     <div class="divider"></div>
-                                    <h5 class="grey-text text-darken-2 small-text">Total Number Of Lecturers<span class="chip right">50</span></h5>
+                                    <h5 class="grey-text text-darken-2 small-text">Total Number Of Lecturers<span class="chip right"><?php echo "$countLecturer";?></span></h5>
                                 </div>
                             </div>
                             <div class="col s12 m6 l6">

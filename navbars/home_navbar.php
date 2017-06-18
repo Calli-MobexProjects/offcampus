@@ -225,6 +225,11 @@ $fetch=mysqli_fetch_assoc($querying);
 		div.dropdown-menu{
 			position:fixed !important;
 		}
+		ul.back-button{
+			position: absolute;
+			left: 225px;
+			display: none;
+		}
 	</style>
 </head>
 <body>
@@ -243,7 +248,10 @@ $fetch=mysqli_fetch_assoc($querying);
 					<i class="material-icons">perm_identity</i>
 					<small class="name"><?php echo $Name; ?></small>
 				</a>
-               
+				<!-- Back button for the download csv file and maybe others -->
+                <ul class="left back-button animated fadeIn">
+                	<li><a href="" class="back_click"><i class="material-icons">arrow_back</i></a></li>
+                </ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
                    <!--  <li>Login Time:  <small class="name" style="padding-right:20px;"></small></li> -->
 					<li><a href=""><i class="material-icons left notify" style="font-size: 30px;">notifications</i><span class="counter white pulse">.</span></a></li>

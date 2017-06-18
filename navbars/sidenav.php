@@ -135,7 +135,7 @@
       $(window).load(function(){
           setTimeout(function() {
             $("div.bottomsheetLoader").fadeOut('slow');
-          }, 4500);
+          }, 3500);
         });
       
     //activating the active click events

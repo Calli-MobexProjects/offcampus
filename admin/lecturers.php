@@ -208,7 +208,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 				<div class="content_body">
 
 					<div class="row">
-						<div class="col s12 m12 l12">
+						<div class="col s12 m12 l12" id="lecturer_lair">
 							<h5 class="grey-text text-accent-3 left-align stud_list_title"><i class="material-icons left view">view_list</i>Lecturers' List</h5>
 							<?php
 							$qs = "SELECT * FROM lecturer ORDER BY lect_firstname ASC";
@@ -499,7 +499,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											$("div#<?php echo "$lect_id";?>").css({"margin-bottom":"-7px"});
 										});
 
-										 console.dir(res);
+										
 										$('input#<?php echo "$user_checkmate1";?>').click(function(){
 											if ($(this).prop("checked") == true) 
 											{
@@ -510,6 +510,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												$("i#<?php echo "$lect_district";?>").css("display","block");
 												//Pushing to the email array list
 												var user_mailer = "<?php echo "$lect_email"; ?>";
+												//getting if the array is already present
+												var existMail = "<?php echo "$lect_email";?>";
+										 	 	mailray = $.grep(mailray,function(i){
+										 	 		return i !== existMail;
+										 	 	});
+
 												mailray.push(user_mailer);
 												console.log("user mailer");
 												console.dir(mailray);
@@ -629,7 +635,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										 	 	mailray.push(existMail);
 										 	 	console.log("Pushing all the array to the array");
 										 	 	console.dir(mailray);
-										 	 	
+
 										 	 	$("input#<?php echo "$user_checkmate1";?>").prop("checked",true);
 										 	 	$("span#<?php echo "$user_image";?>").css({"visibility":"hidden","opacity":"0"});
 												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
@@ -663,6 +669,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											 	arr.splice($.inArray(mItemToRemove,arr),1);
 											 	console.log("this is the poping splice array");
 											 	console.dir(arr);
+
+											 	//Removing the email from the stack array list
+											 	var mMailToRemove = "<?php echo "$lect_email"; ?>";
+											 	mailray.splice($.inArray(mMailToRemove,mailray),1);
+											 	console.log("This is the popping email array > Multicheckbox");
+											 	console.dir(mailray);
 
 											 	res = 0;
 											 	if (res == 0)
@@ -707,6 +719,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										 	arr.splice($.inArray(mItemToRemove,arr),1);
 										 	console.log("this is the poping splice array");
 										 	console.dir(arr);
+
+										 	//Emptying the list of mail array
+										 	var emptyMailArray = "<?php echo "string";?>";
+										 	mailray.splice($.inArray(emptyMailArray,mailray),1);
+										 	console.log("Emptying the mail array ");
+										 	console.dir(mailray);
 											res = 0;
 										 	if (res == 0)
 											{
@@ -756,15 +774,18 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 						</div>
 					</div>
 
-					<div id="addLectBtn" class="fixed-action-btn animated" style="right: 70px;bottom: 40px;">
-					    <a  id="addLecturer" class="btn-floating btn-large light-blue accent-3">
+					<!-- Adding lecturers  data to the database -->
+					<div id="addLectBtn" class="fixed-action-btn animated" style="right: 70px;bottom: 35px;">
+					    <a  id="addLecturer" class="btn-floating btn-large light-blue accent-3 waves-effect waves-ripple">
 					      <i class="large material-icons tooltipped" data-tooltip="Add Lecturer" data-position="left" data-delay="5">person_add</i>
 					    </a>
-					    <!-- <ul>
-					      <li><a class="btn-floating red tooltipped" data-tooltip="Add Lecturer" data-position="left" data-delay="5"><i class="material-icons">person_add</i></a></li>
-					    </ul> -->
-					  </div>
-
+					</div>
+					<!-- uploading a file to the database -->
+					<div id="addLectBtn" class="fixed-action-btn animated" style="right: 79px;bottom: 97px;">
+					    <a  id="bulk" class="btn-floating grey accent-3 waves-effect waves-ripple">
+					      <i class="large material-icons tooltipped" data-tooltip="Bulk Upload" data-position="left" data-delay="5">cloud_upload</i>
+					    </a>
+					</div>
 					  <!-- Deleting lecturer Details from the database -->
 					  <?php
 					  	if (isset($_POST['delete_id']))
@@ -948,7 +969,30 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										label:'Send',
 										classes:'blueB',
 										action:function(){
+											var dataString = "mailray=" +mailray;
+											console.dir(dataString);
 
+											if (mailray.length == 0)
+											{
+												$.sweetModal({
+													icon:$.sweetModal.ICON_ERROR,
+													content:'Something Went Wrong',
+													width:'350px'
+												});
+											}
+											else
+											{
+												$.post({
+														url:'lecturers.php',
+														data:dataString,
+														success:function(){
+
+														}
+													})
+													.done(function(){
+
+													});
+											}
 										}
 									}
 								}
@@ -956,22 +1000,17 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 							console.log("This is the mailray for the selection");
 							console.dir(mailray);
 							console.log("Ginger");
-							$(mailray).each(function(index,value){
-								console.dir(index + "" + value);
-							});
-							$('.chips-initial').material_chip({
-							    data: [
-								    {
-								      tag: 'Apple',
-								    }, 
-								    {
-								      tag: 'Microsoft',
-								    }, 
-								    {
-								      tag: 'Google',
-								    }
-							    ],
-							});
+							//working from different angel
+							var MainArray = {};
+							var dataM      = [];
+							for (var i = 0; i < mailray.length; i++) {
+								var object = {};
+								object.tag = mailray[i];
+								dataM.push(object);
+							}
+							//final array list
+							MainArray.data = dataM;
+							$('.chips-initial').material_chip(MainArray);
 						});
 
 						$("a#multipleDelete").on('click',function(){
@@ -1026,6 +1065,19 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 								}
 							});
 						});	
+
+						//Hooking up the onclick event listener
+						$("a#bulk").on('click',function(){
+							$("div#lecturer_lair").load("bulk_lecturer.php");
+							$("ul.back-button").css({"display":"block","opacity":"1"});
+						});
+
+						//Activating the on back click for the csv file download
+						// $("a.back_click").on('click',function(){
+						// 	 setTimeout(function() {
+					 //            $("div.bottomsheetLoader").fadeOut('slow');
+					 //          }, 3500);
+						// });
 					  </script>
 					  <?php 
 					  if (isset($_POST['ardata']))

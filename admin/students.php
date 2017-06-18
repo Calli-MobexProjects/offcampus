@@ -296,9 +296,11 @@
 					<script type="text/javascript">
 						$("a#pend").on('click',function(){
 							$("div#student_body").load("pending_letters.php");
+							$("ul.back-button").css({"display":"block","opacity":"1"});
 						});
 						$("a#approved").on('click',function(){
 							$("div#student_body").load("done_letters.php");
+							$("ul.back-button").css({"display":"block","opacity":"1"});
 						});
 
 						$(window).load(function(){

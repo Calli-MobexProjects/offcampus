@@ -569,6 +569,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												arr.splice($.inArray(itemToRemove, arr),1);
 												console.log("This is a pop array");
 												console.dir(arr);
+
+												//removing from mail ray
+												var mailToRemove ="<?php echo "$lect_email"; ?>";
+												mailray.splice($.inArray(mailToRemove,mailray),1);
+												console.log("This is the pop array mailray");
+												console.dir(mailray);
 											}
 
 											//Counting the list in the array
@@ -613,6 +619,17 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										 	 	});
 										 	 	arr.push($('input#<?php echo "$user_checkmate1";?>').val());
 										 	 	console.dir(arr);
+
+										 	 	//Scripts for the mailray definition
+										 	 	var existMail = "<?php echo "$lect_email";?>";
+										 	 	mailray 	  = $.grep(mailray,function(i){
+										 	 		return i !== existMail;
+										 	 	});
+
+										 	 	mailray.push(existMail);
+										 	 	console.log("Pushing all the array to the array");
+										 	 	console.dir(mailray);
+										 	 	
 										 	 	$("input#<?php echo "$user_checkmate1";?>").prop("checked",true);
 										 	 	$("span#<?php echo "$user_image";?>").css({"visibility":"hidden","opacity":"0"});
 												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});

@@ -161,7 +161,7 @@
 
 						  	?>
 						  	<div class="col s12 card-panel z-depth-1 waves-effect waves-block waves-ripple mt7" id="<?php echo "$template_id";?>" style="border-radius: 3px;">
-						  		<div class="col s3 m3 l3" style="margin-left: -15px;margin-top: 4px;"><img src="../images/admin/alarm-clock.svg" class="responsive-img" alt="<?php echo "$event_description";?>" /></div>
+						  		<div class="col s3 m3 l3" style="margin-left: -15px;margin-top: 4px;"><img src="../images/admin/bell.svg" class="responsive-img" alt="<?php echo "$event_description";?>" /></div>
 						  		<div class="col s9 m9 l9" id="event_content">
 						  			<span class="title" style="margin-top: 5px;"><?php echo "$event_name";?></span><br>
 						  			<span class="content" style="margin-top: 5px;"><?php echo "$nonGMTHours".":"."$minutes"." "."$amp";?> to <?php echo "$nonGMTHours1".":"."$minutes1"." "."$amp1";?></span>
@@ -212,6 +212,7 @@
 							</div>
 						  	<?php
 						 }
+
 						 //Activating the monthly
 						$month_data['monthly'] = $event_data;
 						//Writing the data to file for the calendar to be activated
@@ -220,9 +221,15 @@
 						fclose($fp);
 						}
 						else{
+							unset($event_data);
+							$month_data['monthly'] = $event_data;
+							$fp = fopen($filename, 'w');
+							fwrite($fp,json_encode($month_data,JSON_PRETTY_PRINT));
+							fclose($fp);
 							?>
+
 					<div class="card-panelm bg">
-						<img src="../images/admin/alarm-clock.svg" alt="Help Desk" class="responsive-img help"/>
+						<img src="../images/admin/bell.svg" alt="Help Desk" class="responsive-img help"/>
 					</div>
 					<h5 class="center-align grey-text text-darken-3 small-text">No Events Available, Create One Now</h5>
 					<h5 class="center-align grey-text text-darken-3 small-text"><a class="btn light-blue accent-3 waves-effect waves-ripple cevents"><i class="material-icons left">event</i>Create Event</a></h5>
@@ -294,6 +301,10 @@
 									var eTime      = $('input#eTime').val();
 									var description= $('textarea#description').val();
 
+									//Trying something out
+									// var ren = new Date($('input#sDate').val());
+									// console.dir(ren);
+
 									if (event_name == '' || sDate == '' || eDate == '' || sTime == '' || eTime == '' || description == '') 
 									{
 										$.sweetModal({
@@ -319,6 +330,12 @@
 											url:"events.php",
 											data:dataString,
 											success:function(){
+												$.sweetModal({
+													icon:$.sweetModal.ICON_SUCCESS,
+													content:'Event Created Successfully',
+													width:'400px',
+													timeout:4000,
+												});
 
 											}
 										})

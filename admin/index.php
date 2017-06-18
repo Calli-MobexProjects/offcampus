@@ -47,23 +47,22 @@ while ($count = $user_res->fetch_array(MYSQLI_BOTH))
           height: 200px;
           position: relative;
         }
-  
+        div#preloader{
+
+        }
+         
     </style>
 </head>
 <body>
 	<div class="main-page">
 		<div class="row">
-			<div class="col s2 m2 l2" id="side-pane">
+			      <div class="col s2 m2 l2" id="side-pane">
                 <?php include '../navbars/sidenav.php'; ?>
             </div>
             <div class="col s10 m10 l10">
-                <div id="preloader">
-                 <div class="progress" id="loader">
-                      <div class="indeterminate blue"></div>
-                  </div>
-                </div>
                 <div class="content_body">
                     <div class="row">
+              
                         <div class="col s12 m10 l10 offset-m1 offset-l1 animated fadeIn" id="firstpane">
                             <div class="col s12 m6 l6">
                                 <div class="card-panel col s12 waves-effect waves-block waves-light" id="total_students">

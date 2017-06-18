@@ -787,12 +787,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 													                <label for="icon_prefix">Phone Number</label>\
 												                </div>\
 												                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
-													                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+													                <i class="material-icons prefix" id="icon_prefix">map_marker</i>\
 													                <input type="text" name="region" class="validate region" id="region" required>\
 													                <label for="icon_prefix">Region Of Choice</label>\
 												                </div>\
 												                <div class="input-field col s12" style="margin-top:15px;margin-bottom:12px;">\
-													                <i class="material-icons prefix" id="icon_prefix">person_pin_circle</i>\
+													                <i class="material-icons prefix" id="icon_prefix">place</i>\
 													                <input type="text" name="district" id="district" class="autocomplete" required>\
 													                <label for="district">District Of Choice</label>\
 												                </div>\
@@ -910,9 +910,8 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 						//Configuring the email for multi user provided mails
 						$("i#email").on('click',function(){
 							$.sweetModal({
-								title:'<div class="input-field col s12">\
-								          <input type="text" id="emails" name="emails" value="" style="margin-left:-5px;"/>\
-								          <label for="emails"></label>\
+								title:'<div class="chips chips-initial" data-index="0" data-initialized="true">\
+								          <input type="text" id="emails" class="data" name="emails" value="" style="margin-left:-5px;"/>\
 								        </div>',
 								content:'<div class="input-field col s12">\
 								          \
@@ -937,7 +936,27 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									}
 								}
 							});
+							console.log("This is the mailray for the selection");
+							console.dir(mailray);
+							console.log("Ginger");
+							$(mailray).each(function(index,value){
+								console.dir(index + "" + value);
+							});
+							$('.chips-initial').material_chip({
+							    data: [
+								    {
+								      tag: 'Apple',
+								    }, 
+								    {
+								      tag: 'Microsoft',
+								    }, 
+								    {
+								      tag: 'Google',
+								    }
+							    ],
+							});
 						});
+
 						$("a#multipleDelete").on('click',function(){
 							console.dir(arr);
 							$.sweetModal({

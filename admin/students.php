@@ -123,11 +123,11 @@
 				<?php include '../navbars/sidenav.php'; ?>
 			</div>
 			<div class="col s10 m10 l10">
-				 <div id="preloader">
+				<!--  <div id="preloader">
 	                 <div class="progress" id="loader">
 	                      <div class="indeterminate blue"></div>
 	                  </div>
-                </div>
+                </div> -->
 				<div class="content_body">
 					<div class="row">
 						<div class="col s12 m12 l12 animated fadeIn" id="student_body">
@@ -225,7 +225,9 @@
 																	                <label for="icon_prefix" class="active">Department</label>\
 																                </div>\
 																           </form>',
-																	width  : '600px'
+																	width  : '600px',
+																	// type   : $.sweetModal.TYPE_MODAL,
+																	// theme  : $.sweetModal.THEME_DARK,
 																});
 														});
 

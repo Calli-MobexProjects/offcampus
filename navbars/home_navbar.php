@@ -70,10 +70,20 @@ $fetch=mysqli_fetch_assoc($querying);
 		  white-space: nowrap;
 		  width: 216px;
 		  overflow-y:scroll;
+		  scroll-behavior: smooth;
 		}
+
+		/*.navigation:hover::after{
+		  overflow-y: auto;
+		  white-space: nowrap;
+		  width: 216px;
+		  overflow-y:scroll;
+		}*/
+
 		.navigation::webkit-scrollbar{
 		  background: transparent;
 		  width: 8px;
+		  scroll-behavior: smooth;
 		}
 		ul.nav-demo{
 		  list-style: none;
@@ -215,7 +225,6 @@ $fetch=mysqli_fetch_assoc($querying);
 		div.dropdown-menu{
 			position:fixed !important;
 		}
-
 	</style>
 </head>
 <body>

@@ -1,4 +1,4 @@
-<div class="navigation" style="border-right: 1px solid #e8e8e8;margin-left: -15px;">
+<div class="navigation" style="border-right: 1px solid #e8e8e8;margin-left: -15px;z-index: 10;">
 	<ul class="nav-demo">
 		<li id="home" style="margin-right: -6px;">
 			<a href="index.php">
@@ -21,7 +21,13 @@
 				<span class="menu_name">Lecturers' List</span>
 			</a>
 		</li>
-		<li style="margin-right: -6px;"><a href="analytics.php"><i class="material-icons left icon">trending_up</i><span class="menu_name">Analytics</span></a></li>
+
+		<li style="margin-right: -6px;">
+			<a href="analytics.php">
+				<i class="material-icons left icon">trending_up</i>
+				<span class="menu_name">Analytics</span>
+			</a>
+		</li>
 
 		<li style="margin-right: -6px;">
 			<a href="events.php">
@@ -124,7 +130,6 @@
 			<p>Loading...</p>
 		</div>
  </div>
-
  <!-- Small scripts bi -->
  <script type="text/javascript">
       $(window).load(function(){

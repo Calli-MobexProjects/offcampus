@@ -113,6 +113,13 @@
           $("#sup_menu_item").removeClass("grey lighten-2").addClass("grey lighten-3");
           $("#incent_menu_item").removeClass("grey lighten-3").addClass("grey lighten-2");
         }
+
+        //Work in progress
+        if ($("#super_body").hasClass("fadeInUp")) 
+        {
+          $("#super_body").removeClass("fadeInUp").addClass("fadeOutDown");
+          // $("#incent_body").removeClass("fadeOutDown").addClass("fadeInUp");
+        }
   });
 
 });

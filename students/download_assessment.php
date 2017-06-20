@@ -31,7 +31,7 @@
       <div class="col s12 m10 l10 offset-m1 offset-l1">
       	<div class="dshow z-depth-1">
       		<div class="dimg">
-      			<img src="../images/admin/folder.svg" class="responsive-img help"/>
+      			<img src="../images/admin/pdf.svg" class="responsive-img help"/>
       		</div>
       	</div>
       </div>

@@ -192,6 +192,14 @@ $row=mysqli_fetch_assoc($querying);
         $("#d_menu_item").on('click',function(){
            $("div#agent_list").load("download_assessment.php");
         });
+
+        //Codes for the supervisors and the incentives
+        $("#sup_menu_item").on('click',function(){
+          $("div#agent_list").load("supervisor_details.php");
+        });
+        $("#incent_menu_item").on('click',function(){
+          $("div#agent_list").load("incentives.php");
+        });
       });
     </script>
     </div>

@@ -17,6 +17,7 @@ $lect_res = $mysqli->query($lect_reg);
 while ($c = $lect_res->fetch_array(MYSQLI_BOTH)) 
 {
    $countLecturer = $c['LECT'];
+   
 }
 
 #students with schools

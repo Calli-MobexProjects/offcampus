@@ -1469,6 +1469,8 @@
 .fadeInUp {
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
+  animation-delay: 0;
+  animation-timing-function: ease;
 }
 
 @-webkit-keyframes fadeInUpBig {
@@ -1556,6 +1558,8 @@
 .fadeOutDown {
   -webkit-animation-name: fadeOutDown;
   animation-name: fadeOutDown;
+  animation-timing-function: ease;
+  animation-delay: 0;
 }
 
 @-webkit-keyframes fadeOutDownBig {
@@ -3120,6 +3124,8 @@
 .slideInDown {
   -webkit-animation-name: slideInDown;
   animation-name: slideInDown;
+  animation-delay:0s;
+  animation-timing-function:ease-out;
 }
 
 @-webkit-keyframes slideInLeft {
@@ -3213,6 +3219,8 @@
 .slideInUp {
   -webkit-animation-name: slideInUp;
   animation-name: slideInUp;
+  animation-delay: 0s;
+  animation-timing-function: ease-in;
 }
 
 @-webkit-keyframes slideOutDown {
@@ -3244,6 +3252,8 @@
 .slideOutDown {
   -webkit-animation-name: slideOutDown;
   animation-name: slideOutDown;
+  animation-delay: 0s;
+  animation-timing-function: ease-out;
 }
 
 @-webkit-keyframes slideOutLeft {

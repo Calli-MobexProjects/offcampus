@@ -96,7 +96,7 @@ $row=mysqli_fetch_assoc($querying);
          <?php include '../navbars/stud_sidenav.php';?>
        </div>
 
-      <div class="col s10 m10 l10" id="agent_list" style="display: none;"> <!-- Note that "m8 l9" was added -->
+      <div class="col s10 m10 l10 animated fadeInUp" id="agent_list" style="display: none;"> <!-- Note that "m8 l9" was added -->
       <!-- home page will be here -->
         	<div class="row">
         		<div class="col s12 m12 l12">
@@ -195,10 +195,14 @@ $row=mysqli_fetch_assoc($querying);
 
         //Codes for the supervisors and the incentives
         $("#sup_menu_item").on('click',function(){
-          $("div#agent_list").load("supervisor_details.php");
+          setTimeout(function() {
+             $("div#agent_list").load("supervisor_details.php");
+           }, 500);
         });
         $("#incent_menu_item").on('click',function(){
-          $("div#agent_list").load("incentives.php");
+          setTimeout(function() {
+            $("div#agent_list").load("incentives.php");
+          }, 500);
         });
       });
     </script>

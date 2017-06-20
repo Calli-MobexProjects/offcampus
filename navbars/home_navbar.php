@@ -283,7 +283,7 @@ $fetch=mysqli_fetch_assoc($querying);
 				<a ><i id="email" class="material-icons right tooltipped" data-tooltip="Email" data-position="bottom" data-delay="5" style="margin-right: 15px;">email</i></a>
 			</li>
 			<li style="margin-right: 10px;cursor: pointer;">
-				<a ><i id="label" class="material-icons right tooltipped" data-tooltip="Add Label" data-position="bottom" data-delay="5" style="margin-right: 2px;">label</i></a>
+				<a ><i id="sms" class="material-icons right tooltipped" data-tooltip="Send Sms" data-position="bottom" data-delay="5" style="margin-right: 2px;">textsms</i></a>
 			</li>
 			<li>
 				<a href data-dropdown="#dropdown-with-overlayDetails">

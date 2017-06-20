@@ -99,7 +99,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 			text-shadow: 1px 1px 1px #929292;
 		}
 		li.edit,li.permission,li.delete{
-			margin-right: 18px;
+			margin-right: 14px;
 			margin-left: 4px;
 		}
 	</style>

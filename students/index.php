@@ -144,6 +144,9 @@ $row=mysqli_fetch_assoc($querying);
                       </div>
                   </div>  
                 </div>
+                <div class="col s12 m12 l12 card-panel">
+                  <h5 class="grey-text text-darken-2">Upcoming Events</h5>
+                </div>
         			</div>
         		</div>
         	</div>
@@ -154,7 +157,7 @@ $row=mysqli_fetch_assoc($querying);
        $(window).load(function(){
             $('#mycalendar').monthly({
                 mode: 'event',
-                jsonUrl: '../vendors/monthly/events.json',
+                jsonUrl: '../json/events.json',
                 dataType: 'json'
                 // xmlUrl: '../vendors/monthly/events.xml'
               });

@@ -300,8 +300,6 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									var res = 0;
 									var count = 0;
 									$(document).ready(function(){
-										var id = "<?php echo "$id"; ?>";
-										console.dir("div#"+id);
 										$("div#<?php echo "$lect_id";?>").hover(
 											function(){
 											 $("i.<?php echo "$lect_district";?>").css("display","block");
@@ -1052,7 +1050,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 						});
 
 						//Displaying the array of data on the form for sending text messages
-						$("a#sms").on('click',function(){
+						$("i#sms").on('click',function(){
 							console.dir(phoneray);
 							$.sweetModal({
 								title:'<div class="chips chips-content" data-index="0" data-initialized="true">\
@@ -1096,7 +1094,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											 			//Functions for sending data will be placed here
 											 		}
 											 	})
-											 	.odone(function(){
+											 	.done(function(){
 											 		console.log("Success");
 											 	});
 											 }

@@ -56,6 +56,7 @@ $fetch=mysqli_fetch_assoc($querying);
 			width: 16%;
 			height: 100%;
 			z-index: 2;
+			overflow: hidden;
 			background-color: #eeeeee;
 			margin-bottom: 20px;
 
@@ -69,7 +70,6 @@ $fetch=mysqli_fetch_assoc($querying);
 		  overflow-y: auto;
 		  white-space: nowrap;
 		  width: 216px;
-		  overflow-y:scroll;
 		  scroll-behavior: smooth;
 		}
 
@@ -230,6 +230,9 @@ $fetch=mysqli_fetch_assoc($querying);
 			left: 225px;
 			display: none;
 		}
+		.sweet-modal-overlay{
+			z-index: 999 !important;
+		}
 	</style>
 </head>
 <body>
@@ -252,6 +255,9 @@ $fetch=mysqli_fetch_assoc($querying);
                 <ul class="left back-button animated fadeIn">
                 	<li><a href="" class="back_click"><i class="material-icons">arrow_back</i></a></li>
                 </ul>
+              <!--   <ul class="center search-bar animated fadeIn">
+                	<li><input type="text" name="name"/></li>
+                </ul> -->
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
                    <!--  <li>Login Time:  <small class="name" style="padding-right:20px;"></small></li> -->
 					<li><a href=""><i class="material-icons left notify" style="font-size: 30px;">notifications</i><span class="counter white pulse">.</span></a></li>

@@ -287,6 +287,9 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 									</div>
 								</div>
 								<script type="text/javascript">
+									//Configuration fo the phone number array
+									var phoneray = [];
+									var phoneCount = 0;
 									//configuration for the email array
 									var mailray = [];
 									var mailCount = 0;
@@ -508,6 +511,16 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												$("span.<?php echo "$user_checkmate";?>").css({"visibility":"visible","opacity":"1"});
 												$("div#<?php echo "$lect_id";?>").addClass("checkedBg").css({"border-left":"3px solid #039be5"});
 												$("i#<?php echo "$lect_district";?>").css("display","block");
+												//pushing to the phone array list 
+												var phone_data = "<?php echo "$lect_phone";?>";
+												//Setting if an array data already exist or present
+												var existPhone = "<?php echo "$lect_phone"; ?>";
+												phoneray = $.grep(phoneray,function(i){
+													return i !== existPhone;
+												})
+												phoneray.push(phone_data);
+												console.log("Phone Numbers");
+												console.dir(phoneray);
 												//Pushing to the email array list
 												var user_mailer = "<?php echo "$lect_email"; ?>";
 												//getting if the array is already present
@@ -581,6 +594,12 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 												mailray.splice($.inArray(mailToRemove,mailray),1);
 												console.log("This is the pop array mailray");
 												console.dir(mailray);
+
+												//Removing from the phone number array
+												var phoneToRemove = "<?php echo "$lect_phone"; ?>";
+												phoneray.splice($.inArray(phoneToRemove,phoneray),1);
+												console.log("This is the phone number pop array");
+												console.dir(phoneray);
 											}
 
 											//Counting the list in the array
@@ -617,6 +636,14 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										$("input#test5").click(function(){
 											if ($(this).prop("checked") == true)
 											 {
+											 	//Maagic script for getting the overall phone numbers
+											 	var existNumber = "<?php echo "$lect_phone"; ?>";
+											 	phoneray = $.grep(phoneray,function(i){
+											 		return i !== existNumber;
+											 	});
+											 	phoneray.push(existNumber); //pushing new number to it
+											 	console.log("Multicheck Phone numbers");
+											 	console.dir(phoneray);
 
 											 	//Magic script for array definition
 										 	 	var existValue = $('input#<?php echo "$user_checkmate1";?>').val();
@@ -624,7 +651,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										 	 		return i !== existValue;
 										 	 	});
 										 	 	arr.push($('input#<?php echo "$user_checkmate1";?>').val());
-										 	 	console.dir(arr);
+										 	
 
 										 	 	//Scripts for the mailray definition
 										 	 	var existMail = "<?php echo "$lect_email";?>";
@@ -667,14 +694,17 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											 	$("input#<?php echo "$user_checkmate1";?>").prop("checked",false);
 											 	var mItemToRemove = $('input#<?php echo "$user_checkmate1";?>').val();
 											 	arr.splice($.inArray(mItemToRemove,arr),1);
-											 	console.log("this is the poping splice array");
-											 	console.dir(arr);
-
+											
 											 	//Removing the email from the stack array list
 											 	var mMailToRemove = "<?php echo "$lect_email"; ?>";
 											 	mailray.splice($.inArray(mMailToRemove,mailray),1);
-											 	console.log("This is the popping email array > Multicheckbox");
-											 	console.dir(mailray);
+											 
+
+											 	//Removing the phone numbers from the stack of the array list
+											 	var mPhoneToRemove = "<?php echo "$lect_phone";?>";
+											 	phoneray.splice($.inArray(mPhoneToRemove,phoneray),1);
+											 	console.log("Phone splicing for multicheckbox");
+											 	console.dir(phoneray);
 
 											 	res = 0;
 											 	if (res == 0)
@@ -715,13 +745,21 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											$("#<?php echo "$user_image";?>").css({"visibility":"visible","opacity":"1"});
 
 										 	$("input#<?php echo "$user_checkmate1";?>").prop("checked",false);
+
+										 	//Emptying the list of array for the phone array data
+										 	var emptyPhoneArray = "<?php echo "$lect_phone"; ?>";
+										 	phoneray.splice($.inArray(emptyPhoneArray,phoneray),1);
+										 	console.log("Emptying Phone Array on Back Close");
+										 	console.dir(phoneray);
+
+										 	//Emptying the list of array for the user indexes
 										 	var mItemToRemove = $('input#<?php echo "$user_checkmate1";?>').val();
 										 	arr.splice($.inArray(mItemToRemove,arr),1);
 										 	console.log("this is the poping splice array");
 										 	console.dir(arr);
 
 										 	//Emptying the list of mail array
-										 	var emptyMailArray = "<?php echo "string";?>";
+										 	var emptyMailArray = "<?php echo "$lect_email";?>";
 										 	mailray.splice($.inArray(emptyMailArray,mailray),1);
 										 	console.log("Emptying the mail array ");
 										 	console.dir(mailray);
@@ -986,7 +1024,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 														url:'lecturers.php',
 														data:dataString,
 														success:function(){
-
+															//Functions for sending data will be place here
 														}
 													})
 													.done(function(){
@@ -1013,6 +1051,72 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 							$('.chips-initial').material_chip(MainArray);
 						});
 
+						//Displaying the array of data on the form for sending text messages
+						$("a#sms").on('click',function(){
+							console.dir(phoneray);
+							$.sweetModal({
+								title:'<div class="chips chips-content" data-index="0" data-initialized="true">\
+								          <input type="text" id="emails" class="data" name="emails" value="" style="margin-left:-5px;"/>\
+								        </div>',
+								content:'<div class="input-field col s12">\
+								          \
+								          <textarea id="description" class="materialize-textarea" data-length="120" style="margin-top:-10px;"></textarea>\
+								          <label for="description">Message</label>\
+								        </div>',
+								width:'500px',
+								buttons:{
+									cancelButton:{
+										label:'Cancel',
+										classes:'secondaryB bordered flat',
+										action:function()
+										{
+
+										}
+									},
+									doneButton:{
+										label:'Send Sms',
+										classes:'blueB',
+										action:function()
+										{
+											if (phoneray.length <= 0)
+											 {
+											 	$.sweetModal({
+											 		icon:$.sweetModal.ICON_ERROR,
+											 		content:'Fatal Error . Contact Admin',
+											 		showCloseDialog:false,
+											 		width:'350px',
+											 	});
+											 }
+											 else{
+											 	var dataString = "phoneArray="+phoneray;
+											 	$.post({
+											 		url:"lecturers.php",
+											 		data:dataString,
+											 		success:function(){
+											 			//Functions for sending data will be placed here
+											 		}
+											 	})
+											 	.odone(function(){
+											 		console.log("Success");
+											 	});
+											 }
+
+										}
+									}
+								}
+							});
+							//Codes for the configuration of the contact chips
+							var PhoneArray = {};
+							var dataM 	   = [];
+							for (var i = 0; i < phoneray.length; i++) {
+								var object = {};
+								object.tag = phoneray[i];
+								dataM.push(object);
+							}
+							//Placing th overall data into the phone array (Big one)
+							PhoneArray.data = dataM;
+							$('.chips-content').material_chip(PhoneArray);
+						});
 						$("a#multipleDelete").on('click',function(){
 							console.dir(arr);
 							$.sweetModal({

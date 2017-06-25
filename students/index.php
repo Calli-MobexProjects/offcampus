@@ -28,7 +28,7 @@ function test_input($data) {
           <script type="text/javascript">
             $.sweetModal({
               icon:$.sweetModal.ICON_SUCCESS,
-              content:'Data Send Successfully',
+              content:'Data Sent Successfully',
               width:'400px',
               timeout:3000
             });

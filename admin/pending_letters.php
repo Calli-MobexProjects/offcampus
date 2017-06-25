@@ -442,13 +442,13 @@
 					content:'<form  method="post" action="" id="lectForm" style="margin-top:10px;">\
 				                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 					                <i class="material-icons prefix" id="icon_prefix">event</i>\
-					                <input type="text" name="sDate" class="allTarget" id="sDate" required style="font-weight:400;color:424242;padding-top:12px;">\
-					                <label for="sDate">Start Date</label>\
+					                <input type="text" name="msDate" class="allTarget" id="msDate" required style="font-weight:400;color:424242;padding-top:12px;">\
+					                <label for="msDate">Start Date</label>\
 				                </div>\
 				                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 					                <i class="material-icons prefix" id="icon_prefix">date_range</i>\
-					                <input type="text" name="eDate" class="allTarget" id="eDate" required style="font-weight:400;color:424242;padding-top:12px;">\
-					                <label for="eDate">End Date</label>\
+					                <input type="text" name="meDate" class="allTarget" id="meDate" required style="font-weight:400;color:424242;padding-top:12px;">\
+					                <label for="meDate">End Date</label>\
 				                </div>\
 							 </form>',
 					width:'400px',
@@ -465,7 +465,44 @@
 							classes:'blueB',
 							action:function()
 							{
+								//get the values of the content and sending it through ajax request
+								var startDate = $("#msDate").val();
+								var endDate   = $("#meDate").val();
 
+								if (arrayData.length == 0) 
+								{
+									$.sweetModal({
+										icon:$.sweetModal.ICON_ERROR,
+										content:'Fatal Error. Contact System Admin',
+										width:'400px',
+										showCloseButton:true,
+									});
+								}
+								//validating the user input or the admin date settings
+								if (startDate == '' || endDate == '')
+								 {
+								 	$.sweetModal({
+								 		icon:$.sweetModal.ICON_ERROR,
+								 		content:'Field(s) Cannot Be Empty',
+								 		width:'350px',
+								 		showCloseButton:false,
+								 		timeout:3500
+								 	});
+								 }
+								 else if (startDate > endDate) 
+								 {
+								 	$.sweetModal({
+								 		icon:$.sweetModal.ICON_ERROR,
+								 		content:'Incorrect Date Range',
+								 		width:'350px',
+								 		showCloseButton:false,
+								 		timeout:3500
+								 	});
+								 }
+								 else
+								 {
+								 	var dataString  = "msDate="+startDate
+								 }
 							}
 						}
 					}

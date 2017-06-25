@@ -79,9 +79,9 @@ if($userid==$id){
          $run_update=mysqli_query($mysqli,$Update);
       
        if($Profile=='student'){
-            session_regenerate_id();
+            session_regenerate_id(true);
              $_SESSION['userid'] = $userid;
-            session_write_close(); 
+            session_commit(); 
             header('Location:students/index.php');
                                 exit();
            

@@ -36,12 +36,6 @@
 							$start_date		 = $pend_row['start_Date'];
 							$end_date 		 = $pend_row['end_Date'];
 
-							//Getting the full name of the region from the regions table
-							$regName = "SELECT fullname FROM region WHERE reg_Abbrv = '$pend_region'";
-							$regFetch = $mysqli->query($regName);
-							$regResult = $regFetch->fetch_array(MYSQLI_BOTH);
-							$pend_region_fullName = $regResult['fullname'];
-
 							$pend_id = substr($pend_schoolName,0,2).mt_rand();
 							$color1 = "9a1b2c38d4e57f6";
 							$color_fig = str_shuffle($color1);
@@ -289,6 +283,15 @@
 														timeout:3000
 													});
 												}
+												else if (startDate > endDate)
+												{
+													$.sweetModal({
+														icon:$.sweetModal.ICON_ERROR,
+														content:'Incorrect Date Range',
+														width:'400px',
+														timeout:3000
+													});
+												}
 												else{
 													var dataString = "user_id="+user_id +"&startDate="+startDate + "&endDate="+endDate;
 													console.dir(dataString);
@@ -301,12 +304,12 @@
 																		icon:$.sweetModal.ICON_SUCCESS,
 																		content:'Letter Successfully Approved',
 																		width:'400px',
-																		timeout:3000
+																		timeout:2600
 																	});
-															}, 1000);
+															}, 3400);
 															setTimeout(function() {
 																window.location.reload();
-															}, 3400);
+															}, 4000);
 														}
 													})
 													.done(function(){
@@ -348,7 +351,7 @@
 								                </div>\
 								                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 									                <i class="material-icons prefix" id="icon_prefix">location_on</i>\
-									                <input type="text" name="region" class="validate" value="<?php echo "$pend_region_fullName";?>" disabled="disabled"  style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
+									                <input type="text" name="region" class="validate" value="<?php echo "$pend_region";?>" disabled="disabled"  style="font-size:14px;font-weight:400;line-height:1;color:#919191;">\
 									                <label for="icon_prefix" class="active">Region</label>\
 								                </div>\
 								                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
@@ -501,7 +504,34 @@
 								 }
 								 else
 								 {
-								 	var dataString  = "msDate="+startDate
+								 	var dataString  = "arrayData="+arrayData +"&msDate="+startDate +"&meDate="+endDate;
+								 	console.dir(dataString);
+								 	$.ajax({
+								 		type:"POST",
+								 		url:"pending_letters.php",
+								 		data:dataString,
+								 		success:function(data){
+								 			setTimeout(function() {
+								 					$.sweetModal({
+								 						icon:$.sweetModal.ICON_SUCCESS,
+								 						content:'Letter Successfully Approved',
+								 						width:'400px',
+								 						showCloseButton:false,
+								 						timeout:2500
+								 					});
+								 				},3500);
+								 			setTimeout(function() {
+								 				window.location.reload();
+								 			}, 4500);
+								 			console.dir(data);
+								 		}
+								 	})
+								 	.done(function(){
+								 		console.log("Successfully Done");
+								 	})
+								 	.fail(function(){
+								 		console.log("Failed Nicely");
+								 	});
 								 }
 							}
 						}
@@ -518,4 +548,25 @@
 
 	 	});
 	 </script>
+	 <!-- Codes for setting the date for the multiple students letter approval -->
+	 <?php 
+	 	if (isset($_POST['arrayData']) && isset($_POST['msDate']) && isset($_POST['meDate']))
+	 	{
+	 		$arrayIndex = $_POST['arrayData'];
+	 		$multipleStartDate = $_POST['msDate'];
+	 		$multipleEndDate   = $_POST['meDate'];
+
+	 		//Looping through the array index for the users or students 
+	 		$totalNumber = count($arrayIndex);
+
+	 		for ($i=0; $i < $totalNumber; $i++) { 
+	 			$approve_multiple_query = "UPDATE student_details SET start_Date = '$multipleStartDate[$i]', end_Date = '$multipleEndDate[$i]', action ='2' WHERE ID = '$arrayIndex[$i]'";
+	 			$approve_multiple_fetch = $mysqli->query($approve_multiple_query);
+	 			if ($approve_multiple_fetch) 
+	 			{
+	 				echo "Something happened";
+	 			}
+	 		}
+	 	}
+	  ?>
 </body>

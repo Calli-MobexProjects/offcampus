@@ -1150,15 +1150,18 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 													url:"lecturers.php",
 													data:{ardata:arr},
 													success:function(){
-														$.sweetModal({
+														setTimeout(function() {
+															$.sweetModal({
 											 				content: "Delete Successfull !",
 											 				icon   : $.sweetModal.ICON_SUCCESS,
 											 				width  :'400px',
-											 				timeout: 2300
+											 				showCloseButton:false,
+											 				timeout: 2500
 											 			});
+														}, 3000);
 											 			setTimeout(function() {
 											 				window.location.reload();
-											 			}, 2800);
+											 			}, 4000);
 													}
 												});
 											}

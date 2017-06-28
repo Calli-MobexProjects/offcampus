@@ -113,6 +113,16 @@
 			z-index: 99999;
 			top: -6px;
 		}
+		div.bg{
+			position: relative;
+		/*	margin:50px auto;*/
+			width:auto;
+			height: 400px;
+		}
+		img.help{
+			width: 100%;
+			height: 400px;
+		}
 
 	</style>
 </head>
@@ -241,14 +251,12 @@
 								else
 								{
 									echo 
-										'<div class="card-panel z-depth-0 col s12 m12 l12" style="background-color:#eeeeee;">
-											<div class="empty_list">
-												<div class="image_list">
-													<img src="../images/admin/list.svg" class="responsive-img" alt="Empty List"/>
-													<span class="empty_title">No Lecturer Added</span>
-												</div>
-
+										'<div class="col s12 m12 l12">
+											<div class="card-panelm bg">
+												<img src="../images/admin/empty_list.svg" alt="Help Desk" class="responsive-img help"/>
 											</div>
+											<h5 class="center-align grey-text text-darken-3">Students\' List Empty</h5>
+											<h5 class="center-align grey-text text-darken-3 small-text">Create One Now</h5>
 										</div>
 										';
 								}

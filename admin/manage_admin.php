@@ -250,16 +250,17 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 													 		url:"manage_admin.php",
 													 		data:dataString,
 													 		success:function(){
-
-													 			$.sweetModal({
-													 				icon:$.sweetModal.ICON_SUCCESS,
-													 				content:'Status Successfully Changed',
-													 				width:'350px',
-													 				timeout:3300
-													 			});
+													 			setTimeout(function() {
+													 				$.sweetModal({
+														 				icon:$.sweetModal.ICON_SUCCESS,
+														 				content:'Status Successfully Changed',
+														 				width:'350px',
+														 				timeout:2500
+														 			});
+													 			}, 2800);
 													 			setTimeout(function() {
 													 				window.location.reload();
-													 			}, 3900);
+													 			}, 3500);
 													 		}
 													 	});
 													}
@@ -284,7 +285,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 									$.sweetModal({
 										title:'Edit Admin Credentials',
 										content:'',
-										width:'400px',
+										width:'460px',
 									});
 								});
 
@@ -392,7 +393,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 						                <label for="email">Email</label>\
 					                </div>\
 					           </form>',
-					           width:'600px',
+					           width:'560px',
 					buttons:{
 						cancelButton:{
 							label:'Cancel',

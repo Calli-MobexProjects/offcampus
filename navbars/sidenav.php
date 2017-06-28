@@ -37,6 +37,13 @@
 		</li>
 
 		<li style="margin-right: -6px;">
+			<a href="student_mappings.php">
+				<i class="material-icons left icon">call_merge</i>
+				<span class="menu_name">Mappings</span>
+			</a>
+		</li>
+
+		<li style="margin-right: -6px;">
 			<a href="distance.php">
 				<i class="material-icons left icon">explore</i>
 				<span class="menu_name">Distance</span>

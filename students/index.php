@@ -20,7 +20,14 @@ function test_input($data) {
         $region      = test_input($_POST['region']);
         $district    = test_input($_POST['district']);
 
-        $apply_query = "INSERT INTO student_details(Stud_id,sch_Name,sch_prog,directed_To,region,district,start_Date,end_Date,action,date_Created) VALUES('$ses_id','$school_name','$school_prog','$letter_head','$region','$district','1990-01-01','1990-01-01','1',NOW())";
+        #Query for the selection of the longitude and the latitude from the districts table
+        $coord_query = "SELECT longitude,latitude FROM district WHERE district_name = '$district'";
+        $coord_results = $mysqli->query($coord_query);
+        $coord_row     = $coord_results->fetch_array(MYSQLI_BOTH);
+        $longitude     = $coord_row['longitude'];
+        $latitude      = $coord_row['latitude'];
+
+        $apply_query = "INSERT INTO student_details(Stud_id,sch_Name,sch_prog,directed_To,region,district,start_Date,end_Date,action,longitude,latitude,date_Created) VALUES('$ses_id','$school_name','$school_prog','$letter_head','$region','$district','1900-01-01','1900-01-01','1','$longitude','$latitude',NOW())";
         $apply_fetch = $mysqli->query($apply_query);
         if ($apply_fetch) 
         {

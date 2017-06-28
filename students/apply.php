@@ -80,7 +80,7 @@ ini_set( 'display_errors', true );
                             while($fetch=mysqli_fetch_assoc($querying)){
                                  
                                 ?>
-                              <option id="region" value="<?php echo $fetch['reg_Abbrv']; ?>"><?php echo $fetch['fullname']; ?></option>
+                              <option id="region" value="<?php echo $fetch['fullname']; ?>"><?php echo $fetch['fullname']; ?></option>
                                 <?php 
                                 
                             }
@@ -107,7 +107,7 @@ ini_set( 'display_errors', true );
                              <?php
                               // $somevar = "<script>document.writeln(ll);</script>";
                               // echo "$somevar";
-                              $dist="SELECT * FROM district WHERE reg_Abbrv = 'ASH'";
+                              $dist="SELECT * FROM district";
                               $run=mysqli_query($mysqli,$dist);
                               while($row=mysqli_fetch_assoc($run)){
                                    

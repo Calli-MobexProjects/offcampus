@@ -25,9 +25,26 @@ include("../navbars/home_navbar.php");
 				$school_program = $data['sch_prog'];
 				$region 		= $data['region'];
 				$district 		= $data['district'];
-			
+				?>
+				<div class="col s3 m3 l3">
+					<div class="card-panel"><?php echo "$firstname"." "."$lastname"." "."$othername";?></div>
+				</div>
+				<?php
+			}
+
+			$lect_row = $results->getAllLecturer($mysqli);
+			while ($data_lect = $lect_row->fetch_array(MYSQLI_BOTH))
+			{
+				$lect_firstname = $data_lect['lect_firstname'];
+				$lect_lastname = $data_lect['lect_lastname'];
+				?>
+					<div class="col s3 m3 l3">
+						<div class="card-panel"><?php echo "$lect_firstname"." "."$lect_lastname";?></div>
+					</div>
+				<?php
 			}
  			?>
+
  		</div>
  	</div>
  </body>

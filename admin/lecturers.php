@@ -416,13 +416,19 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 															 		data: dataString,
 															 		success: function()
 															 		{
-															 			//Then something should happen here
-															 			$.sweetModal({
-															 				content: "Details Updated Successfully !",
-															 				icon   : $.sweetModal.ICON_SUCCESS,
-															 				timeout: 4000
-															 			});
-															 			window.location.reload();
+															 			setTimeout(function() {
+															 					//Then something should happen here
+																 			$.sweetModal({
+																 				content: "Details Updated Successfully !",
+																 				icon   : $.sweetModal.ICON_SUCCESS,
+																 				width:'350px',
+																 				timeout: 2600,
+																 				showCloseButton:false
+																 			});
+															 			}, 3000);
+															 			setTimeout(function() {
+															 					window.location.reload();
+															 			}, 4000);
 															 		}
 															 	});
 															 }
@@ -446,7 +452,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											 $.sweetModal({
 											 	title: 'Are You Sure ?',
 											 	icon : $.sweetModal.ICON_WARNING,
-											 	content: 'This Detail Will Permanently Be Deleted.',
+											 	content: 'These Details Will Permanently Be Deleted.',
 											 	width : '400px',
 											 	buttons:{
 											 		deleteButton:{
@@ -461,7 +467,9 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											 				 {
 											 				 	$.sweetModal({
 											 				 		icon:$.sweetModal.ICON_ERROR,
+											 				 		width:'400px',
 											 				 		content:'Fatal Error Has Occurred, Contact Your Super Admin',
+											 				 		timeout:4000
 											 				 	});
 											 				 }
 											 				 else{
@@ -471,10 +479,18 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											 				 		data: dataString,
 											 				 		success:function()
 											 				 		{
-											 				 			
-											 				 			$.sweetModal("Data Successfully Deleted");
-											 				 			window.location.reload();
-
+											 				 			setTimeout(function() {
+											 				 				$.sweetModal({
+											 				 					content:'Delete Successfully',
+											 				 					icon:$.sweetModal.ICON_SUCCESS,
+											 				 					width:'350px',
+											 				 					showCloseButton:false,
+											 				 					timeout:2600
+											 				 				});
+											 				 			}, 3000);
+											 				 			setTimeout(function() {
+											 				 				window.location.reload();
+											 				 			}, 4000);
 											 				 		}
 											 				 	});
 											 				 }
@@ -871,7 +887,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 													                <label for="district">District Of Choice</label>\
 												                </div>\
 												           </form>',
-												width : '700px',
+												width : '600px',
 												buttons:{
 													submitButton:{
 														label: 'Submit Data',
@@ -890,7 +906,9 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 															 	$.sweetModal({
 															 		content:"Fields Cannot Be Empty",
 															 		icon   :$.sweetModal.ICON_ERROR,
-
+															 		width  :'350px',
+															 		showCloseButton:false,
+															 		timeout:3000
 															 	});
 															 }
 															 else
@@ -901,19 +919,26 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 															 		data: dataString,
 															 		success: function()
 															 		{
-															 			//Then something should happen here
-															 			$.sweetModal({
-															 				content: "Details Saved Successfully !",
-															 				icon   : $.sweetModal.ICON_SUCCESS,
-															 				width  :'400px',
-															 				timeout: 2300
-															 			});
+															 			setTimeout(function() {
+															 				//Then something should happen here
+																 			$.sweetModal({
+																 				content: "Details Saved Successfully !",
+																 				icon   : $.sweetModal.ICON_SUCCESS,
+																 				width  :'350px',
+																 				showCloseButton:false,
+																 				timeout: 2700
+																 			});
+															 			}, 3000);
+															 			setTimeout(function() {
+															 				window.location.reload();
+															 			}, 4000);
 															 		}
 															 	})
 															 	.done(function(){
-															 		setTimeout(function() {
-															 			window.location.reload();
-															 		}, 3000);
+															 		console.log("This is success");
+															 	})
+															 	.fail(function(){
+															 		console.log("This is failure");
 															 	});
 															 }
 

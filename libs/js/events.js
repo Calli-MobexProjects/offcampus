@@ -1,5 +1,7 @@
-$(document).ready(function(){
-	$("div#student_body").dblclick(function(){
-		alert("Yay its working");
-	});
-});
+/* Jquery Library Startup */
+(function($){
+	$.fn.simplify = function(options)
+	{
+		
+	}
+}(jQuery));

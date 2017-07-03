@@ -31,11 +31,27 @@
   		return $results;
   	}
 
-    //Defining the function for cross division
-    // public function getCrossDivision($mysqli)
-    // {
-    //   $query = "SELECT "
-    // }
+    //Defining the function for the retrieving of the count of the students
+    public function getCountStudents($mysqli)
+    {
+      $query = "SELECT COUNT(*) AS totalStudents FROM student_details ORDER BY date_Created";
+      $results = $mysqli->query($query);
+      return $results;
+    }
+    //Counting the lecturers
+    public function getCountLecturer($mysqli)
+    {
+      $query = "SELECT COUNT(*) AS totalLecturer FROM lecturer";
+      $results = $mysqli->query($query);
+      return $results;
+    }
+
+    //Main mapper for the operations
+    public function getMappingData($mysqli)
+    {
+      
+    }
+
 
   } 
  ?>

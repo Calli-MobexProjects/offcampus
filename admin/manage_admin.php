@@ -38,6 +38,20 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 	$change_status_query = "UPDATE privileges SET status = '$current_value' WHERE id = '$current_id'";
 	$change_status_fetch = $mysqli->query($change_status_query);
 }
+
+//Updating the extra admin details or personal information
+if (isset($_POST['verification']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['dataId'])) 
+{
+	# code...
+	$verification = $_POST['verification'];
+	$firstname    = $_POST['firstname'];
+	$lastname 	  = $_POST['lastname'];
+	$email        = $_POST['email'];
+	$dataId 	  = $_POST['dataId'];
+
+	$update_admin_query = "UPDATE register SET Stud_id = '$verification',f_Name= '$firstname',l_Name = '$lastname', email = '$email' WHERE Stud_id = '$dataId'";
+	$update_admin_fetch = $mysqli->query($update_admin_query);
+}
 ?>
 <head>
 	<title>OCTPs&reg; | Manage Admin</title>
@@ -116,7 +130,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 						<div class="col s12 m8 l8 offset-m2 offset-l2">
 							<h5 class="grey-text text-accent-3 left-align stud_list_title"><i class="material-icons left view">view_list</i>Admin Data Grid</h5>
 							<?php 
-								$select_admin_query = "SELECT * FROM register WHERE Profile = 'Admin'";
+								$select_admin_query = "SELECT * FROM register WHERE Profile = 'Admin' ORDER BY date_Created DESC";
 								$select_admin_fetch = $mysqli->query($select_admin_query);
 								$select_admin_count = $select_admin_fetch->num_rows;
 
@@ -186,16 +200,36 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 								$("#<?php echo "$user_identifier";?>").on('click',function(){
 									$.sweetModal({
 										title:'<div class="col s12 m12 l12">\
-													\			<div class="col s2 m2 l2" id="<?php echo "$lect_id";?>">\
+													\<div class="col s2 m2 l2" id="<?php echo "$lect_id";?>">\
 													\				<img src="../images/boys.jpg" style="width:80px; height=80px;border:4px solid rgba(0,0,0,0.25);" class="circle responsive-img overview">\
 																</div>\
 													\			<div class="col s8 m8 l8">\
 													\				<span class="name" style="position:absolute;top:50px;left:135px;text-transform:capitalize;"><?php echo "$fullName";?></span>\
 													\				<span class="more_vert"><a href="" style="position:absolute;top:20px;right:60px;"><i class="material-icons right grey-text text-darken-2">delete</i></a><a href="" style="position:absolute;top:20px;right:100px;"><i class="material-icons right grey-text text-darken-2">archive</i></a></span>\
-																<div>\
-															</div>',
-										content:'',
-										width:'700px',
+													<div>\
+											   </div>',
+										content:' <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+											                <i class="material-icons prefix" id="icon_prefix">security</i>\
+											                <input type="text" name="verification" class="validate" id="verification" value="<?php echo "$stud_id";?>" required data-length="15" disabled style="font-weight:400;font-size:15px;color:#919191;">\
+											                <label for="verification" class="active">Verification Name</label>\
+										                </div>\
+										                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+											                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+											                <input type="text" name="firstname" class="validate" id="firstname" required value="<?php echo "$firstname";?>" disabled style="font-weight:400;font-size:15px;color:#919191;">\
+											                <label for="firstname" class="active">First Name</label>\
+										                </div>\
+										                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+											                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+											                <input type="text" name="lastname" class="validate" id="lastname" required value="<?php echo "$lastname";?>" disabled style="font-weight:400;font-size:15px;color:#919191;">\
+											                <label for="lastname" class="active">Last Name</label>\
+										                </div>\
+										                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+											                <i class="material-icons prefix" id="icon_prefix">email</i>\
+											                <input type="email" name="email" id="email1" class="email" required style="padding:6px;" value="<?php echo "$email";?>" disabled style="font-weight:400;font-size:15px;color:#919191;">\
+											                <label for="email" class="active">Email</label>\
+										                </div>',
+										width:'600px',
+
 
 									});
 								});
@@ -267,8 +301,9 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 													else{
 														$.sweetModal({
 															icon:$.sweetModal.ICON_ERROR,
-													 		content:'Checkbox Haven\'t been Checked',
+													 		content:'Checkbox Hasn\'t been Checked',
 													 		width:'350px',
+													 		timeout:3000
 													 	});
 													 	
 													 }
@@ -284,8 +319,80 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 								$("li#edi<?php echo "$ad_set_manager";?>").on('click',function(){
 									$.sweetModal({
 										title:'Edit Admin Credentials',
-										content:'',
-										width:'460px',
+										content:'<form  method="post" action="" id="lectForm" style="margin-top:10px;">\
+										                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+											                <i class="material-icons prefix" id="icon_prefix">security</i>\
+											                <input type="text" name="verification" class="validate" id="verification" value="<?php echo "$stud_id";?>" required data-length="15">\
+											                <label for="verification" class="active">Verification Name</label>\
+										                </div>\
+										                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+											                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+											                <input type="text" name="firstname" class="validate" id="firstname" required value="<?php echo "$firstname";?>">\
+											                <label for="firstname" class="active">First Name</label>\
+										                </div>\
+										                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+											                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
+											                <input type="text" name="lastname" class="validate" id="lastname" required value="<?php echo "$lastname";?>">\
+											                <label for="lastname" class="active">Last Name</label>\
+										                </div>\
+										                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
+											                <i class="material-icons prefix" id="icon_prefix">email</i>\
+											                <input type="email" name="email" id="email1" class="email" required style="padding:6px;" value="<?php echo "$email";?>">\
+											                <label for="email" class="active">Email</label>\
+										                </div>\
+										           </form>',
+										width:'500px',
+										buttons:{
+											cancelButton:{
+												label:'Cancel',
+												classes:'secondaryB bordered flat',
+												action:function(){
+
+												}
+											},
+											doneButton:{
+												label:'Save',
+												classes:'blueB',
+												action:function()
+												{
+													var verification = $("#verification").val();
+													var firstname	 = $("#firstname").val();
+													var lastname	 = $("#lastname").val();
+													var email 		 = $("#email1").val();
+
+													var dataId		 = "<?php echo "$stud_id";?>";
+													var dataString = "verification="+verification +"&firstname="+firstname + "&lastname="+lastname + "&email="+email + "&dataId=" + dataId;
+													console.dir(dataString);
+													$.ajax({
+														type:"POST",
+														url:"manage_admin.php",
+														data:dataString,
+														success:function()
+														{
+															setTimeout(function() {
+																$.sweetModal({
+																	icon:$.sweetModal.ICON_SUCCESS,
+																	content:'Details Updated Successfully',
+																	width:'350px',
+																	timeout:2600,
+																});
+
+															}, 3100);
+															setTimeout(function() {
+																window.location.reload();
+															}, 4000);
+														}
+													})
+													.done(function(){
+														console.log("The operation was success");
+													})
+													.fail(function(){
+														console.log("This failed");
+													});
+													
+												}
+											}
+										}
 									});
 								});
 
@@ -296,6 +403,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 										icon: $.sweetModal.ICON_WARNING,
 										content:'This Data Will Be Deleted Permanently !',
 										width:'370px',
+										showCloseButton:false,
 										buttons:{
 											cancelButton:{
 												label:'Cancel',
@@ -308,6 +416,46 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 												label:'Delete',
 												classes:'redB',
 												action:function(){
+													var deleteId = "<?php echo "$stud_id";?>";
+													if (deleteId == '')
+													 {
+													 	$.sweetModal({
+													 		icon:$.sweetModal.ICON_ERROR,
+													 		content:'Fatal Error!. Contact Admin',
+													 		width:'350px',
+													 		showCloseButton:false,
+													 		timeout:3000
+													 	});
+													 }
+													 else
+													 {
+													 	var dataString = "deleteId="+deleteId;
+													 	$.ajax({
+													 		type:"POST",
+													 		url:"manage_admin.php",
+													 		data:dataString,
+													 		success:function(){
+													 			setTimeout(function() {
+													 				$.sweetModal({
+																 		icon:$.sweetModal.ICON_SUCCESS,
+																 		content:'Admin Successfully Deleted',
+																 		width:'350px',
+																 		showCloseButton:false,
+																 		timeout:2600
+																 	});
+													 			}, 3000);
+													 			setTimeout(function() {
+													 				window.location.reload();
+													 			}, 4000);
+													 		}
+													 	})
+													 	.done(function(){
+													 		console.log("This was Successful");
+													 	})
+													 	.fail(function(){
+													 		console.log("This operation failed");
+													 	});
+													 }
 
 												}
 											}
@@ -319,7 +467,16 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 								$("li#per<?php echo "$ad_set_manager";?>").on('click',function(){
 									$.sweetModal({
 										title:'Set Privileges',
-										content:'',
+										content:'<form action="" method="post">\
+													<input type="checkbox" id="item1" value="<?php echo "$status";?>"/>\
+												 	<label for="item1">Check To Change Status</label>\
+												 	<input type="checkbox" id="item2" value="<?php echo "$status";?>"/>\
+												 	<label for="item2">Check To Change Status</label>\
+												 	<input type="checkbox" id="item3" value="<?php echo "$status";?>"/>\
+												 	<label for="item3">Check To Change Status</label>\
+												 	<input type="checkbox" id="item4" value="<?php echo "$status";?>"/>\
+												 	<label for="item4">Check To Change Status</label>\
+												 </form>',
 										width:'500px',
 										buttons:{
 											cancelButton:{
@@ -374,12 +531,12 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 					                </div>\
 					                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 						                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-						                <input type="text" name="firstname" class="validate" id="firstname" required>\
+						                <input type="text" name="firstname" class="validate" id="firstname" required style="text-transform:capitalize;">\
 						                <label for="firstname">First Name</label>\
 					                </div>\
 					                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 						                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-						                <input type="text" name="lastname" class="validate" id="lastname" required>\
+						                <input type="text" name="lastname" class="validate" id="lastname" required style="text-transform:capitalize;">\
 						                <label for="lastname">Last Name</label>\
 					                </div>\
 					                 <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
@@ -389,7 +546,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 					                </div>\
 					                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 						                <i class="material-icons prefix" id="icon_prefix">email</i>\
-						                <input type="email" name="email" id="email" class="email" required>\
+						                <input type="email" name="email" id="emailData" class="email" required>\
 						                <label for="email">Email</label>\
 					                </div>\
 					           </form>',
@@ -410,7 +567,7 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 								var firstname 	 = $('#firstname').val();
 								var lastname 	 = $('#lastname').val();
 								var password 	 = $('#password').val();
-								var email 		 = $('#email').val();
+								var email 		 = $('#emailData').val();
 
 								var display = $("#verification").data("length");
 								console.log("Getting the length of the data");
@@ -433,15 +590,18 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 										url:"manage_admin.php",
 										data: dataString,
 										success:function(){
-											$.sweetModal({
-								 				content: "Details Saved Successfully !",
-								 				icon   : $.sweetModal.ICON_SUCCESS,
-								 				width  :'400px',
-								 				timeout: 2000
-								 			});
+											setTimeout(function() {
+												$.sweetModal({
+									 				content: "Details Saved Successfully !",
+									 				icon   : $.sweetModal.ICON_SUCCESS,
+									 				width  :'400px',
+									 				timeout: 2600,
+									 				showCloseButton:false
+									 			});
+											}, 3000);
 								 			setTimeout(function() {
 								 				window.location.reload();
-								 			}, 2800);
+								 			}, 4000);
 										}
 									});
 								 }
@@ -469,5 +629,16 @@ if (isset($_POST['statusID']) && isset($_POST['statusValue']))
 			// 	$("div.template").css({"position":"relative","z-index":"99999","width":"200%"});
 			// });
 		</script>
+
+		<?php 
+		#Deleting a particular admin from the platform
+		 if (isset($_POST['deleteId']))
+		 {
+		 	# code...
+		 	$deleteId = $_POST['deleteId'];
+		 	$delete_admin_query = "DELETE FROM register WHERE Stud_id = '$deleteId' AND Profile = 'Admin'";
+		 	$delete_admin_fetch = $mysqli->query($delete_admin_query);
+		 }
+		 ?>
 	</div>
 </body>

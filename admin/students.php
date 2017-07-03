@@ -212,7 +212,7 @@
 																	content: '<form action="" method="post">\
 																                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 																	                <i class="material-icons prefix" id="icon_prefix">person_pin</i>\
-																	                <input type="text" name="firstname" class="validate" id="firstname" value="<?php echo "$stud_firstname"." "."$stud_lastname".""."$stud_othername";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;"><label for="firstname" class="active">First Name</label>\
+																	                <input type="text" name="firstname" class="validate" id="firstname" value="<?php echo "$stud_firstname"." "."$stud_lastname"." "."$stud_othername";?>" disabled style="font-size:14px;font-weight:400;line-height:1;color:#919191;"><label for="firstname" class="active">First Name</label>\
 																                </div>\
 																                <div class="input-field col s12" style="margin-top:-10px;margin-bottom:8px;">\
 																	                <i class="material-icons prefix" id="icon_prefix">credit_card</i>\

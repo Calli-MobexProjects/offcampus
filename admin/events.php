@@ -204,12 +204,6 @@
 						  			});
 						  		});
 						  	</script>
-						  	<!-- Codes for the adding of extra events -->
-						  	<div id="addEventBtn" class="fixed-action-btn animated" style="right: 70px;bottom: 40px;">
-							    <a  id="addEvent" class="btn-floating btn-large light-blue accent-3 cevents">
-							      <i class="large material-icons tooltipped" data-tooltip="Create Events" data-position="left" data-delay="5">event</i>
-							    </a>
-							</div>
 						  	<?php
 						 }
 
@@ -238,6 +232,12 @@
 					?>
 				</div>
 			</div>
+			 	<!-- Codes for the adding of extra events -->
+		  	<div id="addEventBtn" class="fixed-action-btn animated" style="right: 70px;bottom: 40px;">
+			    <a  id="addEvent" class="btn-floating btn-large light-blue accent-3 cevents">
+			      <i class="large material-icons tooltipped" data-tooltip="Create Events" data-position="left" data-delay="5">event</i>
+			    </a>
+			</div>
 			<script type="text/javascript">
 				$(window).load(function(){
 						$('#mycalendar').monthly({
@@ -246,6 +246,16 @@
 								dataType: 'json'
 								// xmlUrl: '../vendors/monthly/events.xml'
 							});
+					var event_add = "<?php echo "$event_count";?>";
+					if (event_add > 0) 
+					{
+						$("#addEventBtn").css({"display":"block","opacity":"1"});
+					}
+					else
+					{
+						$("#addEventBtn").css({"display":"none","opacity":"0"});
+					}
+
 				});
 
 				$("a.cevents").on('click',function(){
@@ -310,7 +320,8 @@
 										$.sweetModal({
 											icon:$.sweetModal.ICON_ERROR,
 											content:'Field(s) Are Empty !',
-											width:'400px',
+											width:'350px',
+											showCloseButton:false,
 											timeout:4000,
 										});
 									}else if (sDate > eDate)
@@ -318,7 +329,8 @@
 										$.sweetModal({
 											icon:$.sweetModal.ICON_ERROR,
 											content:'Invalid Date Range!',
-											width:'400px',
+											width:'350px',
+											showCloseButton:false,
 											timeout:4000,
 										});
 									}
@@ -330,12 +342,18 @@
 											url:"events.php",
 											data:dataString,
 											success:function(){
-												$.sweetModal({
-													icon:$.sweetModal.ICON_SUCCESS,
-													content:'Event Created Successfully',
-													width:'400px',
-													timeout:4000,
-												});
+												setTimeout(function() {
+													$.sweetModal({
+														icon:$.sweetModal.ICON_SUCCESS,
+														content:'Event Created Successfully',
+														width:'350px',
+														showCloseButton:false,
+														timeout:2600,
+													});
+												}, 3000);
+												setTimeout(function() {
+													window.location.reload();
+												}, 4000);
 
 											}
 										})
@@ -388,7 +406,7 @@
 				$eTime 		= $_POST['eTime'];
 				$description= $_POST['description'];
 
-				$color = "#898984";
+				$color = "#212121";
 
 				$event_add_query="INSERT INTO events(name,startdate,enddate,start_time,end_time,description,color,created_by) VALUES('$event_name','$sDate','$eDate','$sTime','$eTime','$description','$color',NOW())";
 				$event_add_fetch = $mysqli->query($event_add_query);

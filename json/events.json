@@ -1,53 +1,13 @@
 {
     "monthly": [
         {
-            "id": 4,
-            "name": "PTA Meeting",
-            "startdate": "2017-06-15",
-            "enddate": "2017-06-16",
-            "starttime": "12:00:00",
-            "endtime": "16:00:00",
-            "color": "#898984",
-            "url": ""
-        },
-        {
-            "id": 5,
-            "name": "Conference",
-            "startdate": "2017-06-16",
-            "enddate": "2017-06-23",
-            "starttime": "12:00:00",
-            "endtime": "19:00:00",
-            "color": "#898984",
-            "url": ""
-        },
-        {
-            "id": 6,
-            "name": "Gskdjf",
-            "startdate": "2017-06-15",
-            "enddate": "2017-06-16",
-            "starttime": "12:00:00",
-            "endtime": "12:35:00",
-            "color": "#898984",
-            "url": ""
-        },
-        {
-            "id": 7,
-            "name": "mobex",
-            "startdate": "2017-06-22",
-            "enddate": "2017-06-29",
-            "starttime": "14:00:00",
-            "endtime": "16:00:00",
-            "color": "#898984",
-            "url": ""
-        },
-        {
-            "id": 8,
-            "name": "gjkgjl",
-            "startdate": "2017-08-03",
-            "enddate": "2017-08-04",
-            "starttime": "11:55:00",
-            "endtime": "12:20:00",
-            "color": "#898984",
+            "id": 1,
+            "name": "Graduation",
+            "startdate": "2017-07-02",
+            "enddate": "2017-07-02",
+            "starttime": "08:30:00",
+            "endtime": "12:00:00",
+            "color": "#212121",
             "url": ""
         }
     ]

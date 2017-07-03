@@ -39,7 +39,7 @@
 		<li style="margin-right: -6px;">
 			<a href="student_mappings.php">
 				<i class="material-icons left icon">call_merge</i>
-				<span class="menu_name">Mappings</span>
+				<span class="menu_name">Mappings <span class="new badge red">4</span></span>
 			</a>
 		</li>
 

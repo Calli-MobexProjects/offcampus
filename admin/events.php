@@ -20,8 +20,8 @@
 		}
 		div.monthly{
 			margin-top: 10px;
-			max-height: 569px;
-			height: 569px;
+			max-height: 580px;
+			height: 580px;
 			font-size: 0.8em;
 		}
 		.input-field textarea.materialize_textarea:focus{
@@ -44,6 +44,10 @@
 		 }
 		 .mt7{
 		 	margin-bottom: -4px;
+		 }
+		 #addEventBtn{
+		 	display:none;
+		 	opacity: 0;
 		 }
 		/**/
 	</style>

@@ -1,6 +1,9 @@
 <?php
  include '../navbars/home_navbar.php';
  require_once "../inc/connection.php";
+  ini_set( 'error_reporting', E_ALL);
+  ini_set( 'display_errors', true );
+
 ?>
 <head>
 	<title>OCTPs&reg; | Events</title>
@@ -20,8 +23,8 @@
 		}
 		div.monthly{
 			margin-top: 10px;
-			max-height: 580px;
-			height: 580px;
+			max-height: 569px;
+			height: 569px;
 			font-size: 0.8em;
 		}
 		.input-field textarea.materialize_textarea:focus{
@@ -46,7 +49,7 @@
 		 	margin-bottom: -4px;
 		 }
 		 #addEventBtn{
-		 	display:none;
+		 	display: none;
 		 	opacity: 0;
 		 }
 		/**/
@@ -210,7 +213,6 @@
 						  	</script>
 						  	<?php
 						 }
-
 						 //Activating the monthly
 						$month_data['monthly'] = $event_data;
 						//Writing the data to file for the calendar to be activated
@@ -220,7 +222,7 @@
 						}
 						else{
 							unset($event_data);
-							$month_data['monthly'] = $event_data;
+							$month_data['monthly'] = '';
 							$fp = fopen($filename, 'w');
 							fwrite($fp,json_encode($month_data,JSON_PRETTY_PRINT));
 							fclose($fp);

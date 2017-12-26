@@ -9,6 +9,7 @@
 - Privilege Assignations etc.
 
 ## SNAPSHOTS ##
+<img src="images/admin/calendar.svg" style="width:200px;height:200px;"/>
 
 ## CONTACT US ##
 Email: codealligh@gmail.com

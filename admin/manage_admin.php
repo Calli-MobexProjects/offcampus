@@ -162,7 +162,7 @@ if (isset($_POST['verification']) && isset($_POST['firstname']) && isset($_POST[
 								<div id="temp<?php echo "$user_identifier";?>" class="card-panel col s12 waves-effect waves-block waves-ripple template">
 									<div class="cont_size" id="<?php echo "$user_identifier";?>">
 										<div class="col s12">
-										<img src="../images/admin/boy.svg" class="responsive-img mt10"/>
+										<img src="../images/school-bus.svg" class="responsive-img mt10"/>
 										</div>
 										<div class="col s12 ">
 										<span class="admin_det text-center"><?php echo "$firstname"." "."$lastname";?></span><br>

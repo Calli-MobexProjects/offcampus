@@ -80,8 +80,11 @@ button.login{
    border-bottom: 1px solid  #00b0ff;
    box-shadow: 0 1px 0 0  #00b0ff;
  }
- 
-
+  /* Changing the color loaders */
+ /* .spinner-yellow,
+  .spinner-yellow-only {
+    border-color: #FFFFFF;
+  }*/
 
    /* invalid color */
    .input-field input[type=text].invalid {
@@ -193,4 +196,50 @@ ul.tabs li a{
 .lh2{
   line-height: 1.5;
 
+}
+input[type="checkbox"] + label:before{
+  border: 2px solid #212121;
+  background: transparent;
+}
+input[type="checkbox"]:checked + label:before{
+  border: 2px solid transparent;
+  border-bottom: 2px solid #039be5;
+  border-right: 2px solid #039be5;
+  background: transparent;
+}
+input.filled-in[type="checkbox"] + label:after{
+  border: 2px solid #039be5;
+  background: transparent;
+}
+input.filled-in[type="checkbox"]:checked + label:after{
+  background: #039be5;
+}
+input.filled-in[type="checkbox"]:checked + label:before{
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+/* Css styling for the collapsible container body of the mapping of the students page to lecturers */
+.collapsible-body{
+  padding: 1rem;
+}
+.backdrop{
+  background-color: #919191;
+}
+.material-tooltip{
+  width:110px;
+}
+.material-tooltip > span {
+    font-size:13px;
+    padding:2px;
+    font-weight: 500;
+}
+
+#edit_btn{
+  width: 100%;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  font-weight: 500;
 }

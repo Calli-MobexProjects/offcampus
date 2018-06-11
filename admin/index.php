@@ -128,10 +128,10 @@ while ($counting = $student_result->fetch_array(MYSQLI_BOTH))
           $(window).load(function(){
               setTimeout(function() {
                  $("div#preloader").fadeOut('slow');
-              }, 3000);
+              }, 2500);
               setTimeout(function() {
                 $("#firstpane,#secondpane").fadeIn('slow');
-              }, 3000);
+              }, 2000);
                 
             });
     </script>

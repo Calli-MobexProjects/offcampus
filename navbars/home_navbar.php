@@ -25,6 +25,7 @@ $fetch=mysqli_fetch_assoc($querying);
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet"> 
 <!-- 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> -->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -33,8 +34,9 @@ $fetch=mysqli_fetch_assoc($querying);
 	<!-- Css links for the system -->
 	<link rel="stylesheet" type="text/css" href="../libs/css/animate.css"/>
 	<link rel="stylesheet" type="text/css" href="../libs/css/materialize.css"/>
-	<link rel="stylesheet" type="text/css" href="../libs/css/styles.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/css/app.css"/>
 	<link rel="stylesheet" type="text/css" href="../libs/css/simple_mods.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/css/mapper.css"/>
 
 	<!-- <link rel="stylesheet" type="text/css" href="../vendors/sweetalerts/css/sweetalert2.min.css"> -->
 
@@ -49,6 +51,8 @@ $fetch=mysqli_fetch_assoc($querying);
 	<style type="text/css">
 		html,body{
 			background-color: #f1f1f1 !important;
+			max-width: 100%;
+			max-height: auto;
 		}
 		div.navigation{
 			position: fixed;
@@ -395,6 +399,7 @@ $fetch=mysqli_fetch_assoc($querying);
 			 $('.modal').modal({
 			 	dismissible:false,
 			 });
+			 $('.collapsible').collapsible();
 
 			 $('#uploadPhoto').on('click',function(){
 			 	$.sweetModal({

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet"> 
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="shortcut icon" href="images/octps.ico">
@@ -8,7 +10,7 @@
 	<!-- Css links for the system -->
 	<link rel="stylesheet" type="text/css" href="libs/css/animate.css">
 	<link rel="stylesheet" type="text/css" href="libs/css/materialize.css">
-	<link rel="stylesheet" type="text/css" href="libs/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="libs/css/app.css">
 	<link rel="stylesheet" type="text/css" href="vendors/sweetModal/min/jquery.sweet-modal.min.css">
 	<!-- <link rel="stylesheet" type="text/css" href="vendors/sweetalerts/css/sweetalert2.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="vendors/iziToast/css/iziToast.min.css">

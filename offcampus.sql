@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: offcampus
 -- ------------------------------------------------------
--- Server version	5.7.18-0ubuntu0.16.04.1
+-- Server version	5.7.19-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -111,7 +111,7 @@ CREATE TABLE `events` (
   `color` varchar(8) NOT NULL,
   `created_by` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,6 +120,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
+INSERT INTO `events` VALUES (1,'dksjfl','2017-07-26','2017-07-31','12:00:00','12:20:00','this a ','#212121','2017-07-26 12:31:21');
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,11 +138,11 @@ CREATE TABLE `lecturer` (
   `region` varchar(30) NOT NULL,
   `lect_district` varchar(30) NOT NULL,
   `lect_indicator` varchar(20) NOT NULL,
-  `phone_number` int(15) NOT NULL,
+  `phone_number` varchar(15) NOT NULL,
   `email` varchar(30) NOT NULL,
   `lect_image` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`lect_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +151,7 @@ CREATE TABLE `lecturer` (
 
 LOCK TABLES `lecturer` WRITE;
 /*!40000 ALTER TABLE `lecturer` DISABLE KEYS */;
-INSERT INTO `lecturer` VALUES (31,'Acheampong','Lord','Ashanti','Ahafoano','Afaf',543456897,'offeilord@gmail.com','images/boys.jpg'),(41,'Sameen','Shaw','Greater Accra','Kasoa','Kaso',909090909,'sameen.shaw@imdb.co.uk','images/boys.jpg'),(44,'Bentil','Richmond','Greater Accra','Kasoa','Kaso',903940392,'joe.bentil@gmail.com','images/boys.jpg'),(46,'Nathaniel ','Buabeng','Upper West Region','Jongo','Jong',938495843,'example@.com','images/boys.jpg'),(50,'Natalie','Portman','Upper East Region','Kololo','Kolo',298398493,'example@.com','images/boys.jpg'),(52,'Margot','Robbie','Western  Region','Jodo','Jodo',290394838,'robbiemargot@imdb.co.uk','images/boys.jpg'),(53,'Ryan','Reynolds','Ashanti Region','Kumasi','Kuma',390495847,'ryan.reynolds@imdb.com','images/boys.jpg'),(54,'Blake','Lively','Northern Region','Pru','Pru',293094839,'lively.blake@imdb.com','images/boys.jpg'),(55,'Katherine','Disher','Ashanti Region','Adansi North','Adan',209099009,'example@.com','images/boys.jpg'),(56,'Felicity','Jones','Greater Accra','Adansi North','Adan',902930392,'example@.com','images/boys.jpg');
+INSERT INTO `lecturer` VALUES (41,'Sameen','Shaw','Greater Accra','Kasoa','Kaso','909090909','sameen.shaw@imdb.co.uk','images/boys.jpg'),(44,'Bentil','Richmond','Greater Accra','Kasoa','Kaso','233273185852','joe.bentil@gmail.com','images/boys.jpg'),(46,'Nathaniel ','Buabeng','Upper West Region','Jongo','Jong','233205773779','example@.com','images/boys.jpg'),(50,'Natalie','Portman','Upper East Region','Kololo','Kolo','298398493','example@.com','images/boys.jpg'),(52,'Margot','Robbie','Western  Region','Jodo','Jodo','290394838','robbiemargot@imdb.co.uk','images/boys.jpg'),(53,'Ryan','Reynolds','Ashanti Region','Kumasi','Kuma','390495847','ryan.reynolds@imdb.com','images/boys.jpg'),(55,'Katherine','Disher','Ashanti Region','Adansi North','Adan','209099009','example@.com','images/boys.jpg'),(56,'Felicity','Jones','Greater Accra','Adansi North','Adan','902930392','example@.com','images/boys.jpg'),(59,'Acheampong','Lord','Ashanti Region','Kumasi','Kuma','233200746417','example@.com','images/boys.jpg');
 /*!40000 ALTER TABLE `lecturer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +231,7 @@ CREATE TABLE `privileges` (
 
 LOCK TABLES `privileges` WRITE;
 /*!40000 ALTER TABLE `privileges` DISABLE KEYS */;
-INSERT INTO `privileges` VALUES ('gaza@1234',0,0,0,0,0),('junior@1234',0,0,0,0,1),('liliWhite',0,0,0,0,1),('mark@9090',0,0,0,0,0),('marvin9090',0,0,0,0,1),('moone@1234',0,0,0,0,1),('trupy@8989',0,0,0,0,1),('user@1234',0,0,0,0,1);
+INSERT INTO `privileges` VALUES ('gaza@1234',0,0,0,0,0),('junior@1234',0,0,0,0,1),('liliWhite',0,0,0,0,1),('mark@9090',0,0,0,0,0),('marvin9090',0,0,0,0,0),('moone@1234',0,0,0,0,1),('trupy@8989',0,0,0,0,1),('user@1234',0,0,0,0,0);
 /*!40000 ALTER TABLE `privileges` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +291,7 @@ CREATE TABLE `register` (
 
 LOCK TABLES `register` WRITE;
 /*!40000 ALTER TABLE `register` DISABLE KEYS */;
-INSERT INTO `register` VALUES ('214cs01001248','Acheampong','Lord','','Bed In Accounting','N/A','images/boys.jpg','63a9f0ea7bb98050796b649e85481845','0200756783','offeilord@gmail.com','student','2017-06-28 06:05:22','2017-05-30 05:08:12'),('214cs01001353','Henry','Miller','','Education of the spirit','N/A','images/boys.jpg','63a9f0ea7bb98050796b649e85481845','0209099009','henryiller@gmail.com','student','2017-06-27 20:05:08','2017-05-30 05:08:12'),('214cs01001865','Owusu','Nathaniel','B','Bed In Accounting','N/A','images/boys.jpg','e90a3e20701ffd5398dd77adc5678973','0200459869','natty@gmail.com','student','2017-06-28 17:15:01','2017-05-30 05:08:12'),('admin','Admin','','','','','','63a9f0ea7bb98050796b649e85481845','','henryiller@gmail.com','Admin','2017-05-30 05:08:12','2017-05-30 08:29:16'),('mark@9090','Mark','Franklin','','unknown','unknown','unknown','ffed94079bd1647b137494e63cfa4904','unknown','mark.franklin@live.com','Admin','2017-05-30 05:08:12','2017-05-30 05:08:12'),('marvin9090','Marvin','Tisdale','','unknown','unknown','unknown','2e3b623e1a07a6150a744a7b74c18e69','unknown','tisdale.marvin@imdb.com','Admin','2017-05-30 05:08:12','2017-05-30 05:08:12'),('trupy@8989','Trudy','Plat','','unknown','unknown','unknown','4c9cc02bd81bf4876ff871d85fad4d10','unknown','trudy.plat89@gmail.com','Admin','2017-05-30 05:08:12','2017-05-30 05:08:12'),('user@1234','Kay','Lord','','unknown','unknown','unknown','ffed94079bd1647b137494e63cfa4904','unknown','offeilord@gmail.com','Admin','2017-05-30 05:08:12','2017-05-30 05:08:12');
+INSERT INTO `register` VALUES ('214cs01001248','Acheampong','Lord','','Bed In Accounting','N/A','images/boys.jpg','63a9f0ea7bb98050796b649e85481845','0200756783','offeilord@gmail.com','student','2017-06-28 06:05:22','2017-05-30 05:08:12'),('214cs01001256','Lord','Offei','','Education of the spirit','N/A','images/boys.jpg','ffed94079bd1647b137494e63cfa4904','0209099093','offeilord@gmail.com','student','2017-07-26 12:41:03','2017-05-30 05:08:12'),('214cs01001353','Henry','Miller','','Education of the spirit','N/A','images/boys.jpg','63a9f0ea7bb98050796b649e85481845','0209099009','henryiller@gmail.com','student','2017-06-27 20:05:08','2017-05-30 05:08:12'),('214cs01001865','Owusu','Nathaniel','B','Bed In Accounting','N/A','images/boys.jpg','e90a3e20701ffd5398dd77adc5678973','0200459869','natty@gmail.com','student','2017-06-28 17:15:01','2017-05-30 05:08:12'),('214cs01006767','Rory','Jedikiah','','Education of the spirit','N/A','images/boys.jpg','2e3b623e1a07a6150a744a7b74c18e69','0290390493','jed@gmail.com','student','2017-07-13 21:07:49','2017-05-30 05:08:12'),('admin','Admin','','','','','','63a9f0ea7bb98050796b649e85481845','','henryiller@gmail.com','Admin','2017-05-30 05:08:12','2017-05-30 08:29:16'),('mark@9090','Mark','Franklin','','unknown','unknown','unknown','ffed94079bd1647b137494e63cfa4904','unknown','mark.franklin@live.com','Admin','2017-05-30 05:08:12','2017-05-30 05:08:12'),('trupy@8989','Trudy','Plat','','unknown','unknown','unknown','4c9cc02bd81bf4876ff871d85fad4d10','unknown','trudy.plat89@gmail.com','Admin','2017-05-30 05:08:12','2017-05-30 05:08:12'),('user@1234','Kay','Lord','','unknown','unknown','unknown','ffed94079bd1647b137494e63cfa4904','unknown','offeilord@gmail.com','Admin','2017-05-30 05:08:12','2017-05-30 05:08:12');
 /*!40000 ALTER TABLE `register` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,7 +319,7 @@ CREATE TABLE `student_details` (
   PRIMARY KEY (`ID`),
   KEY `Stud_id` (`Stud_id`),
   CONSTRAINT `student_details_ibfk_1` FOREIGN KEY (`Stud_id`) REFERENCES `register` (`Stud_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,7 +328,7 @@ CREATE TABLE `student_details` (
 
 LOCK TABLES `student_details` WRITE;
 /*!40000 ALTER TABLE `student_details` DISABLE KEYS */;
-INSERT INTO `student_details` VALUES (8,'214cs01001248','Kotie R/C Primary School','Physics','Headmistress','Central Region','Agona East','2017-08-02','2017-08-18',2,-0.792080,5.617562,'2017-06-28 06:14:44'),(9,'214cs01001353','Mankranso M/A Primary','Integrated Science','Headmistress','Eastern Region','Asuogyaman','2017-06-28','2017-06-30',2,0.047440,6.388742,'2017-06-28 06:17:28');
+INSERT INTO `student_details` VALUES (8,'214cs01001248','Kotie R/C Primary School','Physics','Headmistress','Central Region','Agona East','2017-08-02','2017-08-18',2,-0.792080,5.617562,'2017-06-28 06:14:44'),(9,'214cs01001353','Mankranso M/A Primary','Integrated Science','Headmistress','Eastern Region','Asuogyaman','2017-06-28','2017-06-30',2,0.047440,6.388742,'2017-06-28 06:17:28'),(10,'214cs01001865','togolese primary school','basic design and technology','Headmistress','Central Region','Adansi North','2017-07-05','2017-07-12',2,-1.630525,6.284965,'2017-07-05 11:52:31'),(11,'214cs01006767','Nandom R/c primary school','home economics','Headmistress','Northern Region','Ellembele','2017-07-13','2017-07-20',2,0.000000,0.000000,'2017-07-13 21:10:22'),(12,'214cs01001256','Mawuli Senior High School','Mathematics','Headmaster','Volta Region','Bodi (New)','2017-07-26','2017-07-31',2,-2.755362,6.222716,'2017-07-26 12:44:36');
 /*!40000 ALTER TABLE `student_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -366,4 +367,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-03 14:19:21
+-- Dump completed on 2017-09-13  4:00:56

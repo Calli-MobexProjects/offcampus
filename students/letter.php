@@ -97,7 +97,7 @@ $pdf->Cell(180,4,$date,0,1);
 $pdf->Cell(180,4,$directed_to ,0,1);
 $pdf->Cell(180,4,$school_name ,0,1);
 $pdf->Cell(180,4,$district ,0,1);
-$pdf->Cell(180,4,$fullRegionName ,0,1);
+$pdf->Cell(180,4,$region ,0,1);
   
 $pdf->Ln(8);
 

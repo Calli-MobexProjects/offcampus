@@ -74,9 +74,13 @@
 
 		<div class="divider"></div>
 		<li class="grey-text text-accent-1 header disabled">Accounts Settings</li>
-		<li style="margin-right: -6px;"><a href="#"><i class="material-icons left icon">person_pin</i><span class="menu_name">Edit Profile</span></a></li>
-		<li style="margin-right: -6px;"><a href="../admin/change_password.php"><i class="material-icons left icon">lock</i><span class="menu_name">Change Password</span></a></li>
+		<li style="margin-right: -6px;">
+			<a href="edit_profile.php"><i class="material-icons left icon">person_pin</i><span class="menu_name">Edit Profile</span></a>
+		</li>
 
+		<li style="margin-right: -6px;">
+			<a href="../admin/change_password.php"><i class="material-icons left icon">lock</i><span class="menu_name">Change Password</span></a>
+		</li>
 		<li style="margin-right: -6px;">
 			<a href="forum.php">
 				<i class="material-icons left icon">forum</i>
@@ -91,8 +95,8 @@
 		
 	</ul>
 </div>
- <div class="bottomsheetLoader z-depth-3 waves-effect waves-block waves-ripple" style="width:190px;height: 70px;background-color: #424242;position: fixed;z-index: 9999;bottom: 10px;border-radius: 4px;cursor: pointer;opacity: 0.9;">
-		<div class="preloader-wrapper small active" style="position: relative;top: 16px;left: 10px;">
+ <div class="bottomsheetLoader z-depth-3 waves-effect waves-block waves-ripple" style="width:160px;height: 60px;background-color: #424242;position: fixed;z-index: 9999;bottom: 10px;border-radius: 4px;cursor: pointer;opacity: 0.9;">
+		<div class="preloader-wrapper small active" style="position: relative;top: 13px;left: 10px;">
 			<div class="spinner-layer spinner-blue">
 			  <div class="circle-clipper left">
 			    <div class="circle"></div>
@@ -133,7 +137,7 @@
 			  </div>
 			</div>
 		</div>
-		<div class="label" style="position: absolute;right:35px;margin-top: -18px;color:white;font-weight: 500;">
+		<div class="label" style="position: absolute;right:35px;margin-top: -22px;color:white;font-weight: 500;">
 			<p>Loading...</p>
 		</div>
  </div>

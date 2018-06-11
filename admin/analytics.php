@@ -53,9 +53,7 @@ require_once '../inc/connection.php';
 				<div class="col s12 m6 l6">
 					<div class="cylinderdiv" style="height: 400px;"></div>
 				</div>
-				<div class="col s12 m12 l12">
-					<div class="card-panel"></div>
-				</div>
+				
 			</div>
 		</div>
 	</div>

@@ -268,7 +268,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										<span class="phone"><?php echo $lect_district_name; ?></span>
 									</div>
 									<div class="col s3 m3 l3" id="email">
-										<span class="email left-align"><a href="#">+233<?php echo "$lect_phone";?></a></span>
+										<span class="email left-align"><a href="#"><?php echo "$lect_phone";?></a></span>
 									</div>
 									
 									<div class="col s2 m2 l2">
@@ -1079,7 +1079,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 							console.dir(phoneray);
 							$.sweetModal({
 								title:'<div class="chips chips-content" data-index="0" data-initialized="true">\
-								          <input type="text" id="emails" class="data" name="emails" value="" style="margin-left:-5px;"/>\
+								          <input type="text" id="emails" class="data" name="phone" value="" style="margin-left:-5px;"/>\
 								        </div>',
 								content:'<div class="input-field col s12">\
 								          \
@@ -1101,6 +1101,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 										classes:'blueB',
 										action:function()
 										{
+                                            var description = $("#description").val();
 											if (phoneray.length <= 0)
 											 {
 											 	$.sweetModal({
@@ -1111,12 +1112,21 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 											 	});
 											 }
 											 else{
-											 	var dataString = "phoneArray="+phoneray;
-											 	$.post({
+											 	var dataString = "phoneArray="+phoneray + "&message_data="+description;
+                                                 console.dir(dataString);
+											 	$.ajax({
+                                                    type:"POST",
 											 		url:"lecturers.php",
 											 		data:dataString,
-											 		success:function(){
+											 		success:function(data){
 											 			//Functions for sending data will be placed here
+                                                      	setTimeout(function() {
+                                                      		var $toastContent = $('<span>SMS Sent Successfully</span>');
+                                                      		Materialize.toast($toastContent,2000);
+                                                      	}, 2000);
+                                                        setTimeout(function(){
+                                                            window.location.reload();
+                                                        },3000);
 											 		}
 											 	})
 											 	.done(function(){
@@ -1207,7 +1217,7 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 						// 	 setTimeout(function() {
 					 //            $("div.bottomsheetLoader").fadeOut('slow');
 					 //          }, 3500);
-						// });
+						// });e
 					  </script>
 					  <?php 
 					  if (isset($_POST['ardata']))
@@ -1221,9 +1231,69 @@ if (isset($_POST['update_firstname']) && isset($_POST['update_lastname'])   && i
 					    	if ($deleteFetch) 
 					    	{
 					    		# code...
+                                
+                                
 					    	}
 					    }
 					  }
+                     //Collecting the data for the sending of the email and the sms messaging pack 
+                     if(isset($_POST['phoneArray']) && isset($_POST['message_data']))
+                     {
+                       $smsms=$_POST['phoneArray'];
+                         $message = $_POST['message_data'];
+                        
+                          $username='WIGAL TEST';
+          $password='wigaltest@123';
+          
+        
+            
+            $messageApi='https://isms.wigalsolutions.com/ismsweb/sendmsg/';
+           
+           
+          
+            $from='OCTPs';
+            $to= $smsms;
+            
+     
+           
+                  //firing the api to send message
+       
+        $params='username='.$username.'&password='.$password.'&from='.$from.'&to='.$to.'&message='.$message;
+
+        
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_URL,$messageApi);  
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_POST,1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$params);		
+        $return=curl_exec($ch);			
+        curl_close($ch);
+        $send=explode(" :: ",$return);       
+        if(stristr($send[0],"SUCCESS") != FALSE)
+        {
+           
+	      echo "<script language ='javascript'>
+                                   alert('A reset code has been sent to your phone');
+                                   window.location=''; 
+                                    </script>";
+            
+        }
+               
+         else{
+             echo "<script language ='javascript'>
+                               
+                                   alert('error sending message');
+                                   window.location='sendmessage.php'; 
+                                    </script>";
+         }      
+                  
+                         
+                         
+                         
+                     }
+
+                      
+                   
 					  ?>
 				</div>
 			</div>

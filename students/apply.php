@@ -50,12 +50,12 @@ ini_set( 'display_errors', true );
                   <form method="post" action="index.php" id="signUpForm">
                     <div class="input-field col s12 m12 l12" style="padding-top: 15px;">
                         <i class="material-icons prefix">store</i>
-                        <input id="sch_Name" type="text" name="sch_Name" class="validate" data-length="100" required="required">
+                        <input id="sch_Name" type="text" name="sch_Name" class="validate" data-length="100" required="required" style="text-transform: capitalize;">
                         <label for="sch_Name">School Name (In Which School Do you want to teach)</label>
                     </div>
                      <div class="input-field col s12 m12 l12" style="padding-top: 15px;">
                         <i class="material-icons prefix">library_books</i>
-                        <input id="school_program" type="text" name="sch_prog" class="validate" data-length="100" required="required">
+                        <input id="school_program" type="text" name="sch_prog" class="validate" data-length="100" required="required" style="text-transform: capitalize;">
                         <label for="school_program">Program Name (Program you want to teach)</label>
                     </div>
                      <div class="input-field col s12 m12 l12" style="padding-top: 15px;">

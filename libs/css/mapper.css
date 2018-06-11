@@ -1,0 +1,215 @@
+	/*div.graph_footer{
+ 		position: absolute;
+ 		z-index: 1;
+ 		bottom: 0;
+
+ 	}*/
+ 	/* Css stylings for the lecturer mappings */
+ 		h5.stud_list_title{
+		  font-weight: 400;
+		  font-size: 17px;
+		}
+		h5 >i.view{
+			margin-top:-3px;
+		}
+		div.stud_list{
+			background-color: #e9e9e9;
+			border-left: 2px solid lightblue;
+			transition: 0.2s all ease-in;
+			-webkit-transition:0.2s all ease-in;
+			-moz-transition:0.2s all ease-in;
+			-ms-transition:0.2s all ease-in;
+			-o-transition:0.2s all ease-in;
+			
+		}
+		div.bgColor_list{
+			background-color: #e9e9e9;
+			border-left: 2px solid lightblue;
+			transition: 0.2s all ease-in;
+			-webkit-transition:0.2s all ease-in;
+			-moz-transition:0.2s all ease-in;
+			-ms-transition:0.2s all ease-in;
+			-o-transition:0.2s all ease-in;
+		}
+
+		div.stud_list:hover{
+			background-color: #ffffff;
+			cursor: pointer;
+			transition: 0.1s all ease-in;
+			-webkit-transition:0.1s all ease-in;
+			-moz-transition:0.1s all ease-in;
+			-ms-transition:0.1s all ease-in;
+			-o-transition:0.1s all ease-in;
+		}
+
+
+		div.afterEffect:hover{
+			background-color: #ffffff;
+			cursor: pointer;
+			transition: 0.1s all ease-in;
+			-webkit-transition:0.1s all ease-in;
+			-moz-transition:0.1s all ease-in;
+			-ms-transition:0.1s all ease-in;
+			-o-transition:0.1s all ease-in;
+		}
+		div.checkedBg{
+			background-color: #ffffff;
+		}
+		span.image{
+			width: 50px;
+			height: auto;
+			
+		}
+		span.image > img{
+			width: 40px;
+			height: 40px;
+			margin-top: 8px;
+			border:3px solid rgba(0,0,0,0.25);
+		}
+		span.name{
+			position: relative;
+			top: 17px;
+			left: 0px;
+			font-weight: 500;
+		}
+		span.email{
+			position: relative;
+			top: 17px;
+			font-weight: 500;
+		}
+		span.email > a{
+			color: black;
+		}
+		span.email > a:hover{
+			text-decoration: underline;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		span.phone,span.side_menu{
+			position: relative;
+			top: 17px;
+			font-weight: 500;
+		}
+		.mt10{
+			margin-top: 13px;
+			display: none;
+			padding: 2px 2px 2px 2px;
+			/*background-color: rgba(0,0,0,0.25);
+			border-bottom-right-radius: 50%;
+			border-bottom-left-radius: 50%;
+			border-top-right-radius: 50%;
+			border-top-left-radius: 50%;*/
+			color: #929292;
+		}
+		.mt11{
+			margin-top: 13px;
+			display: none;
+			padding: 2px 2px 2px 2px;
+			/*background-color: rgba(0,0,0,0.25);
+			border-bottom-right-radius: 50%;
+			border-bottom-left-radius: 50%;
+			border-top-right-radius: 50%;
+			border-top-left-radius: 50%;*/
+			color: #929292;
+		}
+		a#edit{
+
+		}
+		
+		div.empty_list{
+			position: relative;
+			margin: 50px auto;
+			width: 200px;
+			height: 200px;
+		}
+		div.image_list{
+			position: absolute;
+			top: 60px;
+			left: 0;
+			right: 0;
+		}
+		span.empty_title{
+			font-family: 'Open Sans', sans-serif;
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 1;
+			text-align: center;
+			margin-left: 26px;
+		}
+		span#checkmate{
+			visibility: hidden;
+			opacity: 0;
+		}
+		h5.region,h5.district{
+			font-weight: 500;
+			font-size: 16px;
+			margin-left: 9px;
+		}
+		/* Css stylings for the student mappings */
+ 	.collapsible-header,.collapsible-body{
+ 		background: #FFFFFF !important;
+ 		-webkit-background:#FFFFFF !important;
+ 		-moz-background:#FFFFFF !important;
+ 		-ms-background:#FFFFFF !important;
+ 	}
+ 	span#regionCheck{
+ 		position: absolute;
+ 		margin-top: 11px;
+ 		margin-left: -28px;
+ 		width: 60px;
+ 		height: 60px;
+ 		visibility: hidden;
+ 		opacity: 0;
+ 		
+ 	}
+ 	span.img_show{
+ 		width: 30px;
+ 		height: 30px;
+ 	}
+ 	span.img_show > img{
+ 		width: 30px;
+ 		height: 30px;
+ 		margin-bottom:-11px;
+ 		
+
+ 	}
+ 	span.region_name{
+ 		height: auto;
+ 		width:150px;
+ 		display: inline-block;
+ 	}
+ 	span.region_name > h4{
+ 		font-size: 14px;
+ 		font-weight: 500;
+ 		text-shadow: 1px 1px 1px #e8e8e8;
+ 		margin-bottom: -9px;
+ 		margin-left: 5px;
+ 	
+ 	}
+	.checkbox-indigo[type="checkbox"]:checked + label:before{
+	  border: 2px solid transparent;
+	  border-bottom: 2px solid #039be5;
+	  border-right: 2px solid #039be5;
+	  background: transparent;
+	}
+	.checkbox-indigo.filled-in[type="checkbox"] + label:after{
+	  border: 2px solid #039be5;
+	  background: transparent;
+	}
+	.checkbox-indigo.filled-in[type="checkbox"]:checked + label:after{
+	  background: #039be5;
+	}
+	.checkbox-indigo.filled-in[type="checkbox"]:checked + label:before{
+	  border-top: 2px solid transparent;
+	  border-left: 2px solid transparent;
+	  border-right: 2px solid #fff;
+	  border-bottom: 2px solid #fff;
+	}
+
+	/* styles for the footer graphs */
+	/*div#footer_graph{
+		position: fixed;
+		left: 0;
+		bottom: 0;
+	}*/
+

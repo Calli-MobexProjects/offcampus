@@ -5697,7 +5697,7 @@ button.btn-floating {
   display: none;
   border-bottom: 1px solid #ddd;
   box-sizing: border-box;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .side-nav .collapsible,

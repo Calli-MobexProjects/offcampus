@@ -8,12 +8,12 @@
   	public $mysqli;
   	public $query;
   	
-  	function __construct($mysqli,$query)
-  	{
-  		# code...
-  		$this->mysqli = $mysqli;
-  		$this->query = $query;
-  	}
+  	// function __construct($mysqli,$query)
+  	// {
+  	// 	# code...
+  	// 	$this->mysqli = $mysqli;
+  	// 	$this->query = $query;
+  	// }
 
   	//Defining the function for the retrieving of all students to get their names
   	public function getApprovedStudents($mysqli)
@@ -26,15 +26,15 @@
   	//Defining the function for the retrieving of all the lecturers
   	public function getAllLecturer($mysqli)
   	{
-  		$query = "SELECT * FROM lecturer";
+  		$query = "SELECT * FROM lecturer ORDER BY lect_firstname ASC";
   		$results = $mysqli->query($query);
   		return $results;
   	}
 
     //Defining the function for the retrieving of the count of the students
-    public function getCountStudents($mysqli)
+    public function getCountApprovedStudents($mysqli)
     {
-      $query = "SELECT COUNT(*) AS totalStudents FROM student_details ORDER BY date_Created";
+      $query = "SELECT COUNT(*) AS totalApprovedStudents FROM student_details WHERE action= '2'";
       $results = $mysqli->query($query);
       return $results;
     }
@@ -46,12 +46,22 @@
       return $results;
     }
 
-    //Main mapper for the operations
-    public function getMappingData($mysqli)
+    //Getting the regions from the student_details where the letter has been approved
+    public function getApprovedRegions($mysqli)
     {
-      
+      $query = "SELECT DISTINCT region FROM  student_details WHERE action = '2'";
+      $results = $mysqli->query($query);
+      return $results;
     }
 
+    //Getting user data based on the getApprovedRegions function definition
+   
 
+    //Getting the details of the admin for the editing of the profile
+    public function editProfile($mysqli, $userid){
+      $query = "SELECT * FROM register WHERE Stud_id = '$userid' AND Profile = 'Admin'";
+      $results = $mysqli->query($query);
+      return $results;
+    }
   } 
  ?>
